@@ -23,7 +23,6 @@ public class ApiBuilder {
     private static final String APP_ID = "iphone1";
     private static final Locale LOCALE = Locale.getDefault();
     private static final String SIG = "app1";
-    private static final String APIKEY = "2wex6aeu6a8q9e49k7sfvufd6rhh0n";
     /*
      * Jackson JSON configuration
      */

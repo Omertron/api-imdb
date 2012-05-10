@@ -7,7 +7,6 @@ package com.omertron.imdbapi;
 import com.omertron.imdbapi.model.*;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -28,7 +27,6 @@ public class ImdbApiTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        BasicConfigurator.configure();
     }
 
     @AfterClass

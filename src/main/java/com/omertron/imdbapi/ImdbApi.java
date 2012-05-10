@@ -2,6 +2,7 @@ package com.omertron.imdbapi;
 
 import com.omertron.imdbapi.model.*;
 import com.omertron.imdbapi.tools.ApiBuilder;
+import com.omertron.imdbapi.tools.FilteringLayout;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -13,6 +14,7 @@ public class ImdbApi {
     private static final Logger LOGGER = Logger.getLogger(ImdbApi.class);
 
     public ImdbApi() {
+        FilteringLayout.addReplacementString("app.imdb.com");
     }
 
     public static URL getShowtimes(String location, Date date) {
