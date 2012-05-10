@@ -31,9 +31,11 @@
     </ciManagement>
 
     <scm>
-        <url>https://github.com/Omertron/api-imdb</url>
+        <url>scm:git:git@github.com:Omertron/api-imdb.git</url>
+        <connection>scm:git:git@github.com:Omertron/api-imdb.git</connection>
+        <developerConnection>scm:git:git@github.com:Omertron/api-imdb.git</developerConnection>
     </scm>
-
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -138,7 +140,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>buildnumber-maven-plugin</artifactId>
-                    <version>1.0</version>
+                    <version>1.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -157,11 +159,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <configuration>
-                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
-                    <revisionOnScmFailure>0000</revisionOnScmFailure>
-                    <timestampFormat>{0,date,yyyy-MM-dd HH:mm:ss}</timestampFormat>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -170,6 +167,14 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                    <shortRevisionLength>8</shortRevisionLength>
+                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                    <revisionOnScmFailure>00000000</revisionOnScmFailure>
+                    <timestampFormat>{0,date,yyyy-MM-dd HH:mm:ss}</timestampFormat>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -193,6 +198,7 @@
                             <Specification-Title>${project.name}</Specification-Title>
                             <Specification-Version>${project.version}</Specification-Version>
                             <Implementation-Version>${buildNumber}</Implementation-Version>
+                            <Implementation-Build>${buildNumber}</Implementation-Build>
                             <Implementation-Title>${timestamp}</Implementation-Title>
                         </manifestEntries>
                     </archive>
@@ -221,7 +227,7 @@
                                 <property name="header_line" value="IMDB API${line.separator}" />
                                 <property name="build_date_line" value="Build Date: ${timestamp}${line.separator}" />
                                 <property name="version_line" value="Version: ${project.version}${line.separator}" />
-                                <property name="revision_line" value="Revision: r${buildNumber}${line.separator}" />
+                                <property name="revision_line" value="Build: ${buildNumber}${line.separator}" />
                                 <echo>Writing version file: ${version_file}</echo>
                                 <echo file="${version_file}" append="false">${header_line}</echo>
                                 <echo file="${version_file}" append="true">${build_date_line}</echo>
@@ -255,9 +261,7 @@
             </plugin>
         </plugins>
 
-        <finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName>
-        <resources>
-        </resources>
+        <finalName>${project.artifactId}-${project.version}-${buildNumber}</finalName>
 
     </build>
 </project>
