@@ -8,16 +8,40 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-public class ImdbApi {
-    private static final Logger LOGGER = Logger.getLogger(ImdbApi.class);
+public final class ImdbApi {
 
+    private static final Logger LOGGER = Logger.getLogger(ImdbApi.class);
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
 
-    public ImdbApi() {
+    static {
         FilteringLayout.addReplacementString("app.imdb.com");
+    }
+
+    private ImdbApi() {
+        throw new UnsupportedOperationException("Class cannot be initialised");
+    }
+
+    /**
+     * Output the API version information to the debug log
+     */
+    public static void showVersion() {
+        String apiTitle = ImdbApi.class.getPackage().getSpecificationTitle();
+
+        if (StringUtils.isNotBlank(apiTitle)) {
+            String apiVersion = ImdbApi.class.getPackage().getSpecificationVersion();
+            String apiRevision = ImdbApi.class.getPackage().getImplementationVersion();
+            StringBuilder sv = new StringBuilder();
+            sv.append(apiTitle).append(" ");
+            sv.append(apiVersion).append(" r");
+            sv.append(apiRevision);
+            LOGGER.debug(sv.toString());
+        } else {
+            LOGGER.debug("API-IMDB version/revision information not available");
+        }
     }
 
     public static URL getShowtimes(String location, Date date) {
@@ -259,5 +283,4 @@ public class ImdbApi {
             return wrapper.getSearchResults();
         }
     }
-
 }

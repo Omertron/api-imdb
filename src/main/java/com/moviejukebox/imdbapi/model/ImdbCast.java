@@ -12,8 +12,6 @@
  */
 package com.moviejukebox.imdbapi.model;
 
-import java.util.Collections;
-import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;

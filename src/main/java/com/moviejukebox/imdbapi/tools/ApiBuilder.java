@@ -14,7 +14,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.module.SimpleModule;
 
-public class ApiBuilder {
+public final class ApiBuilder {
 
     private static final Logger LOGGER = Logger.getLogger(ApiBuilder.class);
     private static final String LOGMESSAGE = "ImdbApi: ";

@@ -4,20 +4,7 @@
  */
 package com.moviejukebox.imdbapi;
 
-import com.moviejukebox.imdbapi.model.ImdbQuotes;
-import com.moviejukebox.imdbapi.model.ImdbSpoiler;
-import com.moviejukebox.imdbapi.model.ImdbMovieDetails;
-import com.moviejukebox.imdbapi.model.SearchObject;
-import com.moviejukebox.imdbapi.model.ImdbImage;
-import com.moviejukebox.imdbapi.model.ImdbCredit;
-import com.moviejukebox.imdbapi.model.ImdbFilmography;
-import com.moviejukebox.imdbapi.model.ImdbSeason;
-import com.moviejukebox.imdbapi.model.ImdbUserComment;
-import com.moviejukebox.imdbapi.model.ImdbPerson;
-import com.moviejukebox.imdbapi.model.ImdbList;
-import com.moviejukebox.imdbapi.model.ImdbReview;
-import com.moviejukebox.imdbapi.ImdbApi;
-import com.moviejukebox.imdbapi.model.ImdbText;
+import com.moviejukebox.imdbapi.model.*;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
@@ -40,6 +27,7 @@ public class ImdbApiTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        ImdbApi.showVersion();
     }
 
     @AfterClass

@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Map;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.deser.StdDeserializer;
@@ -30,7 +29,7 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
     }
 
     @Override
-    public SearchObject deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public SearchObject deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         ObjectNode root = (ObjectNode) mapper.readTree(jp);
         Class<? extends SearchObject> searchClass = null;
