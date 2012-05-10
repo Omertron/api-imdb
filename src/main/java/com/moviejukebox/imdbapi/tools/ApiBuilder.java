@@ -48,7 +48,7 @@ public class ApiBuilder {
 
         sbURL.append("&sig=").append(SIG);
 
-        LOGGER.info(LOGMESSAGE + "URL = " + sbURL.toString());
+//        LOGGER.debug(LOGMESSAGE + "URL = " + sbURL.toString());
         try {
             return new URL(sbURL.toString());
         } catch (MalformedURLException ex) {
