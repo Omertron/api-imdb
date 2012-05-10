@@ -27,6 +27,16 @@ public class ImdbPerson extends SearchObject {
     private List<ImdbKnownFor> knownFor = Collections.EMPTY_LIST;
     @JsonProperty("attr")
     private String attr;
+    @JsonProperty("news")
+    private ImdbNews news;
+
+    public ImdbNews getNews() {
+        return news;
+    }
+
+    public void setNews(ImdbNews news) {
+        this.news = news;
+    }
 
     public String getAttr() {
         return attr;
