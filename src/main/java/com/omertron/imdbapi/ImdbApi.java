@@ -236,7 +236,7 @@ public class ImdbApi {
 
     }
 
-    public static Map<String, List<ImdbMovieDetails>> getSearch(String query) {
+    public static Map<String, List<SearchObject>> getSearch(String query) {
         Map<String, String> args = new HashMap<String, String>();
 
         String encodedQuery;
@@ -247,7 +247,7 @@ public class ImdbApi {
         }
         args.put("q", encodedQuery);
 
-        WrapperSearch wrapper = ApiBuilder.getWrapper(WrapperSearch.class, "find", args);
+        WrapperSearch wrapper = ApiBuilder.getSearchWrapper("find", args);
         if (wrapper == null) {
             return null;
         } else {

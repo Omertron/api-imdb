@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class ImdbPerson {
+public class ImdbPerson extends SearchObject {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbPerson.class);
     @JsonProperty("nconst")
@@ -20,13 +20,10 @@ public class ImdbPerson {
     private List<String> aka = new ArrayList<String>();
     @JsonProperty("has")
     private List<String> has = new ArrayList<String>();
-    @JsonProperty("image")
-    private ImdbImageDetails image;
     @JsonProperty("birth")
     private ImdbBirth birth;
     @JsonProperty("photos")
     private List<ImdbImage> photos = Collections.EMPTY_LIST;
-    @JsonProperty("known_for")
     private List<ImdbKnownFor> knownFor = Collections.EMPTY_LIST;
     @JsonProperty("attr")
     private String attr;
@@ -43,8 +40,18 @@ public class ImdbPerson {
         return knownFor;
     }
 
-    public void setKnownFor(List<ImdbKnownFor> knownFor) {
-        this.knownFor = knownFor;
+    @JsonProperty("known_for")
+    public void setKnownFor(Object passedObject) {
+        if (passedObject.getClass() == String.class) {
+            this.knownFor = new ArrayList<ImdbKnownFor>();
+            ImdbKnownFor kf = new ImdbKnownFor();
+            ImdbMovie m = new ImdbMovie();
+            m.setTitle((String) passedObject);
+            kf.setTitle(m);
+            this.knownFor.add(kf);
+        } else {
+            this.knownFor = (List<ImdbKnownFor>) passedObject;
+        }
     }
 
     public List<ImdbImage> getPhotos() {
@@ -61,14 +68,6 @@ public class ImdbPerson {
 
     public void setBirth(ImdbBirth birth) {
         this.birth = birth;
-    }
-
-    public ImdbImageDetails getImage() {
-        return image;
-    }
-
-    public void setImage(ImdbImageDetails image) {
-        this.image = image;
     }
 
     public List<String> getHas() {

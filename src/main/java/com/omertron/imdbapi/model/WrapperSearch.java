@@ -13,6 +13,7 @@
 package com.omertron.imdbapi.model;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
@@ -27,7 +28,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta","exp","copyright","@type"})
+@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type"})
 public class WrapperSearch {
 
     private static final Logger LOGGER = Logger.getLogger(WrapperSearch.class);
@@ -38,7 +39,7 @@ public class WrapperSearch {
     private String query;
     @JsonProperty("fields")
     private List<String> fields = Collections.EMPTY_LIST;
-    private Map<String, List<ImdbMovieDetails>> searchResults = Collections.EMPTY_MAP;
+    private Map<String, List<SearchObject>> searchResults;
 
     public List<String> getFields() {
         return fields;
@@ -64,15 +65,15 @@ public class WrapperSearch {
         this.searchData = searchData;
     }
 
-    public Map<String, List<ImdbMovieDetails>> getSearchResults() {
+    public Map<String, List<SearchObject>> getSearchResults() {
         return searchResults;
     }
 
     @JsonProperty("results")
     public void setSearchResults(List<ImdbSearchResult> searchResults) {
-        this.searchResults.clear();
+        this.searchResults = new HashMap<String, List<SearchObject>>();
         for (ImdbSearchResult result : searchResults) {
-            this.searchResults.put(result.getLabel(), result.getMovies());
+            this.searchResults.put(result.getLabel(), result.getSearchObject());
         }
     }
 

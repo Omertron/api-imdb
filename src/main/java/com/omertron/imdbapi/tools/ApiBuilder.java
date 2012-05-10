@@ -1,7 +1,6 @@
 package com.omertron.imdbapi.tools;
 
-import com.omertron.imdbapi.model.Response;
-import com.omertron.imdbapi.model.WrapperResponse;
+import com.omertron.imdbapi.model.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,8 +9,10 @@ import java.util.Locale;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.module.SimpleModule;
 
 public class ApiBuilder {
 
@@ -82,5 +83,19 @@ public class ApiBuilder {
 
     public static Response getResponse(String function) {
         return getResponse(function, Collections.EMPTY_MAP);
+    }
+
+    public static WrapperSearch getSearchWrapper(String function, Map<String, String> args) {
+        SearchDeserializer deserializer = new SearchDeserializer();
+        deserializer.registerSearchObject("tconst", ImdbMovieDetails.class);
+        deserializer.registerSearchObject("nconst", ImdbPerson.class);
+
+        SimpleModule module = new SimpleModule("PolymorphicSearchDeserializerModule", new Version(1, 0, 0, null));
+        module.addDeserializer(SearchObject.class, deserializer);
+
+        mapper.registerModule(module);
+
+        WrapperSearch wrapper = getWrapper(WrapperSearch.class, function, args);
+        return wrapper.getSearchData();
     }
 }

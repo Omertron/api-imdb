@@ -12,7 +12,7 @@ public class ImdbSearchResult {
     @JsonProperty("label")
     private String label;
     @JsonProperty("list")
-    private List<ImdbMovieDetails> movies = Collections.EMPTY_LIST;
+    private List<SearchObject> searchObject = Collections.EMPTY_LIST;
 
     public String getLabel() {
         return label;
@@ -22,12 +22,12 @@ public class ImdbSearchResult {
         this.label = label;
     }
 
-    public List<ImdbMovieDetails> getMovies() {
-        return movies;
+    public List<SearchObject> getSearchObject() {
+        return searchObject;
     }
 
-    public void setMovies(List<ImdbMovieDetails> movies) {
-        this.movies = movies;
+    public void setSearchObject(List<SearchObject> searchObject) {
+        this.searchObject = searchObject;
     }
 
     /**

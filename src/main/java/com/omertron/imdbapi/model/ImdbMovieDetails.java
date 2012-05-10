@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class ImdbMovieDetails {
+public class ImdbMovieDetails extends SearchObject {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbMovieDetails.class);
     @JsonProperty("photos")
@@ -36,8 +36,6 @@ public class ImdbMovieDetails {
     private double numVotes;
     @JsonProperty("can_rate")
     private boolean canRate;
-    @JsonProperty("image")
-    private ImdbImageDetails image;
     @JsonProperty("quote")
     private ImdbQuote quote;
     @JsonProperty("release_date")
@@ -165,14 +163,6 @@ public class ImdbMovieDetails {
 
     public void setCanRate(boolean canRate) {
         this.canRate = canRate;
-    }
-
-    public ImdbImageDetails getImage() {
-        return image;
-    }
-
-    public void setImage(ImdbImageDetails image) {
-        this.image = image;
     }
 
     public List<String> getGenres() {
