@@ -11,7 +11,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
 import org.junit.*;
-import sun.font.TextLabel;
 
 /**
  *
@@ -66,9 +65,6 @@ public class ImdbApiTest {
     public void testGetParentalGuide() {
         LOGGER.info("getParentalGuide");
         List<ImdbText> result = ImdbApi.getParentalGuide(MOVIE_ID);
-        for(ImdbText tl : result) {
-            LOGGER.info(tl.getLabel() + "=" + tl.getText().replaceAll("\n", ".").substring(0, Math.min(20, tl.getText().length())));
-        }
         assertFalse("Parental guide list is empty", result.isEmpty());
     }
     /**
@@ -78,9 +74,6 @@ public class ImdbApiTest {
     public void testGetUserReviews() {
         LOGGER.info("getUserReviews");
         List<ImdbUserComment> result = ImdbApi.getUserReviews(MOVIE_ID);
-        for (ImdbUserComment uc : result) {
-            LOGGER.info(uc.toString());
-        }
         assertFalse("User reviews is empty", result.isEmpty());
     }
     /**
