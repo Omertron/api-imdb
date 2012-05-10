@@ -12,10 +12,9 @@
  */
 package com.omertron.imdbapi.model;
 
-import java.util.Collections;
-import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -25,6 +24,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  * @author stuart.boston
  */
+@JsonIgnoreProperties({"@meta","exp","copyright"})
 public class WrapperQuotes {
 
     private static final Logger LOGGER = Logger.getLogger(WrapperQuotes.class);
