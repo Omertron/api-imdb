@@ -28,6 +28,11 @@ public class ImdbEncodingFormat {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbEncodingFormat{" + "format=" + format + ", url=" + url + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

@@ -235,6 +235,11 @@ public class Response {
         this.trivia = trivia;
     }
 
+    @Override
+    public String toString() {
+        return "Response{" + "copyright=" + copyright + ", imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

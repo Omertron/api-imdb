@@ -27,6 +27,11 @@ public class ImdbKnownFor {
         this.title = title;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbKnownFor{" + "title=" + title + ", attribute=" + attribute + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

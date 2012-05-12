@@ -40,6 +40,11 @@ public class ImdbQuoteLine {
         this.stage = stage;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbQuoteLine{" + "stage=" + stage + ", quote=" + quote + ", chars=" + chars + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

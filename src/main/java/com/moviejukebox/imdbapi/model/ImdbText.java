@@ -40,6 +40,11 @@ public class ImdbText {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbText{" + "text=" + text + ", label=" + label + ", date=" + date + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

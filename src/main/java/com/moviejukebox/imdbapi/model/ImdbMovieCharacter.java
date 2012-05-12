@@ -48,6 +48,11 @@ public class ImdbMovieCharacter {
         this.attribute = attribute;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbMovieCharacter{" + "character=" + character + ", title=" + title + ", attribute=" + attribute + ", actorId=" + actorId + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

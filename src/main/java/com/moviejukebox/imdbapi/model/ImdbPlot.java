@@ -28,6 +28,11 @@ public class ImdbPlot {
         this.outline = outline;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbPlot{" + "outline=" + outline + ", more=" + more + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

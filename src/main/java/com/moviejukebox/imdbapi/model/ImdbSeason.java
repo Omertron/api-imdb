@@ -40,6 +40,11 @@ public class ImdbSeason {
         this.token = token;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbSeason{" + "label=" + label + ", token=" + token + ", episodes=" + episodes + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

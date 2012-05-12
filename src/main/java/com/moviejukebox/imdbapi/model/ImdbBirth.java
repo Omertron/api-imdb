@@ -30,6 +30,11 @@ public class ImdbBirth {
         this.place = place;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbBirth{" + "date=" + date + ", place=" + place + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

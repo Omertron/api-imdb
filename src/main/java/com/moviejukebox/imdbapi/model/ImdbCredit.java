@@ -40,6 +40,11 @@ public class ImdbCredit {
         this.token = token;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbCredit{" + "label=" + label + ", token=" + token + ", credits=" + credits + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

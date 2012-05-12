@@ -30,6 +30,11 @@ public class ImdbSearchResult {
         this.searchObject = searchObject;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbSearchResult{" + "label=" + label + ", searchObject=" + searchObject + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

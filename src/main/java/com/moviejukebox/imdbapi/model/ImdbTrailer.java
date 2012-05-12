@@ -111,6 +111,11 @@ public class ImdbTrailer {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbTrailer{" + "description=" + description + ", durationSeconds=" + durationSeconds + ", contentType=" + contentType + ", id=" + id + ", title=" + title + ", type=" + type + ", relatedMovie=" + relatedMovie + ", relatedName=" + relatedName + ", slates=" + slates + ", encodings=" + encodings + '}';
+    }
+    
     /**
      * Handle unknown properties and print a message
      *

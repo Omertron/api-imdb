@@ -89,6 +89,11 @@ public class ImdbCast {
         this.attr = attr;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbCast{" + "person=" + person + ", attr=" + attr + ", character=" + character + ", job=" + job + ", roleAs=" + roleAs + ", label=" + label + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

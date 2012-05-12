@@ -30,6 +30,11 @@ public class ImdbQuote {
         this.quoteId = quoteId;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbQuote{" + "quoteId=" + quoteId + ", lines=" + lines + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

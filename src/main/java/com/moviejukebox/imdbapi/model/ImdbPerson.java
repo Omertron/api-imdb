@@ -120,6 +120,11 @@ public class ImdbPerson extends SearchObject {
         this.actorId = actorId;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbPerson{" + "actorId=" + actorId + ", name=" + name + ", biography=" + biography + ", aka=" + aka + ", has=" + has + ", birth=" + birth + ", photos=" + photos + ", knownFor=" + knownFor + ", attr=" + attr + ", news=" + news + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

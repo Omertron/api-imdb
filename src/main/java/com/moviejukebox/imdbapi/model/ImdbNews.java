@@ -101,6 +101,11 @@ public class ImdbNews {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbNews{" + "channel=" + channel + ", total=" + total + ", source=" + source + ", markup=" + markup + ", label=" + label + ", limit=" + limit + ", items=" + items + ", type=" + type + ", start=" + start + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

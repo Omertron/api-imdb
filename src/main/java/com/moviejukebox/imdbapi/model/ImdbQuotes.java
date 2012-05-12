@@ -61,6 +61,11 @@ public class ImdbQuotes {
         this.year = year;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbQuotes{" + "imdbId=" + imdbId + ", type=" + type + ", title=" + title + ", year=" + year + ", lines=" + lines + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

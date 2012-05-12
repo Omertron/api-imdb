@@ -68,6 +68,11 @@ public class ImdbImage {
         this.link = link;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbImage{" + "created=" + created + ", caption=" + caption + ", link=" + link + ", image=" + image + ", copyright=" + copyright + ", by=" + by + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

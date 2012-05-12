@@ -119,6 +119,11 @@ public class ImdbList {
         this.year = year;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbList{" + "label=" + label + ", token=" + token + ", movie=" + movie + ", numVotes=" + numVotes + ", imdbId=" + imdbId + ", type=" + type + ", title=" + title + ", canRate=" + canRate + ", rating=" + rating + ", image=" + image + ", year=" + year + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

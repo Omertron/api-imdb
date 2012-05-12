@@ -39,6 +39,11 @@ public class ImdbImageDetails {
         this.width = width;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbImageDetails{" + "width=" + width + ", height=" + height + ", url=" + url + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

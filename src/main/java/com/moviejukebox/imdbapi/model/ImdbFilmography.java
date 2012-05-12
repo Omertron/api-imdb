@@ -40,6 +40,11 @@ public class ImdbFilmography {
         this.token = token;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbFilmography{" + "label=" + label + ", token=" + token + ", list=" + list + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

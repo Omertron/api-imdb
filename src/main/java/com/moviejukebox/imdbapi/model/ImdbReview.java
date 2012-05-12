@@ -39,6 +39,11 @@ public class ImdbReview {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbReview{" + "url=" + url + ", label=" + label + ", attr=" + attr + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

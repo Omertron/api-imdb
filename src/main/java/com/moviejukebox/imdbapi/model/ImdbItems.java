@@ -48,6 +48,11 @@ public class ImdbItems {
         this.source = source;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbItems{" + "source=" + source + ", head=" + head + ", id=" + id + ", dateTime=" + dateTime + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *

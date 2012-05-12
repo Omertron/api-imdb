@@ -96,6 +96,11 @@ public class ImdbMovie {
         }
     }
 
+    @Override
+    public String toString() {
+        return "ImdbMovie{" + "imdbId=" + imdbId + ", type=" + type + ", title=" + title + ", principles=" + principles + ", image=" + image + ", year=" + year + ", releaseDate=" + releaseDate + '}';
+    }
+
     /**
      * Handle unknown properties and print a message
      *
