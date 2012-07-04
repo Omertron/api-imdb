@@ -35,9 +35,9 @@ public final class ImdbApi {
             String apiVersion = ImdbApi.class.getPackage().getSpecificationVersion();
             String apiRevision = ImdbApi.class.getPackage().getImplementationVersion();
             StringBuilder sv = new StringBuilder();
-            sv.append(apiTitle).append(" ");
-            sv.append(apiVersion).append(" r");
-            sv.append(apiRevision);
+            sv.append(apiTitle);
+            sv.append(" ").append(apiVersion);
+            sv.append(" r").append(apiRevision);
             LOGGER.debug(sv.toString());
         } else {
             LOGGER.debug("API-IMDB version/revision information not available");
@@ -276,7 +276,7 @@ public final class ImdbApi {
         }
         args.put("q", encodedQuery);
         // Added for the change to the find api
-        args.put("device","0");
+        args.put("device", "0");
 
         WrapperSearch wrapper = ApiBuilder.getSearchWrapper("find", args);
         if (wrapper == null) {
