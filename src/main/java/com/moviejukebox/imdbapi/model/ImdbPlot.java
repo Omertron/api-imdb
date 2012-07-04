@@ -11,6 +11,8 @@ public class ImdbPlot {
     private String outline;
     @JsonProperty("more")
     private int more;
+    @JsonProperty("summary")
+    private String summary;
     @JsonProperty("total_summaries")
     private int totalSummaries;
 
@@ -38,9 +40,17 @@ public class ImdbPlot {
         this.totalSummaries = totalSummaries;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     @Override
     public String toString() {
-        return "ImdbPlot{" + "outline=" + outline + ", more=" + more + ", totalSummaries=" + totalSummaries + '}';
+        return "ImdbPlot{" + "outline=" + outline + ", more=" + more + ", summary=" + summary + ", totalSummaries=" + totalSummaries + '}';
     }
 
     /**
