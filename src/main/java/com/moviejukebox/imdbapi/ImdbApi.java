@@ -25,6 +25,18 @@ public final class ImdbApi {
         throw new UnsupportedOperationException("Class cannot be initialised");
     }
 
+    public static void setLocale(Locale locale) {
+        ApiBuilder.setLocale(locale);
+    }
+
+    public static void setLocale(String language) {
+        setLocale(new Locale(language));
+    }
+
+    public static void setLocale(String language, String country) {
+        setLocale(new Locale(language, country));
+    }
+
     /**
      * Output the API version information to the debug log
      */

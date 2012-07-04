@@ -21,8 +21,8 @@ public final class ApiBuilder {
     private static final String BASE_URL = "http://app.imdb.com/";
     private static final String API_VERSION = "v1";
     private static final String APP_ID = "iphone1";
-    private static final Locale LOCALE = Locale.getDefault();
     private static final String SIG = "app1";
+    private static Locale imdbLocale = Locale.getDefault();
     /*
      * Jackson JSON configuration
      */
@@ -32,13 +32,18 @@ public final class ApiBuilder {
         throw new UnsupportedOperationException("Class cannot be initialised");
     }
 
+    public static void setLocale(Locale locale) {
+        ApiBuilder.imdbLocale = locale;
+        LOGGER.trace(LOGMESSAGE + "Setting locale to " + imdbLocale.toString());
+    }
+
     public static URL buildUrl(String function, Map<String, String> arguments) {
         StringBuilder sbURL = new StringBuilder(BASE_URL);
 
         sbURL.append(function);
         sbURL.append("?api=").append(API_VERSION);
         sbURL.append("&appid=").append(APP_ID);
-        sbURL.append("&locale=").append(LOCALE);
+        sbURL.append("&locale=").append(imdbLocale);
         sbURL.append("&timestamp=").append(System.currentTimeMillis() / 1000);
 
         for (Map.Entry<String, String> argEntry : arguments.entrySet()) {
@@ -48,10 +53,11 @@ public final class ApiBuilder {
 
         sbURL.append("&sig=").append(SIG);
 
-//        LOGGER.debug(LOGMESSAGE + "URL = " + sbURL.toString());
+        LOGGER.trace(LOGMESSAGE + "URL = " + sbURL.toString());
         try {
             return new URL(sbURL.toString());
         } catch (MalformedURLException ex) {
+            LOGGER.trace(LOGMESSAGE + "Failed to convert string to URL: " + ex.getMessage());
             return null;
         }
     }
