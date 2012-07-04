@@ -18,7 +18,7 @@ public final class ImdbApi {
     private static final String NCONST = "nconst";
 
     static {
-//        FilteringLayout.addReplacementString("app.imdb.com");
+        FilteringLayout.addReplacementString("app.imdb.com");
     }
 
     private ImdbApi() {
