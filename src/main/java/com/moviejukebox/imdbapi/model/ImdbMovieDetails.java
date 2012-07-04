@@ -52,6 +52,8 @@ public class ImdbMovieDetails extends SearchObject {
     private List<ImdbCast> directors = Collections.EMPTY_LIST;
     @JsonProperty("plot")
     private ImdbPlot plot;
+    @JsonProperty("best_plot")
+    private ImdbPlot bestPlot;
     @JsonProperty("cast_summary")
     private List<ImdbCast> cast = Collections.EMPTY_LIST;
     @JsonProperty("user_comment")
@@ -266,9 +268,17 @@ public class ImdbMovieDetails extends SearchObject {
         this.photos = photos;
     }
 
+    public ImdbPlot getBestPlot() {
+        return bestPlot;
+    }
+
+    public void setBestPlot(ImdbPlot bestPlot) {
+        this.bestPlot = bestPlot;
+    }
+
     @Override
     public String toString() {
-        return "ImdbMovieDetails{" + "photos=" + photos + ", certificate=" + certificate + ", has=" + has + ", type=" + type + ", title=" + title + ", year=" + year + ", runtime=" + runtime + ", tagline=" + tagline + ", rating=" + rating + ", imdbId=" + imdbId + ", genres=" + genres + ", numVotes=" + numVotes + ", canRate=" + canRate + ", quote=" + quote + ", releaseDate=" + releaseDate + ", goof=" + goof + ", trivium=" + trivium + ", news=" + news + ", writers=" + writers + ", directors=" + directors + ", plot=" + plot + ", cast=" + cast + ", userComment=" + userComment + ", trailer=" + trailer + ", principals=" + principals + '}';
+        return "ImdbMovieDetails{" + "photos=" + photos + ", certificate=" + certificate + ", has=" + has + ", type=" + type + ", title=" + title + ", year=" + year + ", runtime=" + runtime + ", tagline=" + tagline + ", rating=" + rating + ", imdbId=" + imdbId + ", genres=" + genres + ", numVotes=" + numVotes + ", canRate=" + canRate + ", quote=" + quote + ", releaseDate=" + releaseDate + ", goof=" + goof + ", trivium=" + trivium + ", news=" + news + ", writers=" + writers + ", directors=" + directors + ", plot=" + plot + ", bestPlot=" + bestPlot + ", cast=" + cast + ", userComment=" + userComment + ", trailer=" + trailer + ", principals=" + principals + '}';
     }
 
     /**
