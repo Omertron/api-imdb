@@ -25,14 +25,32 @@ public final class ImdbApi {
         throw new UnsupportedOperationException("Class cannot be initialised");
     }
 
+    /**
+     * Set the locale using a pre-constructed java locale object
+     *
+     * @param locale
+     */
     public static void setLocale(Locale locale) {
         ApiBuilder.setLocale(locale);
     }
 
+    /**
+     * Set the locale using the language only.
+     *
+     * This will default to the source country for that language.
+     *
+     * @param language
+     */
     public static void setLocale(String language) {
         setLocale(new Locale(language));
     }
 
+    /**
+     * Set the locale using the language an country.
+     *
+     * @param language
+     * @param country
+     */
     public static void setLocale(String language, String country) {
         setLocale(new Locale(language, country));
     }
