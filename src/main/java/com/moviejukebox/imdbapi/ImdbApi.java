@@ -18,7 +18,7 @@ public final class ImdbApi {
     private static final String NCONST = "nconst";
 
     static {
-        FilteringLayout.addReplacementString("app.imdb.com");
+//        FilteringLayout.addReplacementString("app.imdb.com");
     }
 
     private ImdbApi() {
@@ -275,6 +275,8 @@ public final class ImdbApi {
             encodedQuery = query;
         }
         args.put("q", encodedQuery);
+        // Added for the change to the find api
+        args.put("device","0");
 
         WrapperSearch wrapper = ApiBuilder.getSearchWrapper("find", args);
         if (wrapper == null) {
