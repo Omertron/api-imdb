@@ -30,7 +30,8 @@ public class ImdbApiTest {
         ImdbApi.showVersion();
 
         if (IMDB_IDS.isEmpty()) {
-            IMDB_IDS.add("tt0848228");   // Avengers
+            IMDB_IDS.add("tt0110912");  // Pulp Fiction
+            IMDB_IDS.add("tt0848228");  // Avengers
             IMDB_IDS.add("tt0898266");  // The Big Bang Theory)
         }
 
