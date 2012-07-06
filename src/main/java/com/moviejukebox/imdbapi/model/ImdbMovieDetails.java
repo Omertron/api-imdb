@@ -62,6 +62,12 @@ public class ImdbMovieDetails extends SearchObject {
     private ImdbTrailer trailer;
     @JsonProperty("principals")
     private List<ImdbPerson> principals = Collections.EMPTY_LIST;
+    @JsonProperty("seasons")
+    private List<Integer> seasons=Collections.EMPTY_LIST;
+    @JsonProperty("creators")
+    private List<ImdbCast> creators = Collections.EMPTY_LIST;
+    @JsonProperty("production_status")
+    private String productionStatus;
 
     public List<ImdbPerson> getPrincipals() {
         return principals;
@@ -276,9 +282,33 @@ public class ImdbMovieDetails extends SearchObject {
         this.bestPlot = bestPlot;
     }
 
+    public List<Integer> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<Integer> seasons) {
+        this.seasons = seasons;
+    }
+
+    public List<ImdbCast> getCreators() {
+        return creators;
+    }
+
+    public void setCreators(List<ImdbCast> creators) {
+        this.creators = creators;
+    }
+
+    public String getProductionStatus() {
+        return productionStatus;
+    }
+
+    public void setProductionStatus(String productionStatus) {
+        this.productionStatus = productionStatus;
+    }
+
     @Override
     public String toString() {
-        return "ImdbMovieDetails{" + "photos=" + photos + ", certificate=" + certificate + ", has=" + has + ", type=" + type + ", title=" + title + ", year=" + year + ", runtime=" + runtime + ", tagline=" + tagline + ", rating=" + rating + ", imdbId=" + imdbId + ", genres=" + genres + ", numVotes=" + numVotes + ", canRate=" + canRate + ", quote=" + quote + ", releaseDate=" + releaseDate + ", goof=" + goof + ", trivium=" + trivium + ", news=" + news + ", writers=" + writers + ", directors=" + directors + ", plot=" + plot + ", bestPlot=" + bestPlot + ", cast=" + cast + ", userComment=" + userComment + ", trailer=" + trailer + ", principals=" + principals + '}';
+        return "ImdbMovieDetails{" + "photos=" + photos + ", certificate=" + certificate + ", has=" + has + ", type=" + type + ", title=" + title + ", year=" + year + ", runtime=" + runtime + ", tagline=" + tagline + ", rating=" + rating + ", imdbId=" + imdbId + ", genres=" + genres + ", numVotes=" + numVotes + ", canRate=" + canRate + ", quote=" + quote + ", releaseDate=" + releaseDate + ", goof=" + goof + ", trivium=" + trivium + ", news=" + news + ", writers=" + writers + ", directors=" + directors + ", plot=" + plot + ", bestPlot=" + bestPlot + ", cast=" + cast + ", userComment=" + userComment + ", trailer=" + trailer + ", principals=" + principals + ", seasons=" + seasons + ", creators=" + creators + ", productionStatus=" + productionStatus + '}';
     }
 
     /**
