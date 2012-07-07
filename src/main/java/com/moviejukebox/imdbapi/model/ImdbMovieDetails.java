@@ -23,7 +23,7 @@ public class ImdbMovieDetails extends SearchObject {
     private String title;
     private int year;
     @JsonProperty("runtime")
-    private Map<String, Integer> runtime = Collections.EMPTY_MAP;
+    private ImdbRuntime runtime;
     @JsonProperty("tagline")
     private String tagline;
     @JsonProperty("rating")
@@ -221,14 +221,6 @@ public class ImdbMovieDetails extends SearchObject {
         this.has = has;
     }
 
-    public Map<String, Integer> getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(Map<String, Integer> runtime) {
-        this.runtime = runtime;
-    }
-
     public String getTagline() {
         return tagline;
     }
@@ -304,6 +296,14 @@ public class ImdbMovieDetails extends SearchObject {
 
     public void setProductionStatus(String productionStatus) {
         this.productionStatus = productionStatus;
+    }
+
+    public ImdbRuntime getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(ImdbRuntime runtime) {
+        this.runtime = runtime;
     }
 
     @Override

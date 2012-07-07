@@ -1,6 +1,7 @@
 package com.moviejukebox.imdbapi;
 
 import com.moviejukebox.imdbapi.model.*;
+import com.moviejukebox.imdbapi.tools.FilteringLayout;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ public class ImdbApiTest {
         Logger.getRootLogger().setLevel(Level.TRACE);
         // Show the version of the API
         ImdbApi.showVersion();
+        // Make sure the filter isn't applied to the test output
+        FilteringLayout.addReplacementString("DO_NOT_MATCH");
 
         if (IMDB_IDS.isEmpty()) {
             IMDB_IDS.add("tt0110912");  // Pulp Fiction
