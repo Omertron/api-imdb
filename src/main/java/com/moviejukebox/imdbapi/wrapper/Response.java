@@ -8,11 +8,11 @@ import com.moviejukebox.imdbapi.model.ImdbSeason;
 import com.moviejukebox.imdbapi.model.ImdbSpoiler;
 import com.moviejukebox.imdbapi.model.ImdbText;
 import com.moviejukebox.imdbapi.model.ImdbUserComment;
-import com.moviejukebox.imdbapi.wrapper.WrapperList;
 import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -20,11 +20,10 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  * @author stuart.boston
  */
+@JsonIgnoreProperties({"copyright"})
 public class Response {
 
     private static final Logger LOGGER = Logger.getLogger(Response.class);
-    @JsonProperty("copyright")
-    private String copyright;
     @JsonProperty("tconst")
     private String imdbId;
     @JsonProperty("limit")
@@ -116,14 +115,6 @@ public class Response {
 
     public void setFilmography(List<ImdbFilmography> filmography) {
         this.filmography = filmography;
-    }
-
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
     }
 
     public List<ImdbText> getParentalGuide() {
@@ -256,7 +247,7 @@ public class Response {
 
     @Override
     public String toString() {
-        return "Response{" + "copyright=" + copyright + ", imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + ", date=" + date + '}';
+        return "Response{" + ", imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + ", date=" + date + '}';
     }
 
     /**
