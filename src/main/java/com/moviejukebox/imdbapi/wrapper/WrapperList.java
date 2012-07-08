@@ -1,5 +1,6 @@
-package com.moviejukebox.imdbapi.model;
+package com.moviejukebox.imdbapi.wrapper;
 
+import com.moviejukebox.imdbapi.model.ImdbList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;

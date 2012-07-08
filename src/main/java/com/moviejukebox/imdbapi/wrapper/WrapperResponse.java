@@ -10,7 +10,7 @@
  *      For any reuse or distribution, you must make clear to others the
  *      license terms of this work.
  */
-package com.moviejukebox.imdbapi.model;
+package com.moviejukebox.imdbapi.wrapper;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
@@ -25,18 +25,18 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta","exp","copyright"})
-public class WrapperQuotes {
+public class WrapperResponse {
 
-    private static final Logger LOGGER = Logger.getLogger(WrapperQuotes.class);
+    private static final Logger LOGGER = Logger.getLogger(WrapperResponse.class);
     @JsonProperty("data")
-    private ImdbQuotes quotes;
+    private Response response;
 
-    public ImdbQuotes getQuotes() {
-        return quotes;
+    public Response getResponse() {
+        return response;
     }
 
-    public void setQuotes(ImdbQuotes quotes) {
-        this.quotes = quotes;
+    public void setResponse(Response response) {
+        this.response = response;
     }
 
     /**

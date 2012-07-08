@@ -1,5 +1,14 @@
-package com.moviejukebox.imdbapi.model;
+package com.moviejukebox.imdbapi.wrapper;
 
+import com.moviejukebox.imdbapi.model.ImdbCredit;
+import com.moviejukebox.imdbapi.model.ImdbFilmography;
+import com.moviejukebox.imdbapi.model.ImdbImage;
+import com.moviejukebox.imdbapi.model.ImdbReview;
+import com.moviejukebox.imdbapi.model.ImdbSeason;
+import com.moviejukebox.imdbapi.model.ImdbSpoiler;
+import com.moviejukebox.imdbapi.model.ImdbText;
+import com.moviejukebox.imdbapi.model.ImdbUserComment;
+import com.moviejukebox.imdbapi.wrapper.WrapperList;
 import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -58,6 +67,8 @@ public class Response {
     private List<ImdbImage> photos = Collections.EMPTY_LIST;
     @JsonProperty("credits")
     private List<ImdbCredit> credits = Collections.EMPTY_LIST;
+    @JsonProperty("date")
+    private String date;
 
     public List<ImdbCredit> getCredits() {
         return credits;
@@ -235,9 +246,17 @@ public class Response {
         this.trivia = trivia;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
-        return "Response{" + "copyright=" + copyright + ", imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + '}';
+        return "Response{" + "copyright=" + copyright + ", imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + ", date=" + date + '}';
     }
 
     /**

@@ -1,6 +1,11 @@
 package com.moviejukebox.imdbapi.tools;
 
 import com.moviejukebox.imdbapi.model.*;
+import com.moviejukebox.imdbapi.search.SearchDeserializer;
+import com.moviejukebox.imdbapi.search.SearchObject;
+import com.moviejukebox.imdbapi.wrapper.Response;
+import com.moviejukebox.imdbapi.wrapper.WrapperResponse;
+import com.moviejukebox.imdbapi.wrapper.WrapperSearch;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;

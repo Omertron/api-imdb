@@ -30,6 +30,8 @@ public class ImdbList {
     private ImdbImageDetails image;
     @JsonProperty("year")
     private int year;
+    @JsonProperty("weekend")
+    private ImdbWeekend weekend;
 
     public String getLabel() {
         return label;
@@ -119,9 +121,17 @@ public class ImdbList {
         this.year = year;
     }
 
+    public ImdbWeekend getWeekend() {
+        return weekend;
+    }
+
+    public void setWeekend(ImdbWeekend weekend) {
+        this.weekend = weekend;
+    }
+
     @Override
     public String toString() {
-        return "ImdbList{" + "label=" + label + ", token=" + token + ", movie=" + movie + ", numVotes=" + numVotes + ", imdbId=" + imdbId + ", type=" + type + ", title=" + title + ", canRate=" + canRate + ", rating=" + rating + ", image=" + image + ", year=" + year + '}';
+        return "ImdbList{" + "label=" + label + ", token=" + token + ", movie=" + movie + ", numVotes=" + numVotes + ", imdbId=" + imdbId + ", type=" + type + ", title=" + title + ", canRate=" + canRate + ", rating=" + rating + ", image=" + image + ", year=" + year + ", weekend=" + weekend + '}';
     }
 
     /**

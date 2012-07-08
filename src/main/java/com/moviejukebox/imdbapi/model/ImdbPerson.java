@@ -1,5 +1,6 @@
 package com.moviejukebox.imdbapi.model;
 
+import com.moviejukebox.imdbapi.search.SearchObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

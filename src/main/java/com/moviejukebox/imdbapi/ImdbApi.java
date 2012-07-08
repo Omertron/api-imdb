@@ -1,8 +1,14 @@
 package com.moviejukebox.imdbapi;
 
 import com.moviejukebox.imdbapi.model.*;
+import com.moviejukebox.imdbapi.search.SearchObject;
 import com.moviejukebox.imdbapi.tools.ApiBuilder;
 import com.moviejukebox.imdbapi.tools.FilteringLayout;
+import com.moviejukebox.imdbapi.wrapper.Response;
+import com.moviejukebox.imdbapi.wrapper.WrapperActorData;
+import com.moviejukebox.imdbapi.wrapper.WrapperMovieDetails;
+import com.moviejukebox.imdbapi.wrapper.WrapperQuotes;
+import com.moviejukebox.imdbapi.wrapper.WrapperSearch;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -315,4 +321,24 @@ public final class ImdbApi {
             return wrapper.getSearchResults();
         }
     }
+
+    public static List<ImdbList> getBoxOffice() {
+        Response response = ApiBuilder.getResponse("boxoffice");
+        if (response == null) {
+            return Collections.EMPTY_LIST;
+        } else {
+            return response.getList().getImdbList();
+        }
+
+    }
+    //TODO:
+    //TODO: chart/moviemeter
+    //TODO: chart/top
+    //TODO: tv/tonight
+    //TODO: tv/recap
+    //TODO: chart/starmeter
+    //TODO: feature/borntoday
+    //TODO: news
+    //TODO: title/plot
+    //TODO: title/synopsis
 }

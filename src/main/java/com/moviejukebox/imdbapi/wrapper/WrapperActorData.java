@@ -10,8 +10,9 @@
  *      For any reuse or distribution, you must make clear to others the
  *      license terms of this work.
  */
-package com.moviejukebox.imdbapi.model;
+package com.moviejukebox.imdbapi.wrapper;
 
+import com.moviejukebox.imdbapi.model.ImdbPerson;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -25,18 +26,18 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta","exp","copyright"})
-public class WrapperMovieDetails {
+public class WrapperActorData {
 
-    private static final Logger LOGGER = Logger.getLogger(WrapperMovieDetails.class);
+    private static final Logger LOGGER = Logger.getLogger(WrapperActorData.class);
     @JsonProperty("data")
-    private ImdbMovieDetails movie;
+    private ImdbPerson actorData;
 
-    public ImdbMovieDetails getMovie() {
-        return movie;
+    public ImdbPerson getActorData() {
+        return actorData;
     }
 
-    public void setMovie(ImdbMovieDetails movie) {
-        this.movie = movie;
+    public void setActorData(ImdbPerson actorData) {
+        this.actorData = actorData;
     }
 
     /**
