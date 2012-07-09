@@ -23,6 +23,17 @@ public final class ImdbApi {
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
 
+    // Outstanding methods to implement
+    //TODO: chart/moviemeter
+    //TODO: chart/top
+    //TODO: tv/tonight
+    //TODO: tv/recap
+    //TODO: chart/starmeter
+    //TODO: feature/borntoday
+    //TODO: news
+    //TODO: title/plot
+    //TODO: title/synopsis
+
     static {
         FilteringLayout.addReplacementString("app.imdb.com");
     }
@@ -329,16 +340,6 @@ public final class ImdbApi {
         } else {
             return response.getList().getImdbList();
         }
-
     }
 
-    //TODO: chart/moviemeter
-    //TODO: chart/top
-    //TODO: tv/tonight
-    //TODO: tv/recap
-    //TODO: chart/starmeter
-    //TODO: feature/borntoday
-    //TODO: news
-    //TODO: title/plot
-    //TODO: title/synopsis
 }
