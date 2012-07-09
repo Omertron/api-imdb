@@ -84,8 +84,8 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<String, String>();
         args.put("location", location);
 
-        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
-        args.put("date", dt1.format(date));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        args.put("date", sdf.format(date));
         return ApiBuilder.buildUrl("showtimes/location", args);
     }
 
@@ -331,7 +331,7 @@ public final class ImdbApi {
         }
 
     }
-    //TODO:
+
     //TODO: chart/moviemeter
     //TODO: chart/top
     //TODO: tv/tonight
