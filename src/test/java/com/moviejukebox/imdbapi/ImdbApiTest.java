@@ -317,4 +317,28 @@ public class ImdbApiTest {
         List<ImdbBoxOffice> result = ImdbApi.getBoxOffice();
         assertFalse("BoxOffice is empty", result.isEmpty());
     }
+
+    /**
+     * Test of getTitlePlot method, of class ImdbApi.
+     */
+    @Test
+    public void testGetTitlePlot() {
+        LOGGER.info("getTitlePlot");
+        for (String imdbId : IMDB_IDS) {
+            List<ImdbPlot> result = ImdbApi.getTitlePlot(imdbId);
+            assertNotNull("Title plot is empty for " + imdbId, result);
+        }
+    }
+
+    /**
+     * Test of getTitleSynopsis method, of class ImdbApi.
+     */
+    @Test
+    public void testGetTitleSynopsis() {
+        LOGGER.info("getTitlePlot");
+        for (String imdbId : IMDB_IDS) {
+            ImdbSynopsis result = ImdbApi.getTitleSynopsis(imdbId);
+            assertNotNull("Title synopsis is empty for " + imdbId, result);
+        }
+    }
 }

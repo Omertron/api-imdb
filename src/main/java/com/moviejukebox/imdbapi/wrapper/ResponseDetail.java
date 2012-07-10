@@ -3,6 +3,7 @@ package com.moviejukebox.imdbapi.wrapper;
 import com.moviejukebox.imdbapi.model.ImdbCredit;
 import com.moviejukebox.imdbapi.model.ImdbFilmography;
 import com.moviejukebox.imdbapi.model.ImdbImage;
+import com.moviejukebox.imdbapi.model.ImdbPlot;
 import com.moviejukebox.imdbapi.model.ImdbReview;
 import com.moviejukebox.imdbapi.model.ImdbSeason;
 import com.moviejukebox.imdbapi.model.ImdbSpoiler;
@@ -68,6 +69,8 @@ public class ResponseDetail {
     private List<ImdbCredit> credits = Collections.EMPTY_LIST;
     @JsonProperty("date")
     private String date;
+    @JsonProperty("plots")
+    private List<ImdbPlot> plots;
 
     public List<ImdbCredit> getCredits() {
         return credits;
@@ -245,9 +248,17 @@ public class ResponseDetail {
         this.date = date;
     }
 
+    public List<ImdbPlot> getPlots() {
+        return plots;
+    }
+
+    public void setPlots(List<ImdbPlot> plots) {
+        this.plots = plots;
+    }
+
     @Override
     public String toString() {
-        return "Response{" + ", imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + ", date=" + date + '}';
+        return "ResponseDetail{" + "imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + ", date=" + date + ", plots=" + plots + '}';
     }
 
     /**

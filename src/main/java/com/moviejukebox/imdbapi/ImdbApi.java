@@ -10,6 +10,7 @@ import com.moviejukebox.imdbapi.wrapper.WrapperBoxOffice;
 import com.moviejukebox.imdbapi.wrapper.WrapperMovieDetails;
 import com.moviejukebox.imdbapi.wrapper.WrapperQuotes;
 import com.moviejukebox.imdbapi.wrapper.WrapperSearch;
+import com.moviejukebox.imdbapi.wrapper.WrapperSynopsis;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -20,6 +21,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Java API class for the IMDB JSON API
+ *
  * @author stuart.boston
  */
 public final class ImdbApi {
@@ -36,8 +38,6 @@ public final class ImdbApi {
     //TODO: chart/starmeter
     //TODO: feature/borntoday
     //TODO: news
-    //TODO: title/plot
-    //TODO: title/synopsis
     static {
         FilteringLayout.addReplacementString("app.imdb.com");
     }
@@ -97,6 +97,7 @@ public final class ImdbApi {
 
     /**
      * Get the show times for a particular location
+     *
      * @param location
      * @param date
      * @return
@@ -112,6 +113,7 @@ public final class ImdbApi {
 
     /**
      * Get the parental guide information for a title
+     *
      * @param imdbId
      * @return
      */
@@ -129,6 +131,7 @@ public final class ImdbApi {
 
     /**
      * Get the user reviews for a title
+     *
      * @param imdbId
      * @return
      */
@@ -146,6 +149,7 @@ public final class ImdbApi {
 
     /**
      * Get the external reviews for a title
+     *
      * @param imdbId
      * @return
      */
@@ -163,6 +167,7 @@ public final class ImdbApi {
 
     /**
      * Get the list of coming soon titles
+     *
      * @return
      */
     public static List<ImdbList> getComingSoon() {
@@ -176,6 +181,7 @@ public final class ImdbApi {
 
     /**
      * Get the Top250 list
+     *
      * @return
      */
     public static List<ImdbList> getTop250() {
@@ -189,6 +195,7 @@ public final class ImdbApi {
 
     /**
      * Get the Bottom 100 list
+     *
      * @return
      */
     public static List<ImdbList> getBottom100() {
@@ -202,6 +209,7 @@ public final class ImdbApi {
 
     /**
      * Get the quotes for an actor
+     *
      * @param actorId
      * @return
      */
@@ -218,6 +226,7 @@ public final class ImdbApi {
 
     /**
      * Get the trivia for an actor
+     *
      * @param actorId
      * @return
      */
@@ -234,6 +243,7 @@ public final class ImdbApi {
 
     /**
      * Get the actor's filmography
+     *
      * @param actorId
      * @return
      */
@@ -250,6 +260,7 @@ public final class ImdbApi {
 
     /**
      * Get the main details about the actor
+     *
      * @param actorId
      * @return
      */
@@ -267,6 +278,7 @@ public final class ImdbApi {
 
     /**
      * Get the episodes for a show
+     *
      * @param imdbId
      * @return
      */
@@ -283,6 +295,7 @@ public final class ImdbApi {
 
     /**
      * Get the goofs for a title
+     *
      * @param imdbId
      * @return
      */
@@ -311,6 +324,7 @@ public final class ImdbApi {
 
     /**
      * Get the quotes for a title
+     *
      * @param imdbId
      * @return
      */
@@ -328,6 +342,7 @@ public final class ImdbApi {
 
     /**
      * Get the trivia for a title
+     *
      * @param imdbId
      * @return
      */
@@ -356,6 +371,7 @@ public final class ImdbApi {
 
     /**
      * Get the photos for a title
+     *
      * @param imdbId
      * @return
      */
@@ -372,6 +388,7 @@ public final class ImdbApi {
 
     /**
      * Get the main details for a title
+     *
      * @param imdbId
      * @return
      */
@@ -388,6 +405,7 @@ public final class ImdbApi {
 
     /**
      * Get the cast for a title
+     *
      * @param imdbId
      * @return
      */
@@ -406,6 +424,7 @@ public final class ImdbApi {
 
     /**
      * Perform a search on the IMDB
+     *
      * @param query
      * @return
      */
@@ -432,6 +451,7 @@ public final class ImdbApi {
 
     /**
      * Get the latest box office information
+     *
      * @return
      */
     public static List<ImdbBoxOffice> getBoxOffice() {
@@ -441,5 +461,41 @@ public final class ImdbApi {
             return wrapper.getData().getBoxOfficeList().getBoxOffice();
         }
         return Collections.EMPTY_LIST;
+    }
+
+    /**
+     * Get all the plots for a title.
+     *
+     * @param imdbId
+     * @return
+     */
+    public static List<ImdbPlot> getTitlePlot(String imdbId) {
+        Map<String, String> args = new HashMap<String, String>();
+        args.put(TCONST, imdbId);
+
+        ResponseDetail response = ApiBuilder.getResponse("title/plot", args);
+        if (response == null) {
+            return Collections.EMPTY_LIST;
+        } else {
+            return response.getPlots();
+        }
+    }
+
+    /**
+     * Get all the synopsis for a title.
+     *
+     * @param imdbId
+     * @return
+     */
+    public static ImdbSynopsis getTitleSynopsis(String imdbId) {
+        Map<String, String> args = new HashMap<String, String>();
+        args.put(TCONST, imdbId);
+
+        WrapperSynopsis wrapper = ApiBuilder.getWrapper(WrapperSynopsis.class, "title/synopsis", args);
+        if (wrapper == null) {
+            return null;
+        } else {
+            return wrapper.getSynopsis();
+        }
     }
 }
