@@ -29,6 +29,10 @@ public class FilteringLayout extends PatternLayout {
     private static final String REPLACEMENT = "movieapi.com";
     private static Pattern replacementPattern = Pattern.compile("DO_NOT_MATCH");
 
+    /**
+     * Add the string to replace in the log output
+     * @param replacementString
+     */
     public static void addReplacementString(String replacementString) {
         replacementPattern = Pattern.compile(replacementString);
     }
