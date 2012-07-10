@@ -29,13 +29,13 @@ public class WrapperResponse {
 
     private static final Logger LOGGER = Logger.getLogger(WrapperResponse.class);
     @JsonProperty("data")
-    private Response response;
+    private ResponseDetail response;
 
-    public Response getResponse() {
+    public ResponseDetail getResponse() {
         return response;
     }
 
-    public void setResponse(Response response) {
+    public void setResponse(ResponseDetail response) {
         this.response = response;
     }
 

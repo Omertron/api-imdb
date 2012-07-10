@@ -21,9 +21,9 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"copyright"})
-public class Response {
+public class ResponseDetail {
 
-    private static final Logger LOGGER = Logger.getLogger(Response.class);
+    private static final Logger LOGGER = Logger.getLogger(ResponseDetail.class);
     @JsonProperty("tconst")
     private String imdbId;
     @JsonProperty("limit")

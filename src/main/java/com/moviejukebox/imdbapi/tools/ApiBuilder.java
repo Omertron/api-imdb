@@ -3,7 +3,7 @@ package com.moviejukebox.imdbapi.tools;
 import com.moviejukebox.imdbapi.model.*;
 import com.moviejukebox.imdbapi.search.SearchDeserializer;
 import com.moviejukebox.imdbapi.search.SearchObject;
-import com.moviejukebox.imdbapi.wrapper.Response;
+import com.moviejukebox.imdbapi.wrapper.ResponseDetail;
 import com.moviejukebox.imdbapi.wrapper.WrapperResponse;
 import com.moviejukebox.imdbapi.wrapper.WrapperSearch;
 import java.io.IOException;
@@ -82,7 +82,7 @@ public final class ApiBuilder {
         return null;
     }
 
-    public static Response getResponse(String function, Map<String, String> args) {
+    public static ResponseDetail getResponse(String function, Map<String, String> args) {
         WrapperResponse wr = getWrapper(WrapperResponse.class, function, args);
         if (wr == null) {
             return null;
@@ -91,7 +91,7 @@ public final class ApiBuilder {
         }
     }
 
-    public static Response getResponse(String function) {
+    public static ResponseDetail getResponse(String function) {
         return getResponse(function, Collections.EMPTY_MAP);
     }
 

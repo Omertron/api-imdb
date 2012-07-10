@@ -4,7 +4,7 @@ import com.moviejukebox.imdbapi.model.*;
 import com.moviejukebox.imdbapi.search.SearchObject;
 import com.moviejukebox.imdbapi.tools.ApiBuilder;
 import com.moviejukebox.imdbapi.tools.FilteringLayout;
-import com.moviejukebox.imdbapi.wrapper.Response;
+import com.moviejukebox.imdbapi.wrapper.ResponseDetail;
 import com.moviejukebox.imdbapi.wrapper.WrapperActorData;
 import com.moviejukebox.imdbapi.wrapper.WrapperBoxOffice;
 import com.moviejukebox.imdbapi.wrapper.WrapperMovieDetails;
@@ -119,7 +119,7 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
-        Response response = ApiBuilder.getResponse("title/parentalguide", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/parentalguide", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -136,7 +136,7 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
-        Response response = ApiBuilder.getResponse("title/usercomments", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/usercomments", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -153,7 +153,7 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
-        Response response = ApiBuilder.getResponse("title/external_reviews", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/external_reviews", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -166,7 +166,7 @@ public final class ImdbApi {
      * @return
      */
     public static List<ImdbList> getComingSoon() {
-        Response response = ApiBuilder.getResponse("feature/comingsoon");
+        ResponseDetail response = ApiBuilder.getResponse("feature/comingsoon");
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -179,7 +179,7 @@ public final class ImdbApi {
      * @return
      */
     public static List<ImdbList> getTop250() {
-        Response response = ApiBuilder.getResponse("chart/top");
+        ResponseDetail response = ApiBuilder.getResponse("chart/top");
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -192,7 +192,7 @@ public final class ImdbApi {
      * @return
      */
     public static List<ImdbList> getBottom100() {
-        Response response = ApiBuilder.getResponse("chart/bottom");
+        ResponseDetail response = ApiBuilder.getResponse("chart/bottom");
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -208,7 +208,7 @@ public final class ImdbApi {
     public static List<String> getActorQuotes(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
-        Response response = ApiBuilder.getResponse("name/quotes", args);
+        ResponseDetail response = ApiBuilder.getResponse("name/quotes", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -224,7 +224,7 @@ public final class ImdbApi {
     public static List<ImdbText> getActorTrivia(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
-        Response response = ApiBuilder.getResponse("name/trivia", args);
+        ResponseDetail response = ApiBuilder.getResponse("name/trivia", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -240,7 +240,7 @@ public final class ImdbApi {
     public static List<ImdbFilmography> getActorFilmography(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
-        Response response = ApiBuilder.getResponse("name/filmography", args);
+        ResponseDetail response = ApiBuilder.getResponse("name/filmography", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -273,7 +273,7 @@ public final class ImdbApi {
     public static List<ImdbSeason> getTitleEpisodes(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
-        Response response = ApiBuilder.getResponse("title/episodes", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/episodes", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -289,7 +289,7 @@ public final class ImdbApi {
     public static List<ImdbSpoiler> getTitleGoofs(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
-        Response response = ApiBuilder.getResponse("title/goofs", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/goofs", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -334,7 +334,7 @@ public final class ImdbApi {
     public static List<ImdbSpoiler> getTitleTrivia(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
-        Response response = ApiBuilder.getResponse("title/trivia", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/trivia", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -362,7 +362,7 @@ public final class ImdbApi {
     public static List<ImdbImage> getTitlePhotos(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
-        Response response = ApiBuilder.getResponse("title/photos", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/photos", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
@@ -395,7 +395,7 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
-        Response response = ApiBuilder.getResponse("title/fullcredits", args);
+        ResponseDetail response = ApiBuilder.getResponse("title/fullcredits", args);
         if (response == null) {
             return Collections.EMPTY_LIST;
         } else {
