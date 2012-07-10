@@ -7,6 +7,7 @@ import com.moviejukebox.imdbapi.tools.FilteringLayout;
 import com.moviejukebox.imdbapi.wrapper.ResponseDetail;
 import com.moviejukebox.imdbapi.wrapper.WrapperActorData;
 import com.moviejukebox.imdbapi.wrapper.WrapperBoxOffice;
+import com.moviejukebox.imdbapi.wrapper.WrapperChartMoviemeter;
 import com.moviejukebox.imdbapi.wrapper.WrapperMovieDetails;
 import com.moviejukebox.imdbapi.wrapper.WrapperQuotes;
 import com.moviejukebox.imdbapi.wrapper.WrapperSearch;
@@ -37,7 +38,6 @@ public final class ImdbApi {
     //TODO: tv/recap
     //TODO: chart/starmeter
     //TODO: feature/borntoday
-    //TODO: news
     static {
         FilteringLayout.addReplacementString("app.imdb.com");
     }
@@ -497,5 +497,15 @@ public final class ImdbApi {
         } else {
             return wrapper.getSynopsis();
         }
+    }
+
+    public static List<ImdbChartMoviemeter> getChartMoviemeter() {
+        WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.EMPTY_MAP);
+        if (wrapper == null) {
+            return Collections.EMPTY_LIST;
+        } else {
+            return wrapper.getData().getChartMoviemeter();
+        }
+
     }
 }

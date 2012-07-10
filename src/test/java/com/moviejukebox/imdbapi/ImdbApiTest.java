@@ -341,4 +341,14 @@ public class ImdbApiTest {
             assertNotNull("Title synopsis is empty for " + imdbId, result);
         }
     }
+
+    /**
+     * Test of getChartMoviemeter method, of class ImdbApi.
+     */
+    @Test
+    public void testGetChartMoviemeter() {
+        LOGGER.info("getChartMoviemeter");
+        List<ImdbChartMoviemeter> result = ImdbApi.getChartMoviemeter();
+        assertFalse("Chart Moviemeter is empty", result.isEmpty());
+    }
 }
