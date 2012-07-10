@@ -85,7 +85,7 @@ public class ImdbApiTest {
     /**
      * Test of getExternalReviews method, of class ImdbApi.
      */
-    @Test
+//    @Test
     public void testGetExternalReviews() {
         LOGGER.info("getExternalReviews");
         for (String imdbId : IMDB_IDS) {
@@ -350,5 +350,15 @@ public class ImdbApiTest {
         LOGGER.info("getChartMoviemeter");
         List<ImdbChartMoviemeter> result = ImdbApi.getChartMoviemeter();
         assertFalse("Chart Moviemeter is empty", result.isEmpty());
+    }
+
+    /**
+     * Test of getChartStarmeter method, of class ImdbApi.
+     */
+    @Test
+    public void testGetChartStarmeter() {
+        LOGGER.info("getChartStarmeter");
+        List<ImdbChartStarmeter> result = ImdbApi.getChartStarmeter();
+        assertFalse("Chart Starmeter is empty", result.isEmpty());
     }
 }

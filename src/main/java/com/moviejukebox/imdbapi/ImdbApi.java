@@ -8,6 +8,7 @@ import com.moviejukebox.imdbapi.wrapper.ResponseDetail;
 import com.moviejukebox.imdbapi.wrapper.WrapperActorData;
 import com.moviejukebox.imdbapi.wrapper.WrapperBoxOffice;
 import com.moviejukebox.imdbapi.wrapper.WrapperChartMoviemeter;
+import com.moviejukebox.imdbapi.wrapper.WrapperChartStarmeter;
 import com.moviejukebox.imdbapi.wrapper.WrapperMovieDetails;
 import com.moviejukebox.imdbapi.wrapper.WrapperQuotes;
 import com.moviejukebox.imdbapi.wrapper.WrapperSearch;
@@ -31,12 +32,13 @@ public final class ImdbApi {
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
 
-    // Outstanding methods to implement
-    //TODO: chart/top
-    //TODO: tv/tonight
-    //TODO: tv/recap
-    //TODO: chart/starmeter
-    //TODO: feature/borntoday
+    /*
+     * Outstanding methods to implement
+     * TODO: tv/tonight
+     * TODO: tv/recap
+     * TODO: chart/starmeter
+     * TODO: feature/borntoday
+     */
     static {
         FilteringLayout.addReplacementString("app.imdb.com");
     }
@@ -500,6 +502,7 @@ public final class ImdbApi {
 
     /**
      * Get the Chart Movie Meter
+     *
      * @return
      */
     public static List<ImdbChartMoviemeter> getChartMoviemeter() {
@@ -509,6 +512,19 @@ public final class ImdbApi {
         } else {
             return wrapper.getData().getChartMoviemeter();
         }
+    }
 
+    /**
+     * Get the Chart Star Meter
+     *
+     * @return
+     */
+    public static List<ImdbChartStarmeter> getChartStarmeter() {
+        WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.EMPTY_MAP);
+        if (wrapper == null) {
+            return Collections.EMPTY_LIST;
+        } else {
+            return wrapper.getData().getChartStarmeter();
+        }
     }
 }
