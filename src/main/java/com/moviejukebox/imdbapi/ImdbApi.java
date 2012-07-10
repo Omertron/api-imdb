@@ -32,7 +32,6 @@ public final class ImdbApi {
     private static final String NCONST = "nconst";
 
     // Outstanding methods to implement
-    //TODO: chart/moviemeter
     //TODO: chart/top
     //TODO: tv/tonight
     //TODO: tv/recap
@@ -499,6 +498,10 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the Chart Movie Meter
+     * @return
+     */
     public static List<ImdbChartMoviemeter> getChartMoviemeter() {
         WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.EMPTY_MAP);
         if (wrapper == null) {
