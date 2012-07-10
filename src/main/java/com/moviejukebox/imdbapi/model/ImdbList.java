@@ -31,7 +31,7 @@ public class ImdbList {
     @JsonProperty("year")
     private int year;
     @JsonProperty("weekend")
-    private ImdbWeekend weekend;
+    private ImdbMoney weekend;
 
     public String getLabel() {
         return label;
@@ -121,11 +121,11 @@ public class ImdbList {
         this.year = year;
     }
 
-    public ImdbWeekend getWeekend() {
+    public ImdbMoney getWeekend() {
         return weekend;
     }
 
-    public void setWeekend(ImdbWeekend weekend) {
+    public void setWeekend(ImdbMoney weekend) {
         this.weekend = weekend;
     }
 

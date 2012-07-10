@@ -4,8 +4,8 @@ import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class ImdbWeekend {
-    private static final Logger LOGGER = Logger.getLogger(ImdbWeekend.class);
+public class ImdbMoney {
+    private static final Logger LOGGER = Logger.getLogger(ImdbMoney.class);
     @JsonProperty("currency")
     private String currency;
     @JsonProperty("amount")

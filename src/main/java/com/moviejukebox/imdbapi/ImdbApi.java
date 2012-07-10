@@ -6,6 +6,7 @@ import com.moviejukebox.imdbapi.tools.ApiBuilder;
 import com.moviejukebox.imdbapi.tools.FilteringLayout;
 import com.moviejukebox.imdbapi.wrapper.Response;
 import com.moviejukebox.imdbapi.wrapper.WrapperActorData;
+import com.moviejukebox.imdbapi.wrapper.WrapperBoxOffice;
 import com.moviejukebox.imdbapi.wrapper.WrapperMovieDetails;
 import com.moviejukebox.imdbapi.wrapper.WrapperQuotes;
 import com.moviejukebox.imdbapi.wrapper.WrapperSearch;
@@ -17,6 +18,10 @@ import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+/**
+ * Java API class for the IMDB JSON API
+ * @author stuart.boston
+ */
 public final class ImdbApi {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbApi.class);
@@ -33,7 +38,6 @@ public final class ImdbApi {
     //TODO: news
     //TODO: title/plot
     //TODO: title/synopsis
-
     static {
         FilteringLayout.addReplacementString("app.imdb.com");
     }
@@ -91,6 +95,12 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the show times for a particular location
+     * @param location
+     * @param date
+     * @return
+     */
     public static URL getShowtimes(String location, Date date) {
         Map<String, String> args = new HashMap<String, String>();
         args.put("location", location);
@@ -100,6 +110,11 @@ public final class ImdbApi {
         return ApiBuilder.buildUrl("showtimes/location", args);
     }
 
+    /**
+     * Get the parental guide information for a title
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbText> getParentalGuide(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -112,6 +127,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the user reviews for a title
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbUserComment> getUserReviews(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -124,6 +144,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the external reviews for a title
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbReview> getExternalReviews(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -136,6 +161,10 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the list of coming soon titles
+     * @return
+     */
     public static List<ImdbList> getComingSoon() {
         Response response = ApiBuilder.getResponse("feature/comingsoon");
         if (response == null) {
@@ -145,6 +174,10 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the Top250 list
+     * @return
+     */
     public static List<ImdbList> getTop250() {
         Response response = ApiBuilder.getResponse("chart/top");
         if (response == null) {
@@ -154,6 +187,10 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the Bottom 100 list
+     * @return
+     */
     public static List<ImdbList> getBottom100() {
         Response response = ApiBuilder.getResponse("chart/bottom");
         if (response == null) {
@@ -163,6 +200,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the quotes for an actor
+     * @param actorId
+     * @return
+     */
     public static List<String> getActorQuotes(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
@@ -174,6 +216,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the trivia for an actor
+     * @param actorId
+     * @return
+     */
     public static List<ImdbText> getActorTrivia(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
@@ -185,6 +232,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the actor's filmography
+     * @param actorId
+     * @return
+     */
     public static List<ImdbFilmography> getActorFilmography(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
@@ -196,6 +248,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the main details about the actor
+     * @param actorId
+     * @return
+     */
     public static ImdbPerson getActorDetails(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
@@ -208,6 +265,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the episodes for a show
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbSeason> getTitleEpisodes(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -219,6 +281,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the goofs for a title
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbSpoiler> getTitleGoofs(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -242,6 +309,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the quotes for a title
+     * @param imdbId
+     * @return
+     */
     public static ImdbQuotes getTitleQuotes(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -254,6 +326,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the trivia for a title
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbSpoiler> getTitleTrivia(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -277,6 +354,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the photos for a title
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbImage> getTitlePhotos(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -288,6 +370,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the main details for a title
+     * @param imdbId
+     * @return
+     */
     public static ImdbMovieDetails getFullDetails(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -299,6 +386,11 @@ public final class ImdbApi {
         }
     }
 
+    /**
+     * Get the cast for a title
+     * @param imdbId
+     * @return
+     */
     public static List<ImdbCredit> getFullCast(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
@@ -312,6 +404,11 @@ public final class ImdbApi {
 
     }
 
+    /**
+     * Perform a search on the IMDB
+     * @param query
+     * @return
+     */
     public static Map<String, List<SearchObject>> getSearch(String query) {
         Map<String, String> args = new HashMap<String, String>();
 
@@ -333,13 +430,16 @@ public final class ImdbApi {
         }
     }
 
-    public static List<ImdbList> getBoxOffice() {
-        Response response = ApiBuilder.getResponse("boxoffice");
-        if (response == null) {
-            return Collections.EMPTY_LIST;
-        } else {
-            return response.getList().getImdbList();
+    /**
+     * Get the latest box office information
+     * @return
+     */
+    public static List<ImdbBoxOffice> getBoxOffice() {
+        WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.EMPTY_MAP);
+        // Because WrapperBoxOffice is a "double" wrapper, we need to access the "inner" layer through the "outer" layer
+        if (wrapper != null && wrapper.getData().getBoxOfficeList() != null) {
+            return wrapper.getData().getBoxOfficeList().getBoxOffice();
         }
+        return Collections.EMPTY_LIST;
     }
-
 }
