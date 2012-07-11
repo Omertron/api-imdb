@@ -8,13 +8,13 @@ public class ImdbBoxOffice {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbBoxOffice.class);
     @JsonProperty("weekend")
-    private ImdbMoney weekend;
+    private ImdbMoney weekend = new ImdbMoney();
     @JsonProperty("title")
-    private ImdbMovie title;
+    private ImdbMovie title = new ImdbMovie();
     @JsonProperty("rank")
-    private int rank;
+    private int rank = -1;
     @JsonProperty("gross")
-    private ImdbMoney gross;
+    private ImdbMoney gross = new ImdbMoney();
 
     public ImdbMoney getWeekend() {
         return weekend;

@@ -5,11 +5,12 @@ import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class ImdbMoney {
+
     private static final Logger LOGGER = Logger.getLogger(ImdbMoney.class);
     @JsonProperty("currency")
-    private String currency;
+    private String currency = "";
     @JsonProperty("amount")
-    private double amount;
+    private double amount = -1;
 
     public String getCurrency() {
         return currency;

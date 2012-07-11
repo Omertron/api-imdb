@@ -8,11 +8,11 @@ public class ImdbChartMoviemeter {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbChartMoviemeter.class);
     @JsonProperty("rank")
-    private int rank;
+    private int rank = -1;
     @JsonProperty("prev")
-    private int prev;
+    private int prev = -1;
     @JsonProperty("object")
-    private ImdbMovie movie;
+    private ImdbMovie movie = new ImdbMovie();
 
     public int getRank() {
         return rank;

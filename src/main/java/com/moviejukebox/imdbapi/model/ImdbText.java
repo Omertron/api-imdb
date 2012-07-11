@@ -10,11 +10,11 @@ public class ImdbText {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbText.class);
     @JsonProperty("text")
-    private String text;
+    private String text = "";
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("date")
-    private Map<String,String> date = Collections.EMPTY_MAP;
+    private Map<String, String> date = Collections.EMPTY_MAP;
 
     public String getLabel() {
         return label;

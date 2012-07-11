@@ -8,17 +8,17 @@ public class ImdbPlot {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbPlot.class);
     @JsonProperty("outline")
-    private String outline;
+    private String outline = "";
     @JsonProperty("more")
-    private int more;
+    private int more = -1;
     @JsonProperty("summary")
-    private String summary;
+    private String summary = "";
     @JsonProperty("total_summaries")
-    private int totalSummaries;
+    private int totalSummaries = -1;
     @JsonProperty("text")
-    private String text;
+    private String text = "";
     @JsonProperty("author")
-    private String author;
+    private String author = "";
 
     public int getMore() {
         return more;

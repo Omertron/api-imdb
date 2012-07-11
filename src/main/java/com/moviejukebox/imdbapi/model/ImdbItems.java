@@ -8,13 +8,13 @@ public class ImdbItems {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbItems.class);
     @JsonProperty("source")
-    private String source;
+    private String source = "";
     @JsonProperty("head")
-    private String head;
+    private String head = "";
     @JsonProperty("id")
-    private String id;
+    private String id = "";
     @JsonProperty("datetime")
-    private String dateTime;
+    private String dateTime = "";
 
     public String getDateTime() {
         return dateTime;

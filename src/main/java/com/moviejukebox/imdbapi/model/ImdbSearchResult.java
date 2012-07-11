@@ -11,7 +11,7 @@ public class ImdbSearchResult {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbSearchResult.class);
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("list")
     private List<SearchObject> searchObject = Collections.EMPTY_LIST;
 

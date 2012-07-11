@@ -8,15 +8,15 @@ public class ImdbSynopsis {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbSynopsis.class);
     @JsonProperty("tconst")
-    private String imdbId;
+    private String imdbId = "";
     @JsonProperty("text")
-    private String text;
+    private String text = "";
     @JsonProperty("type")
-    private String type;
+    private String type = "";
     @JsonProperty("title")
-    private String title;
+    private String title = "";
     @JsonProperty("year")
-    private int year;
+    private int year = -1;
 
     public String getImdbId() {
         return imdbId;

@@ -19,56 +19,56 @@ public class ImdbMovieDetails extends SearchObject {
     @JsonProperty("has")
     private List<String> has = Collections.EMPTY_LIST;
     @JsonProperty("type")
-    private String type;
+    private String type = "";
     @JsonProperty("title")
-    private String title;
-    private int year;
+    private String title = "";
+    private int year = -1;
     @JsonProperty("runtime")
-    private ImdbRuntime runtime;
+    private ImdbRuntime runtime = new ImdbRuntime();
     @JsonProperty("tagline")
-    private String tagline;
+    private String tagline = "";
     @JsonProperty("rating")
-    private float rating;
+    private float rating = 0.0f;
     @JsonProperty("tconst")
-    private String imdbId;
+    private String imdbId = "";
     @JsonProperty("genres")
     private List<String> genres = Collections.EMPTY_LIST;
     @JsonProperty("num_votes")
-    private double numVotes;
+    private double numVotes = -1;
     @JsonProperty("can_rate")
-    private boolean canRate;
+    private boolean canRate = Boolean.FALSE;
     @JsonProperty("quote")
-    private ImdbQuote quote;
+    private ImdbQuote quote = new ImdbQuote();
     @JsonProperty("release_date")
     private Map<String, String> releaseDate = Collections.EMPTY_MAP;
     @JsonProperty("goof")
-    private String goof;
+    private String goof = "";
     @JsonProperty("trivium")
-    private String trivium;
+    private String trivium = "";
     @JsonProperty("news")
-    private ImdbNews news;
+    private ImdbNews news = new ImdbNews();
     @JsonProperty("writers_summary")
     private List<ImdbCast> writers = Collections.EMPTY_LIST;
     @JsonProperty("directors_summary")
     private List<ImdbCast> directors = Collections.EMPTY_LIST;
     @JsonProperty("plot")
-    private ImdbPlot plot;
+    private ImdbPlot plot = new ImdbPlot();
     @JsonProperty("best_plot")
-    private ImdbPlot bestPlot;
+    private ImdbPlot bestPlot = new ImdbPlot();
     @JsonProperty("cast_summary")
     private List<ImdbCast> cast = Collections.EMPTY_LIST;
     @JsonProperty("user_comment")
-    private ImdbUserComment userComment;
+    private ImdbUserComment userComment = new ImdbUserComment();
     @JsonProperty("trailer")
-    private ImdbTrailer trailer;
+    private ImdbTrailer trailer = new ImdbTrailer();
     @JsonProperty("principals")
     private List<ImdbPerson> principals = Collections.EMPTY_LIST;
     @JsonProperty("seasons")
-    private List<Integer> seasons=Collections.EMPTY_LIST;
+    private List<Integer> seasons = Collections.EMPTY_LIST;
     @JsonProperty("creators")
     private List<ImdbCast> creators = Collections.EMPTY_LIST;
     @JsonProperty("production_status")
-    private String productionStatus;
+    private String productionStatus = "";
 
     public List<ImdbPerson> getPrincipals() {
         return principals;

@@ -1,5 +1,6 @@
 package com.moviejukebox.imdbapi.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,17 +12,17 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class ImdbMovie {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbMovie.class);
-    private String imdbId;
+    private String imdbId = "";
     @JsonProperty("type")
-    private String type;
+    private String type = "";
     @JsonProperty("title")
-    private String title;
+    private String title = "";
     @JsonProperty("principals")
-    private List<ImdbPerson> principles;
+    private List<ImdbPerson> principles = Collections.EMPTY_LIST;
     @JsonProperty("image")
-    private ImdbImageDetails image;
-    private int year;
-    private String releaseDate;
+    private ImdbImageDetails image = new ImdbImageDetails();
+    private int year = -1;
+    private String releaseDate = "";
 
     public List<ImdbPerson> getPrinciples() {
         return principles;

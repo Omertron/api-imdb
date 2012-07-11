@@ -7,13 +7,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class ImdbRuntime {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbRuntime.class);
-
     @JsonProperty("country")
-    private String country;
+    private String country = "";
     @JsonProperty("time")
-    private int runtime;
+    private int runtime = -1;
     @JsonProperty("attr")
-    private String attribute;
+    private String attribute = "";
 
     public String getCountry() {
         return country;

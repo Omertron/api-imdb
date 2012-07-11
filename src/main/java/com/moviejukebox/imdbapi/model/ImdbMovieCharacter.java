@@ -8,13 +8,13 @@ public class ImdbMovieCharacter {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbMovieCharacter.class);
     @JsonProperty("char")
-    private String character;
+    private String character = "";
     @JsonProperty("title")
-    private ImdbMovie title;
+    private ImdbMovie title = new ImdbMovie();
     @JsonProperty("attr")
-    private String attribute;
+    private String attribute = "";
     @JsonProperty("nconst")
-    private String actorId;
+    private String actorId = "";
 
     public String getActorId() {
         return actorId;

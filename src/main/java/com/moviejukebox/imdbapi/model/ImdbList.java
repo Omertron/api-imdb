@@ -1,5 +1,6 @@
 package com.moviejukebox.imdbapi.model;
 
+import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
@@ -9,29 +10,29 @@ public class ImdbList {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbList.class);
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("token")
-    private String token;
+    private String token = "";
     @JsonProperty("list")
-    private List<ImdbMovie> movie;
+    private List<ImdbMovie> movie = Collections.EMPTY_LIST;
     @JsonProperty("num_votes")
-    private int numVotes;
+    private int numVotes = -1;
     @JsonProperty("tconst")
-    private String imdbId;
+    private String imdbId = "";
     @JsonProperty("type")
-    private String type;
+    private String type = "";
     @JsonProperty("title")
-    private String title;
+    private String title = "";
     @JsonProperty("can_rate")
-    private boolean canRate;
+    private boolean canRate = Boolean.FALSE;
     @JsonProperty("rating")
-    private int rating;
+    private int rating = -1;
     @JsonProperty("image")
-    private ImdbImageDetails image;
+    private ImdbImageDetails image = new ImdbImageDetails();
     @JsonProperty("year")
-    private int year;
+    private int year = -1;
     @JsonProperty("weekend")
-    private ImdbMoney weekend;
+    private ImdbMoney weekend = new ImdbMoney();
 
     public String getLabel() {
         return label;

@@ -11,23 +11,23 @@ public class ImdbNews {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbNews.class);
     @JsonProperty("channel")
-    private String channel;
+    private String channel = "";
     @JsonProperty("total")
-    private int total;
+    private int total = -1;
     @JsonProperty("sources")
     private Map<String, ImdbSource> source = Collections.EMPTY_MAP;
     @JsonProperty("markup")
-    private String markup;
+    private String markup = "";
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("limit")
-    private int limit;
+    private int limit = -1;
     @JsonProperty("items")
-    private List<ImdbItems> items=Collections.EMPTY_LIST;
+    private List<ImdbItems> items = Collections.EMPTY_LIST;
     @JsonProperty("@type")
-    private String type;
+    private String type = "";
     @JsonProperty("start")
-    private int start;
+    private int start = -1;
 
     public List<ImdbItems> getItems() {
         return items;

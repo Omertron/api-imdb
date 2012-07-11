@@ -8,23 +8,23 @@ public class ImdbUserComment {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbUserComment.class);
     @JsonProperty("user_score")
-    private int userScore;
+    private int userScore = -1;
     @JsonProperty("summary")
-    private String summary;
+    private String summary = "";
     @JsonProperty("user_location")
-    private String userLocation;
+    private String userLocation = "";
     @JsonProperty("text")
-    private String text;
+    private String text = "";
     @JsonProperty("date")
-    private String date;
+    private String date = "";
     @JsonProperty("status")
-    private String status;
+    private String status = "";
     @JsonProperty("user_score_count")
-    private int userScoreCount;
+    private int userScoreCount = -1;
     @JsonProperty("user_name")
-    private String userName;
+    private String userName = "";
     @JsonProperty("user_rating")
-    private int userRating;
+    private int userRating = -1;
 
     public String getSummary() {
         return summary;

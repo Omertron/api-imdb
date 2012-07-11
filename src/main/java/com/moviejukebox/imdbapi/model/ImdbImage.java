@@ -2,23 +2,23 @@ package com.moviejukebox.imdbapi.model;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+@JsonIgnoreProperties({"@meta", "exp", "copyright"})
 public class ImdbImage {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbImage.class);
     @JsonProperty("created")
-    private String created;
+    private String created = "";
     @JsonProperty("caption")
-    private String caption;
+    private String caption = "";
     @JsonProperty("link")
-    private String link;
+    private String link = "";
     @JsonProperty("image")
-    private ImdbImageDetails image;
-    @JsonProperty("copyright")
-    private String copyright;
+    private ImdbImageDetails image = new ImdbImageDetails();
     @JsonProperty("by")
-    private String by;
+    private String by = "";
 
     public String getBy() {
         return by;
@@ -26,14 +26,6 @@ public class ImdbImage {
 
     public void setBy(String by) {
         this.by = by;
-    }
-
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
     }
 
     public String getCaption() {
@@ -70,7 +62,7 @@ public class ImdbImage {
 
     @Override
     public String toString() {
-        return "ImdbImage{" + "created=" + created + ", caption=" + caption + ", link=" + link + ", image=" + image + ", copyright=" + copyright + ", by=" + by + '}';
+        return "ImdbImage{" + "created=" + created + ", caption=" + caption + ", link=" + link + ", image=" + image + ", by=" + by + '}';
     }
 
     /**

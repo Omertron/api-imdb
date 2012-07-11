@@ -12,24 +12,24 @@ public class ImdbPerson extends SearchObject {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbPerson.class);
     @JsonProperty("nconst")
-    private String actorId;
+    private String actorId = "";
     @JsonProperty("name")
-    private String name;
+    private String name = "";
     @JsonProperty("bio")
-    private String biography;
+    private String biography = "";
     @JsonProperty("aka")
-    private List<String> aka = new ArrayList<String>();
+    private List<String> aka = Collections.EMPTY_LIST;
     @JsonProperty("has")
-    private List<String> has = new ArrayList<String>();
+    private List<String> has = Collections.EMPTY_LIST;
     @JsonProperty("birth")
-    private ImdbBirth birth;
+    private ImdbBirth birth = new ImdbBirth();
     @JsonProperty("photos")
     private List<ImdbImage> photos = Collections.EMPTY_LIST;
     private List<ImdbKnownFor> knownFor = Collections.EMPTY_LIST;
     @JsonProperty("attr")
-    private String attr;
+    private String attr = "";
     @JsonProperty("news")
-    private ImdbNews news;
+    private ImdbNews news = new ImdbNews();
 
     public ImdbNews getNews() {
         return news;

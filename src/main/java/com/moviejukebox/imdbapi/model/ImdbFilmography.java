@@ -1,6 +1,6 @@
 package com.moviejukebox.imdbapi.model;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
@@ -10,11 +10,11 @@ public class ImdbFilmography {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbFilmography.class);
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("token")
-    private String token;
+    private String token = "";
     @JsonProperty("list")
-    private List<ImdbMovieCharacter> list=new ArrayList<ImdbMovieCharacter>();
+    private List<ImdbMovieCharacter> list = Collections.EMPTY_LIST;
 
     public String getLabel() {
         return label;

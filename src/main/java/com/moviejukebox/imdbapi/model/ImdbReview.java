@@ -7,13 +7,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class ImdbReview {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbReview.class);
-
     @JsonProperty("url")
-    private String url;
+    private String url = "";
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("attr")
-    private String attr;
+    private String attr = "";
 
     public String getAttr() {
         return attr;

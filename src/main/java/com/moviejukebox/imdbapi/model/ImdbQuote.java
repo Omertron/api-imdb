@@ -10,7 +10,7 @@ public class ImdbQuote {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbQuote.class);
     @JsonProperty("qconst")
-    private String quoteId;
+    private String quoteId = "";
     @JsonProperty("lines")
     private List<ImdbQuoteLine> lines = Collections.EMPTY_LIST;
 

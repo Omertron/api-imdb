@@ -8,11 +8,11 @@ public class ImdbSource {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbSource.class);
     @JsonProperty("logo")
-    private String logo;
+    private String logo = "";
     @JsonProperty("url")
-    private String url;
+    private String url = "";
     @JsonProperty("label")
-    private String label;
+    private String label = "";
 
     public String getLabel() {
         return label;

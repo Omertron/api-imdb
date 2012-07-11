@@ -10,9 +10,9 @@ public class ImdbSeason {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbSeason.class);
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("token")
-    private String token;
+    private String token = "";
     @JsonProperty("list")
     private List<ImdbMovie> episodes = Collections.EMPTY_LIST;
 

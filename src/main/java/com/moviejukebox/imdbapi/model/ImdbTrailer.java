@@ -11,21 +11,21 @@ public class ImdbTrailer {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbTrailer.class);
     @JsonProperty("description")
-    private String description;
+    private String description = "";
     @JsonProperty("duration_seconds")
-    private int durationSeconds;
+    private int durationSeconds = -1;
     @JsonProperty("content_type")
-    private String contentType;
+    private String contentType = "";
     @JsonProperty("id")
-    private String id;
+    private String id = "";
     @JsonProperty("title")
-    private String title;
+    private String title = "";
     @JsonProperty("@type")
-    private String type;
+    private String type = "";
     @JsonProperty("relatedTitle")
-    private ImdbMovie relatedMovie;
+    private ImdbMovie relatedMovie = new ImdbMovie();
     @JsonProperty("relatedName")
-    private ImdbPerson relatedName;
+    private ImdbPerson relatedName = new ImdbPerson();
     @JsonProperty("slates")
     private List<ImdbImageDetails> slates = Collections.EMPTY_LIST;
     @JsonProperty("encodings")
@@ -115,7 +115,7 @@ public class ImdbTrailer {
     public String toString() {
         return "ImdbTrailer{" + "description=" + description + ", durationSeconds=" + durationSeconds + ", contentType=" + contentType + ", id=" + id + ", title=" + title + ", type=" + type + ", relatedMovie=" + relatedMovie + ", relatedName=" + relatedName + ", slates=" + slates + ", encodings=" + encodings + '}';
     }
-    
+
     /**
      * Handle unknown properties and print a message
      *

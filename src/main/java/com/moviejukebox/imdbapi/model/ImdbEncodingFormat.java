@@ -8,9 +8,9 @@ public class ImdbEncodingFormat {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbEncodingFormat.class);
     @JsonProperty("format")
-    private String format;
+    private String format = "";
     @JsonProperty("url")
-    private String url;
+    private String url = "";
 
     public String getFormat() {
         return format;

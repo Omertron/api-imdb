@@ -5,11 +5,12 @@ import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class ImdbKnownFor {
+
     private static final Logger LOGGER = Logger.getLogger(ImdbKnownFor.class);
     @JsonProperty("title")
-    private ImdbMovie title;
+    private ImdbMovie title = new ImdbMovie();
     @JsonProperty("attr")
-    private String attribute;
+    private String attribute = "";
 
     public String getAttribute() {
         return attribute;
@@ -45,5 +46,4 @@ public class ImdbKnownFor {
         sb.append("' value: '").append(value).append("'");
         LOGGER.warn(sb.toString());
     }
-
 }

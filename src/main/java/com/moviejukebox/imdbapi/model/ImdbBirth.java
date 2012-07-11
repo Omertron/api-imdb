@@ -10,9 +10,9 @@ public class ImdbBirth {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbBirth.class);
     @JsonProperty("date")
-    private Map<String,String> date = Collections.EMPTY_MAP;
+    private Map<String, String> date = Collections.EMPTY_MAP;
     @JsonProperty("place")
-    private String place;
+    private String place = "";
 
     public Map<String, String> getDate() {
         return date;

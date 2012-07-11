@@ -29,17 +29,17 @@ public class ImdbCast {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbCast.class);
     @JsonProperty("name")
-    private ImdbPerson person;
+    private ImdbPerson person = new ImdbPerson();
     @JsonProperty("attr")
-    private String attr;
+    private String attr = "";
     @JsonProperty("char")
-    private String character;
+    private String character = "";
     @JsonProperty("job")
-    private String job;
+    private String job = "";
     @JsonProperty("as")
-    private String roleAs;
+    private String roleAs = "";
     @JsonProperty("label")
-    private String label;
+    private String label = "";
 
     public String getLabel() {
         return label;

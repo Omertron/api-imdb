@@ -10,9 +10,9 @@ public class ImdbQuoteLine {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbQuoteLine.class);
     @JsonProperty("stage")
-    private String stage;
+    private String stage = "";
     @JsonProperty("quote")
-    private String quote;
+    private String quote = "";
     @JsonProperty("chars")
     private List<ImdbMovieCharacter> chars = Collections.EMPTY_LIST;
 

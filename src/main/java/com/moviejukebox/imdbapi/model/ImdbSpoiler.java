@@ -7,11 +7,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class ImdbSpoiler {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbSpoiler.class);
-    private String spoiler;
+    @JsonProperty("spoiler")
+    private String spoiler = "";
     @JsonProperty("text")
-    private String text;
+    private String text="";
     @JsonProperty("type")
-    private String type;
+    private String type="";
 
     public ImdbSpoiler() {
     }

@@ -7,13 +7,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class ImdbImageDetails {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbImageDetails.class);
-
     @JsonProperty("width")
-    private int width;
+    private int width = -1;
     @JsonProperty("height")
-    private int height;
+    private int height = -1;
     @JsonProperty("url")
-    private String url;
+    private String url = "";
 
     public int getHeight() {
         return height;
