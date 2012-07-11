@@ -15,14 +15,14 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  * @author stuart.boston
  */
-//@JsonIgnoreProperties({"@meta", "exp", "copyright"})
+@JsonIgnoreProperties({"@meta", "exp", "copyright"})
 public class WrapperBoxOfficeList {
 
     private static final Logger LOGGER = Logger.getLogger(WrapperBoxOfficeList.class);
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("list")
-    private List<ImdbBoxOffice> boxOffice;
+    private List<ImdbBoxOffice> boxOffice = Collections.EMPTY_LIST;
 
     public String getLabel() {
         return label;

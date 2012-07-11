@@ -1,6 +1,7 @@
 package com.moviejukebox.imdbapi.wrapper;
 
 import com.moviejukebox.imdbapi.model.ImdbChartMoviemeter;
+import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
@@ -14,14 +15,14 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta","exp","copyright"})
+@JsonIgnoreProperties({"@meta", "exp", "copyright"})
 public class WrapperChartMoviemeter {
 
     private static final Logger LOGGER = Logger.getLogger(WrapperChartMoviemeter.class);
     @JsonProperty("data")
     private WrapperChartMoviemeter data;
     @JsonProperty("list")
-    private List<ImdbChartMoviemeter> chartMoviemeter;
+    private List<ImdbChartMoviemeter> chartMoviemeter = Collections.EMPTY_LIST;
 
     public WrapperChartMoviemeter getData() {
         return data;

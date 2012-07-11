@@ -33,7 +33,7 @@ public class WrapperBoxOffice {
     private WrapperBoxOffice data;
     // Elements under the root
     @JsonProperty("date")
-    private String date;
+    private String date = "";
     @JsonProperty("list")
     private WrapperBoxOfficeList boxOfficeList;
 

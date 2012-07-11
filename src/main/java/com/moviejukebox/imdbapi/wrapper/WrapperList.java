@@ -1,6 +1,7 @@
 package com.moviejukebox.imdbapi.wrapper;
 
 import com.moviejukebox.imdbapi.model.ImdbList;
+import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
@@ -9,11 +10,10 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class WrapperList {
 
     private static final Logger LOGGER = Logger.getLogger(WrapperList.class);
-
     @JsonProperty("label")
-    private String label;
+    private String label = "";
     @JsonProperty("list")
-    private List<ImdbList> imdbList;
+    private List<ImdbList> imdbList = Collections.EMPTY_LIST;
 
     public List<ImdbList> getImdbList() {
         return imdbList;

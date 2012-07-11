@@ -26,19 +26,19 @@ public class ResponseDetail {
 
     private static final Logger LOGGER = Logger.getLogger(ResponseDetail.class);
     @JsonProperty("tconst")
-    private String imdbId;
+    private String imdbId = "";
     @JsonProperty("limit")
-    private int limit;
+    private int limit = -1;
     @JsonProperty("type")
-    private String type;
+    private String type = "";
     @JsonProperty("title")
-    private String title;
+    private String title = "";
     @JsonProperty("total")
-    private int total;
+    private int total = -1;
     @JsonProperty("year")
-    private int year;
+    private int year = -1;
     @JsonProperty("country")
-    private String country;
+    private String country = "";
     @JsonProperty("parental_guide")
     private List<ImdbText> parentalGuide = Collections.EMPTY_LIST;
     @JsonProperty("user_comments")
@@ -48,13 +48,13 @@ public class ResponseDetail {
     @JsonProperty("list")
     private WrapperList list;
     @JsonProperty("quotes")
-    private List<String> quotes;
+    private List<String> quotes = Collections.EMPTY_LIST;
     @JsonProperty("nconst")
-    private String actorId;
+    private String actorId = "";
     @JsonProperty("name")
-    private String name;
+    private String name = "";
     @JsonProperty("trivia")
-    private List<ImdbText> trivia;
+    private List<ImdbText> trivia = Collections.EMPTY_LIST;
     @JsonProperty("filmography")
     private List<ImdbFilmography> filmography = Collections.EMPTY_LIST;
     @JsonProperty("seasons")
@@ -68,9 +68,9 @@ public class ResponseDetail {
     @JsonProperty("credits")
     private List<ImdbCredit> credits = Collections.EMPTY_LIST;
     @JsonProperty("date")
-    private String date;
+    private String date = "";
     @JsonProperty("plots")
-    private List<ImdbPlot> plots;
+    private List<ImdbPlot> plots = Collections.EMPTY_LIST;
 
     public List<ImdbCredit> getCredits() {
         return credits;

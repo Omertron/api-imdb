@@ -2,6 +2,7 @@ package com.moviejukebox.imdbapi.wrapper;
 
 import com.moviejukebox.imdbapi.model.ImdbChartMoviemeter;
 import com.moviejukebox.imdbapi.model.ImdbChartStarmeter;
+import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonAnySetter;
@@ -22,7 +23,7 @@ public class WrapperChartStarmeter {
     @JsonProperty("data")
     private WrapperChartStarmeter data;
     @JsonProperty("list")
-    private List<ImdbChartStarmeter> chartStarmeter;
+    private List<ImdbChartStarmeter> chartStarmeter = Collections.EMPTY_LIST;
 
     public WrapperChartStarmeter getData() {
         return data;
