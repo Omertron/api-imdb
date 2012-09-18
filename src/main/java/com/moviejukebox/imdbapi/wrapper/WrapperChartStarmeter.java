@@ -1,6 +1,5 @@
 package com.moviejukebox.imdbapi.wrapper;
 
-import com.moviejukebox.imdbapi.model.ImdbChartMoviemeter;
 import com.moviejukebox.imdbapi.model.ImdbChartStarmeter;
 import java.util.Collections;
 import java.util.List;
