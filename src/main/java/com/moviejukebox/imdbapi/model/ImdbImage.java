@@ -19,6 +19,8 @@ public class ImdbImage {
     private ImdbImageDetails image = new ImdbImageDetails();
     @JsonProperty("by")
     private String by = "";
+    @JsonProperty("source")
+    private String source = "";
 
     public String getBy() {
         return by;
@@ -60,9 +62,17 @@ public class ImdbImage {
         this.link = link;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
     @Override
     public String toString() {
-        return "ImdbImage{" + "created=" + created + ", caption=" + caption + ", link=" + link + ", image=" + image + ", by=" + by + '}';
+        return "ImdbImage{" + "created=" + created + ", caption=" + caption + ", link=" + link + ", image=" + image + ", by=" + by + ", source=" + source + '}';
     }
 
     /**
