@@ -13,7 +13,7 @@
 
     <groupId>com.moviejukebox</groupId>
     <artifactId>api-imdb</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>API-IMDB</name>
     <description>API for the mobile JSON API of IMDB</description>
@@ -32,7 +32,7 @@
         <url>scm:git:git@github.com:Omertron/api-imdb.git</url>
         <connection>scm:git:git@github.com:Omertron/api-imdb.git</connection>
         <developerConnection>scm:git:git@github.com:Omertron/api-imdb.git</developerConnection>
-      <tag>api-imdb-1.2</tag>
+      <tag>api-imdb-1.1</tag>
   </scm>
 
     <properties>
