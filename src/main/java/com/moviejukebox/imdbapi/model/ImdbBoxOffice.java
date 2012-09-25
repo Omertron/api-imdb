@@ -15,6 +15,8 @@ public class ImdbBoxOffice {
     private int rank = -1;
     @JsonProperty("gross")
     private ImdbMoney gross = new ImdbMoney();
+    @JsonProperty("vendor_title")
+    private String vendorTitle;
 
     public ImdbMoney getWeekend() {
         return weekend;
@@ -48,9 +50,17 @@ public class ImdbBoxOffice {
         this.gross = gross;
     }
 
+    public String getVendorTitle() {
+        return vendorTitle;
+    }
+
+    public void setVendorTitle(String vendorTitle) {
+        this.vendorTitle = vendorTitle;
+    }
+
     @Override
     public String toString() {
-        return "ImdbBoxOffice{" + "weekend=" + weekend + ", title=" + title + ", rank=" + rank + ", gross=" + gross + '}';
+        return "ImdbBoxOffice{" + "weekend=" + weekend + ", title=" + title + ", rank=" + rank + ", gross=" + gross + ", vendorTitle=" + vendorTitle + '}';
     }
 
     /**
