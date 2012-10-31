@@ -4,16 +4,16 @@
  */
 package com.moviejukebox.imdbapi.search;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.deser.StdDeserializer;
-import org.codehaus.jackson.node.ObjectNode;
 
 public class SearchDeserializer extends StdDeserializer<SearchObject> {
 
@@ -33,7 +33,7 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         ObjectNode root = (ObjectNode) mapper.readTree(jp);
         Class<? extends SearchObject> searchClass = null;
-        Iterator<Map.Entry<String, JsonNode>> elementsIterator = root.getFields();
+        Iterator<Map.Entry<String, JsonNode>> elementsIterator = root.fields();
         while (elementsIterator.hasNext()) {
             Map.Entry<String, JsonNode> element = elementsIterator.next();
             String name = element.getKey();
@@ -47,6 +47,6 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
             return null;
         }
 
-        return mapper.readValue(root, searchClass);
+        return mapper.readValue(jp, searchClass);
     }
 }

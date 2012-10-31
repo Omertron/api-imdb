@@ -4,8 +4,8 @@ import com.moviejukebox.imdbapi.model.ImdbList;
 import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.annotate.JsonAnySetter;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WrapperList {
 

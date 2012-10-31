@@ -1,7 +1,7 @@
 package com.moviejukebox.imdbapi.search;
 
 import com.moviejukebox.imdbapi.model.ImdbImageDetails;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SearchObject {
 

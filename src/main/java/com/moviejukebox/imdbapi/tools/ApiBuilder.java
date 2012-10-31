@@ -1,5 +1,10 @@
 package com.moviejukebox.imdbapi.tools;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.moviejukebox.imdbapi.model.*;
 import com.moviejukebox.imdbapi.search.SearchDeserializer;
 import com.moviejukebox.imdbapi.search.SearchObject;
@@ -13,11 +18,6 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.module.SimpleModule;
 
 public final class ApiBuilder {
 
