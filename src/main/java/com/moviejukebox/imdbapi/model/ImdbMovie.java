@@ -113,6 +113,6 @@ public class ImdbMovie {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.warn(sb.toString());
+        LOGGER.trace(sb.toString());
     }
 }
