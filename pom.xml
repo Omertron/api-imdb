@@ -32,8 +32,7 @@
         <url>scm:git:git@github.com:Omertron/api-imdb.git</url>
         <connection>scm:git:git@github.com:Omertron/api-imdb.git</connection>
         <developerConnection>scm:git:git@github.com:Omertron/api-imdb.git</developerConnection>
-      <tag>api-imdb-1.1</tag>
-  </scm>
+    </scm>
 
     <properties>
         <skipTests>false</skipTests>
