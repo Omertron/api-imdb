@@ -1,23 +1,22 @@
 package com.omertron.imdbapi;
 
-import com.omertron.imdbapi.model.ImdbPerson;
-import com.omertron.imdbapi.ImdbApi;
-import com.omertron.imdbapi.model.ImdbList;
-import com.omertron.imdbapi.model.ImdbSpoiler;
-import com.omertron.imdbapi.model.ImdbUserComment;
-import com.omertron.imdbapi.model.ImdbSynopsis;
-import com.omertron.imdbapi.model.ImdbFilmography;
-import com.omertron.imdbapi.model.ImdbCredit;
-import com.omertron.imdbapi.model.ImdbImage;
-import com.omertron.imdbapi.model.ImdbQuotes;
 import com.omertron.imdbapi.model.ImdbBoxOffice;
-import com.omertron.imdbapi.model.ImdbPlot;
-import com.omertron.imdbapi.model.ImdbText;
-import com.omertron.imdbapi.model.ImdbChartStarmeter;
-import com.omertron.imdbapi.model.ImdbMovieDetails;
-import com.omertron.imdbapi.model.ImdbReview;
 import com.omertron.imdbapi.model.ImdbChartMoviemeter;
+import com.omertron.imdbapi.model.ImdbChartStarmeter;
+import com.omertron.imdbapi.model.ImdbCredit;
+import com.omertron.imdbapi.model.ImdbFilmography;
+import com.omertron.imdbapi.model.ImdbImage;
+import com.omertron.imdbapi.model.ImdbList;
+import com.omertron.imdbapi.model.ImdbMovieDetails;
+import com.omertron.imdbapi.model.ImdbPerson;
+import com.omertron.imdbapi.model.ImdbPlot;
+import com.omertron.imdbapi.model.ImdbQuotes;
+import com.omertron.imdbapi.model.ImdbReview;
 import com.omertron.imdbapi.model.ImdbSeason;
+import com.omertron.imdbapi.model.ImdbSpoiler;
+import com.omertron.imdbapi.model.ImdbSynopsis;
+import com.omertron.imdbapi.model.ImdbText;
+import com.omertron.imdbapi.model.ImdbUserComment;
 import com.omertron.imdbapi.search.SearchObject;
 import com.omertron.imdbapi.tools.FilteringLayout;
 import java.util.ArrayList;
@@ -28,10 +27,6 @@ import org.apache.log4j.Logger;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author stuart.boston
- */
 public class ImdbApiTest {
 
     private static final Logger LOGGER = Logger.getLogger(ImdbApiTest.class);
@@ -39,6 +34,15 @@ public class ImdbApiTest {
     private static final List<String> ACTOR_IDS = new ArrayList<String>();
 
     public ImdbApiTest() {
+        if (IMDB_IDS.isEmpty()) {
+            IMDB_IDS.add("tt0110912");  // Pulp Fiction
+            IMDB_IDS.add("tt0848228");  // Avengers
+            IMDB_IDS.add("tt0898266");  // The Big Bang Theory)
+        }
+
+        if (ACTOR_IDS.isEmpty()) {
+            ACTOR_IDS.add("nm0000148");  // Harrison Ford
+        }
     }
 
     @BeforeClass
@@ -49,17 +53,6 @@ public class ImdbApiTest {
         ImdbApi.showVersion();
         // Make sure the filter isn't applied to the test output
         FilteringLayout.addReplacementString("DO_NOT_MATCH");
-
-        if (IMDB_IDS.isEmpty()) {
-            IMDB_IDS.add("tt0110912");  // Pulp Fiction
-            IMDB_IDS.add("tt0848228");  // Avengers
-            IMDB_IDS.add("tt0898266");  // The Big Bang Theory)
-        }
-
-        if (ACTOR_IDS.isEmpty()) {
-            ACTOR_IDS.add("nm0000148");  // Harrison Ford
-        }
-
     }
 
     @AfterClass
@@ -77,7 +70,7 @@ public class ImdbApiTest {
     /**
      * Test of getParentalGuide method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetParentalGuide() {
         LOGGER.info("getParentalGuide");
         for (String imdbId : IMDB_IDS) {
@@ -89,7 +82,7 @@ public class ImdbApiTest {
     /**
      * Test of getUserReviews method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetUserReviews() {
         LOGGER.info("getUserReviews");
         for (String imdbId : IMDB_IDS) {
@@ -102,7 +95,7 @@ public class ImdbApiTest {
     /**
      * Test of getExternalReviews method, of class ImdbApi.
      */
-//    @Test
+//    //@Test
     public void testGetExternalReviews() {
         LOGGER.info("getExternalReviews");
         for (String imdbId : IMDB_IDS) {
@@ -114,7 +107,7 @@ public class ImdbApiTest {
     /**
      * Test of getComingSoon method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetComingSoon() {
         LOGGER.info("getComingSoon");
         List<ImdbList> result = ImdbApi.getComingSoon();
@@ -124,7 +117,7 @@ public class ImdbApiTest {
     /**
      * Test of getTop250 method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTop250() {
         LOGGER.info("getTop250");
         List<ImdbList> result = ImdbApi.getTop250();
@@ -134,7 +127,7 @@ public class ImdbApiTest {
     /**
      * Test of getBottom100 method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetBottom100() {
         LOGGER.info("getBottom100");
         List<ImdbList> result = ImdbApi.getBottom100();
@@ -144,7 +137,7 @@ public class ImdbApiTest {
     /**
      * Test of getActorQuotes method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetActorQuotes() {
         LOGGER.info("getActorQuotes");
         for (String actorId : ACTOR_IDS) {
@@ -156,7 +149,7 @@ public class ImdbApiTest {
     /**
      * Test of getActorTrivia method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetActorTrivia() {
         LOGGER.info("getActorTrivia");
         for (String actorId : ACTOR_IDS) {
@@ -168,7 +161,7 @@ public class ImdbApiTest {
     /**
      * Test of getActorFilmography method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetActorFilmography() {
         LOGGER.info("getActorFilmography");
         for (String actorId : ACTOR_IDS) {
@@ -180,7 +173,7 @@ public class ImdbApiTest {
     /**
      * Test of getActorDetails method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetActorDetails() {
         LOGGER.info("getActorDetails");
         for (String actorId : ACTOR_IDS) {
@@ -192,7 +185,7 @@ public class ImdbApiTest {
     /**
      * Test of getTitleEpisodes method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTitleEpisodes() {
         LOGGER.info("getTitleEpisodes");
         for (String imdbId : IMDB_IDS) {
@@ -204,7 +197,7 @@ public class ImdbApiTest {
     /**
      * Test of getTitleGoofs method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTitleGoofs() {
         LOGGER.info("getTitleGoofs");
         for (String imdbId : IMDB_IDS) {
@@ -216,7 +209,7 @@ public class ImdbApiTest {
     /**
      * Test of getTitleQuotes method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTitleQuotes() {
         LOGGER.info("getTitleQuotes");
         for (String imdbId : IMDB_IDS) {
@@ -228,7 +221,7 @@ public class ImdbApiTest {
     /**
      * Test of getTitleTrivia method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTitleTrivia() {
         LOGGER.info("getTitleTrivia");
         for (String imdbId : IMDB_IDS) {
@@ -240,7 +233,7 @@ public class ImdbApiTest {
     /**
      * Test of getTitlePhotos method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTitlePhotos() {
         LOGGER.info("getTitlePhotos");
         for (String imdbId : IMDB_IDS) {
@@ -252,7 +245,7 @@ public class ImdbApiTest {
     /**
      * Test of getFullDetails method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetFullDetails() {
         LOGGER.info("getFullDetails");
         for (String imdbId : IMDB_IDS) {
@@ -264,7 +257,7 @@ public class ImdbApiTest {
     /**
      * Test of getFullCast method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetFullCast() {
         LOGGER.info("getFullCast");
         for (String imdbId : IMDB_IDS) {
@@ -279,7 +272,8 @@ public class ImdbApiTest {
     @Test
     public void testGetSearch() {
         LOGGER.info("getSearch");
-        Map<String, List<SearchObject>> result = ImdbApi.getSearch("Avengers");
+//        Map<String, List<SearchObject>> result = ImdbApi.getSearch("Avengers");
+        Map<String, List<SearchObject>> result = ImdbApi.getSearch("James Dean");
 
         assertNotNull("Search is empty", result);
         assertTrue("Search has no results", result.size() > 0);
@@ -288,7 +282,7 @@ public class ImdbApiTest {
     /**
      * Test of setLocale method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testSetLocale_Locale() {
         // Not required
     }
@@ -296,7 +290,7 @@ public class ImdbApiTest {
     /**
      * Test of setLocale method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testSetLocale_String() {
         // Not required
     }
@@ -304,7 +298,7 @@ public class ImdbApiTest {
     /**
      * Test of setLocale method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testSetLocale_String_String() {
         // Not required
     }
@@ -312,7 +306,7 @@ public class ImdbApiTest {
     /**
      * Test of showVersion method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testShowVersion() {
         // Not required
     }
@@ -320,7 +314,7 @@ public class ImdbApiTest {
     /**
      * Test of getShowtimes method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetShowtimes() {
         LOGGER.info("getShowtimes - Not tested");
     }
@@ -328,7 +322,7 @@ public class ImdbApiTest {
     /**
      * Test of getBoxOffice method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetBoxOffice() {
         LOGGER.info("getBoxOffice");
         List<ImdbBoxOffice> result = ImdbApi.getBoxOffice();
@@ -338,7 +332,7 @@ public class ImdbApiTest {
     /**
      * Test of getTitlePlot method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTitlePlot() {
         LOGGER.info("getTitlePlot");
         for (String imdbId : IMDB_IDS) {
@@ -350,7 +344,7 @@ public class ImdbApiTest {
     /**
      * Test of getTitleSynopsis method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetTitleSynopsis() {
         LOGGER.info("getTitlePlot");
         for (String imdbId : IMDB_IDS) {
@@ -362,7 +356,7 @@ public class ImdbApiTest {
     /**
      * Test of getChartMoviemeter method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetChartMoviemeter() {
         LOGGER.info("getChartMoviemeter");
         List<ImdbChartMoviemeter> result = ImdbApi.getChartMoviemeter();
@@ -372,7 +366,7 @@ public class ImdbApiTest {
     /**
      * Test of getChartStarmeter method, of class ImdbApi.
      */
-    @Test
+    //@Test
     public void testGetChartStarmeter() {
         LOGGER.info("getChartStarmeter");
         List<ImdbChartStarmeter> result = ImdbApi.getChartStarmeter();

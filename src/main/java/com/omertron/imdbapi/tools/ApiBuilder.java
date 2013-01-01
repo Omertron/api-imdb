@@ -39,7 +39,7 @@ public final class ApiBuilder {
         deserializer.registerSearchObject("tconst", ImdbMovieDetails.class);
         deserializer.registerSearchObject("nconst", ImdbPerson.class);
 
-        Version ver = new Version(1, 0, 0, null, "com.moviejukebox.imdbapi.tools", "SearchDeserializer");
+        Version ver = new Version(1, 0, 0, null, "com.omertron.imdbapi.tools", "SearchDeserializer");
         SimpleModule module = new SimpleModule("PolymorphicSearchDeserializerModule", ver);
         module.addDeserializer(SearchObject.class, deserializer);
 
@@ -110,6 +110,11 @@ public final class ApiBuilder {
 
     public static WrapperSearch getSearchWrapper(String function, Map<String, String> args) {
         WrapperSearch wrapper = getWrapper(WrapperSearch.class, function, args);
+
+        if (wrapper == null) {
+            return null;
+        }
+        
         return wrapper.getSearchData();
     }
 }

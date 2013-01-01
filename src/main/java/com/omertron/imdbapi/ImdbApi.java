@@ -460,7 +460,7 @@ public final class ImdbApi {
 
         WrapperSearch wrapper = ApiBuilder.getSearchWrapper("find", args);
         if (wrapper == null) {
-            return null;
+            return Collections.EMPTY_MAP;
         } else {
             return wrapper.getSearchResults();
         }

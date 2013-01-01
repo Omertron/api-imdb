@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.omertron.imdbapi.search;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -23,8 +19,7 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
         super(SearchObject.class);
     }
 
-    public void registerSearchObject(String uniqueAttribute,
-            Class<? extends SearchObject> searchClass) {
+    public void registerSearchObject(String uniqueAttribute, Class<? extends SearchObject> searchClass) {
         registry.put(uniqueAttribute, searchClass);
     }
 
@@ -34,6 +29,7 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
         ObjectNode root = (ObjectNode) mapper.readTree(jp);
         Class<? extends SearchObject> searchClass = null;
         Iterator<Map.Entry<String, JsonNode>> elementsIterator = root.fields();
+
         while (elementsIterator.hasNext()) {
             Map.Entry<String, JsonNode> element = elementsIterator.next();
             String name = element.getKey();
@@ -42,14 +38,18 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
             if (registry.containsKey(name)) {
                 searchClass = registry.get(name);
                 System.out.println("Using class: " + searchClass.getSimpleName());
-                break;
+//                break;
             }
         }
 
         if (searchClass == null) {
-            return null;
+            System.out.println("END: No search class!");
+            return new SearchObject();
         }
 
-        return mapper.readValue(jp, searchClass);
+        SearchObject so = mapper.readValue(jp, searchClass);
+        System.out.println("SO: " + so.toString());
+        System.out.println("END");
+        return so;
     }
 }
