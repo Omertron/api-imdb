@@ -117,7 +117,6 @@ public final class ImdbApi {
      *
      * @param location
      * @param date
-     * @return
      */
     public static URL getShowtimes(String location, Date date) {
         Map<String, String> args = new HashMap<String, String>();
@@ -132,7 +131,6 @@ public final class ImdbApi {
      * Get the parental guide information for a title
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbText> getParentalGuide(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -150,7 +148,6 @@ public final class ImdbApi {
      * Get the user reviews for a title
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbUserComment> getUserReviews(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -168,7 +165,6 @@ public final class ImdbApi {
      * Get the external reviews for a title
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbReview> getExternalReviews(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -184,8 +180,6 @@ public final class ImdbApi {
 
     /**
      * Get the list of coming soon titles
-     *
-     * @return
      */
     public static List<ImdbList> getComingSoon() {
         ResponseDetail response = ApiBuilder.getResponse("feature/comingsoon");
@@ -198,8 +192,6 @@ public final class ImdbApi {
 
     /**
      * Get the Top250 list
-     *
-     * @return
      */
     public static List<ImdbList> getTop250() {
         ResponseDetail response = ApiBuilder.getResponse("chart/top");
@@ -212,8 +204,6 @@ public final class ImdbApi {
 
     /**
      * Get the Bottom 100 list
-     *
-     * @return
      */
     public static List<ImdbList> getBottom100() {
         ResponseDetail response = ApiBuilder.getResponse("chart/bottom");
@@ -228,7 +218,6 @@ public final class ImdbApi {
      * Get the quotes for an actor
      *
      * @param actorId
-     * @return
      */
     public static List<String> getActorQuotes(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -245,7 +234,6 @@ public final class ImdbApi {
      * Get the trivia for an actor
      *
      * @param actorId
-     * @return
      */
     public static List<ImdbText> getActorTrivia(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -262,7 +250,6 @@ public final class ImdbApi {
      * Get the actor's filmography
      *
      * @param actorId
-     * @return
      */
     public static List<ImdbFilmography> getActorFilmography(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -279,7 +266,6 @@ public final class ImdbApi {
      * Get the main details about the actor
      *
      * @param actorId
-     * @return
      */
     public static ImdbPerson getActorDetails(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -297,7 +283,6 @@ public final class ImdbApi {
      * Get the episodes for a show
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbSeason> getTitleEpisodes(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -314,7 +299,6 @@ public final class ImdbApi {
      * Get the goofs for a title
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbSpoiler> getTitleGoofs(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -343,7 +327,6 @@ public final class ImdbApi {
      * Get the quotes for a title
      *
      * @param imdbId
-     * @return
      */
     public static ImdbQuotes getTitleQuotes(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -361,7 +344,6 @@ public final class ImdbApi {
      * Get the trivia for a title
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbSpoiler> getTitleTrivia(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -390,7 +372,6 @@ public final class ImdbApi {
      * Get the photos for a title
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbImage> getTitlePhotos(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -407,7 +388,6 @@ public final class ImdbApi {
      * Get the main details for a title
      *
      * @param imdbId
-     * @return
      */
     public static ImdbMovieDetails getFullDetails(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -424,7 +404,6 @@ public final class ImdbApi {
      * Get the cast for a title
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbCredit> getFullCast(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -443,7 +422,6 @@ public final class ImdbApi {
      * Perform a search on the IMDB
      *
      * @param query
-     * @return
      */
     public static Map<String, List<SearchObject>> getSearch(String query) {
         Map<String, String> args = new HashMap<String, String>();
@@ -468,8 +446,6 @@ public final class ImdbApi {
 
     /**
      * Get the latest box office information
-     *
-     * @return
      */
     public static List<ImdbBoxOffice> getBoxOffice() {
         WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.EMPTY_MAP);
@@ -484,7 +460,6 @@ public final class ImdbApi {
      * Get all the plots for a title.
      *
      * @param imdbId
-     * @return
      */
     public static List<ImdbPlot> getTitlePlot(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -502,7 +477,6 @@ public final class ImdbApi {
      * Get all the synopsis for a title.
      *
      * @param imdbId
-     * @return
      */
     public static ImdbSynopsis getTitleSynopsis(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
@@ -518,8 +492,6 @@ public final class ImdbApi {
 
     /**
      * Get the Chart Movie Meter
-     *
-     * @return
      */
     public static List<ImdbChartMoviemeter> getChartMoviemeter() {
         WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.EMPTY_MAP);
@@ -532,8 +504,6 @@ public final class ImdbApi {
 
     /**
      * Get the Chart Star Meter
-     *
-     * @return
      */
     public static List<ImdbChartStarmeter> getChartStarmeter() {
         WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.EMPTY_MAP);
