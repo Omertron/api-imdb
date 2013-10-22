@@ -9,3 +9,7 @@ Authors and users of unauthorized clients accept full legal exposure/liability f
 Project Documentation
 ---------------------
 The automatically generated documentation can be found [HERE](http://omertron.github.com/api-imdb/)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Omertron/api-imdb/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
