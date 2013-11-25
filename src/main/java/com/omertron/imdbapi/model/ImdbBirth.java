@@ -2,13 +2,14 @@ package com.omertron.imdbapi.model;
 
 import java.util.Collections;
 import java.util.Map;
-import org.apache.log4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbBirth {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbBirth.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbBirth.class);
     @JsonProperty("date")
     private Map<String, String> date = Collections.EMPTY_MAP;
     @JsonProperty("place")
@@ -46,6 +47,6 @@ public class ImdbBirth {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

@@ -1,12 +1,13 @@
 package com.omertron.imdbapi.model;
 
-import org.apache.log4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbImageDetails {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbImageDetails.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbImageDetails.class);
     @JsonProperty("width")
     private int width = -1;
     @JsonProperty("height")
@@ -54,6 +55,6 @@ public class ImdbImageDetails {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

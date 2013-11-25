@@ -7,11 +7,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbMovieDetails extends SearchObject {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbMovieDetails.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbMovieDetails.class);
     @JsonProperty("photos")
     private List<ImdbImage> photos = Collections.EMPTY_LIST;
     @JsonProperty("certificate")
@@ -323,6 +324,6 @@ public class ImdbMovieDetails extends SearchObject {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

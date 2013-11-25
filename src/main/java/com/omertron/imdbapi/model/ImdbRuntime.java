@@ -1,12 +1,13 @@
 package com.omertron.imdbapi.model;
 
-import org.apache.log4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbRuntime {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbRuntime.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbRuntime.class);
     @JsonProperty("country")
     private String country = "";
     @JsonProperty("time")
@@ -54,6 +55,6 @@ public class ImdbRuntime {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

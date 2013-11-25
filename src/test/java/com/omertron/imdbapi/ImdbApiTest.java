@@ -18,26 +18,31 @@ import com.omertron.imdbapi.model.ImdbSynopsis;
 import com.omertron.imdbapi.model.ImdbText;
 import com.omertron.imdbapi.model.ImdbUserComment;
 import com.omertron.imdbapi.search.SearchObject;
-import com.omertron.imdbapi.tools.FilteringLayout;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbApiTest {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbApiTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbApiTest.class);
     private static final List<String> IMDB_IDS = new ArrayList<String>();
     private static final List<String> ACTOR_IDS = new ArrayList<String>();
+    private final ImdbApi imdbApi;
 
     public ImdbApiTest() {
+        imdbApi = new ImdbApi();
+
         if (IMDB_IDS.isEmpty()) {
-            IMDB_IDS.add("tt0110912");  // Pulp Fiction
-            IMDB_IDS.add("tt0848228");  // Avengers
-            IMDB_IDS.add("tt0898266");  // The Big Bang Theory)
+            // Pulp Fiction
+            IMDB_IDS.add("tt0110912");
+            // Avengers
+            IMDB_IDS.add("tt0848228");
+            // The Big Bang Theory)
+            IMDB_IDS.add("tt0898266");
         }
 
         if (ACTOR_IDS.isEmpty()) {
@@ -46,13 +51,8 @@ public class ImdbApiTest {
     }
 
     @BeforeClass
-    public static void setUpClass() throws Exception {
-        // Set the logger level to TRACE
-        Logger.getRootLogger().setLevel(Level.TRACE);
-        // Show the version of the API
-        ImdbApi.showVersion();
-        // Make sure the filter isn't applied to the test output
-        FilteringLayout.addReplacementString("DO_NOT_MATCH");
+    public static void setUpClass() {
+        TestLogger.Configure();
     }
 
     @AfterClass
@@ -72,9 +72,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetParentalGuide() {
-        LOGGER.info("getParentalGuide");
+        LOG.info("getParentalGuide");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbText> result = ImdbApi.getParentalGuide(imdbId);
+            List<ImdbText> result = imdbApi.getParentalGuide(imdbId);
             assertFalse("Parental guide list is empty for " + imdbId, result.isEmpty());
         }
     }
@@ -84,10 +84,10 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetUserReviews() {
-        LOGGER.info("getUserReviews");
+        LOG.info("getUserReviews");
         for (String imdbId : IMDB_IDS) {
 
-            List<ImdbUserComment> result = ImdbApi.getUserReviews(imdbId);
+            List<ImdbUserComment> result = imdbApi.getUserReviews(imdbId);
             assertFalse("User reviews is empty for " + imdbId, result.isEmpty());
         }
     }
@@ -97,9 +97,9 @@ public class ImdbApiTest {
      */
 //    //@Test
     public void testGetExternalReviews() {
-        LOGGER.info("getExternalReviews");
+        LOG.info("getExternalReviews");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbReview> result = ImdbApi.getExternalReviews(imdbId);
+            List<ImdbReview> result = imdbApi.getExternalReviews(imdbId);
             assertFalse("External reviews is empty for " + imdbId, result.isEmpty());
         }
     }
@@ -109,8 +109,8 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetComingSoon() {
-        LOGGER.info("getComingSoon");
-        List<ImdbList> result = ImdbApi.getComingSoon();
+        LOG.info("getComingSoon");
+        List<ImdbList> result = imdbApi.getComingSoon();
         assertFalse("Coming soon is empty", result.isEmpty());
     }
 
@@ -119,8 +119,8 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTop250() {
-        LOGGER.info("getTop250");
-        List<ImdbList> result = ImdbApi.getTop250();
+        LOG.info("getTop250");
+        List<ImdbList> result = imdbApi.getTop250();
         assertFalse("Top250 is empty", result.isEmpty());
     }
 
@@ -129,8 +129,8 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetBottom100() {
-        LOGGER.info("getBottom100");
-        List<ImdbList> result = ImdbApi.getBottom100();
+        LOG.info("getBottom100");
+        List<ImdbList> result = imdbApi.getBottom100();
         assertFalse("Bottom100 is empty", result.isEmpty());
     }
 
@@ -139,9 +139,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetActorQuotes() {
-        LOGGER.info("getActorQuotes");
+        LOG.info("getActorQuotes");
         for (String actorId : ACTOR_IDS) {
-            List<String> result = ImdbApi.getActorQuotes(actorId);
+            List<String> result = imdbApi.getActorQuotes(actorId);
             assertFalse("Actor Quotes is empty for " + actorId, result.isEmpty());
         }
     }
@@ -151,9 +151,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetActorTrivia() {
-        LOGGER.info("getActorTrivia");
+        LOG.info("getActorTrivia");
         for (String actorId : ACTOR_IDS) {
-            List<ImdbText> result = ImdbApi.getActorTrivia(actorId);
+            List<ImdbText> result = imdbApi.getActorTrivia(actorId);
             assertFalse("Actor Trivia is empty for " + actorId, result.isEmpty());
         }
     }
@@ -163,9 +163,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetActorFilmography() {
-        LOGGER.info("getActorFilmography");
+        LOG.info("getActorFilmography");
         for (String actorId : ACTOR_IDS) {
-            List<ImdbFilmography> result = ImdbApi.getActorFilmography(actorId);
+            List<ImdbFilmography> result = imdbApi.getActorFilmography(actorId);
             assertFalse("Actor Filmography is empty for " + actorId, result.isEmpty());
         }
     }
@@ -175,9 +175,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetActorDetails() {
-        LOGGER.info("getActorDetails");
+        LOG.info("getActorDetails");
         for (String actorId : ACTOR_IDS) {
-            ImdbPerson result = ImdbApi.getActorDetails(actorId);
+            ImdbPerson result = imdbApi.getActorDetails(actorId);
             assertNotNull("Actor Details is empty for " + actorId, result);
         }
     }
@@ -187,9 +187,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTitleEpisodes() {
-        LOGGER.info("getTitleEpisodes");
+        LOG.info("getTitleEpisodes");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbSeason> result = ImdbApi.getTitleEpisodes(imdbId);
+            List<ImdbSeason> result = imdbApi.getTitleEpisodes(imdbId);
             assertNotNull("Title Episodes is empty for " + imdbId, result);
         }
     }
@@ -199,9 +199,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTitleGoofs() {
-        LOGGER.info("getTitleGoofs");
+        LOG.info("getTitleGoofs");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbSpoiler> result = ImdbApi.getTitleGoofs(imdbId);
+            List<ImdbSpoiler> result = imdbApi.getTitleGoofs(imdbId);
             assertNotNull("Title Goofs is empty for " + imdbId, result);
         }
     }
@@ -211,9 +211,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTitleQuotes() {
-        LOGGER.info("getTitleQuotes");
+        LOG.info("getTitleQuotes");
         for (String imdbId : IMDB_IDS) {
-            ImdbQuotes result = ImdbApi.getTitleQuotes(imdbId);
+            ImdbQuotes result = imdbApi.getTitleQuotes(imdbId);
             assertNotNull("Title Quotes is empty for " + imdbId, result);
         }
     }
@@ -223,9 +223,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTitleTrivia() {
-        LOGGER.info("getTitleTrivia");
+        LOG.info("getTitleTrivia");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbSpoiler> result = ImdbApi.getTitleTrivia(imdbId);
+            List<ImdbSpoiler> result = imdbApi.getTitleTrivia(imdbId);
             assertNotNull("Title Trivia is empty for " + imdbId, result);
         }
     }
@@ -235,9 +235,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTitlePhotos() {
-        LOGGER.info("getTitlePhotos");
+        LOG.info("getTitlePhotos");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbImage> result = ImdbApi.getTitlePhotos(imdbId);
+            List<ImdbImage> result = imdbApi.getTitlePhotos(imdbId);
             assertNotNull("Title Photos is empty for " + imdbId, result);
         }
     }
@@ -247,9 +247,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetFullDetails() {
-        LOGGER.info("getFullDetails");
+        LOG.info("getFullDetails");
         for (String imdbId : IMDB_IDS) {
-            ImdbMovieDetails result = ImdbApi.getFullDetails(imdbId);
+            ImdbMovieDetails result = imdbApi.getFullDetails(imdbId);
             assertNotNull("Full Details is empty for " + imdbId, result);
         }
     }
@@ -259,9 +259,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetFullCast() {
-        LOGGER.info("getFullCast");
+        LOG.info("getFullCast");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbCredit> result = ImdbApi.getFullCast(imdbId);
+            List<ImdbCredit> result = imdbApi.getFullCast(imdbId);
             assertNotNull("Full Cast is empty for " + imdbId, result);
         }
     }
@@ -271,9 +271,8 @@ public class ImdbApiTest {
      */
     @Test
     public void testGetSearch() {
-        LOGGER.info("getSearch");
-//        Map<String, List<SearchObject>> result = ImdbApi.getSearch("Avengers");
-        Map<String, List<SearchObject>> result = ImdbApi.getSearch("James Dean");
+        LOG.info("getSearch");
+        Map<String, List<SearchObject>> result = imdbApi.getSearch("James Dean");
 
         assertNotNull("Search is empty", result);
         assertTrue("Search has no results", result.size() > 0);
@@ -316,7 +315,7 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetShowtimes() {
-        LOGGER.info("getShowtimes - Not tested");
+        LOG.info("getShowtimes - Not tested");
     }
 
     /**
@@ -324,8 +323,8 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetBoxOffice() {
-        LOGGER.info("getBoxOffice");
-        List<ImdbBoxOffice> result = ImdbApi.getBoxOffice();
+        LOG.info("getBoxOffice");
+        List<ImdbBoxOffice> result = imdbApi.getBoxOffice();
         assertFalse("BoxOffice is empty", result.isEmpty());
     }
 
@@ -334,9 +333,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTitlePlot() {
-        LOGGER.info("getTitlePlot");
+        LOG.info("getTitlePlot");
         for (String imdbId : IMDB_IDS) {
-            List<ImdbPlot> result = ImdbApi.getTitlePlot(imdbId);
+            List<ImdbPlot> result = imdbApi.getTitlePlot(imdbId);
             assertNotNull("Title plot is empty for " + imdbId, result);
         }
     }
@@ -346,9 +345,9 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetTitleSynopsis() {
-        LOGGER.info("getTitlePlot");
+        LOG.info("getTitlePlot");
         for (String imdbId : IMDB_IDS) {
-            ImdbSynopsis result = ImdbApi.getTitleSynopsis(imdbId);
+            ImdbSynopsis result = imdbApi.getTitleSynopsis(imdbId);
             assertNotNull("Title synopsis is empty for " + imdbId, result);
         }
     }
@@ -358,8 +357,8 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetChartMoviemeter() {
-        LOGGER.info("getChartMoviemeter");
-        List<ImdbChartMoviemeter> result = ImdbApi.getChartMoviemeter();
+        LOG.info("getChartMoviemeter");
+        List<ImdbChartMoviemeter> result = imdbApi.getChartMoviemeter();
         assertFalse("Chart Moviemeter is empty", result.isEmpty());
     }
 
@@ -368,8 +367,8 @@ public class ImdbApiTest {
      */
     //@Test
     public void testGetChartStarmeter() {
-        LOGGER.info("getChartStarmeter");
-        List<ImdbChartStarmeter> result = ImdbApi.getChartStarmeter();
+        LOG.info("getChartStarmeter");
+        List<ImdbChartStarmeter> result = imdbApi.getChartStarmeter();
         assertFalse("Chart Starmeter is empty", result.isEmpty());
     }
 }

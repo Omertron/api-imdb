@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbMovie {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbMovie.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbMovie.class);
     private String imdbId = "";
     @JsonProperty("type")
     private String type = "";
@@ -113,6 +114,6 @@ public class ImdbMovie {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

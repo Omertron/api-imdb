@@ -11,10 +11,11 @@ import com.omertron.imdbapi.model.ImdbText;
 import com.omertron.imdbapi.model.ImdbUserComment;
 import java.util.Collections;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class holds the various responses from the API
@@ -24,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties({"copyright"})
 public class ResponseDetail {
 
-    private static final Logger LOGGER = Logger.getLogger(ResponseDetail.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ResponseDetail.class);
     @JsonProperty("tconst")
     private String imdbId = "";
     @JsonProperty("limit")
@@ -272,6 +273,6 @@ public class ResponseDetail {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.warn(sb.toString());
+        LOG.warn(sb.toString());
     }
 }

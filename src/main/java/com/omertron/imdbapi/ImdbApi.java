@@ -1,41 +1,17 @@
 package com.omertron.imdbapi;
 
-import com.omertron.imdbapi.model.ImdbBoxOffice;
-import com.omertron.imdbapi.model.ImdbChartMoviemeter;
-import com.omertron.imdbapi.model.ImdbChartStarmeter;
-import com.omertron.imdbapi.model.ImdbCredit;
-import com.omertron.imdbapi.model.ImdbFilmography;
-import com.omertron.imdbapi.model.ImdbImage;
-import com.omertron.imdbapi.model.ImdbList;
-import com.omertron.imdbapi.model.ImdbMovieDetails;
-import com.omertron.imdbapi.model.ImdbPerson;
-import com.omertron.imdbapi.model.ImdbPlot;
-import com.omertron.imdbapi.model.ImdbQuotes;
-import com.omertron.imdbapi.model.ImdbReview;
-import com.omertron.imdbapi.model.ImdbSeason;
-import com.omertron.imdbapi.model.ImdbSpoiler;
-import com.omertron.imdbapi.model.ImdbSynopsis;
-import com.omertron.imdbapi.model.ImdbText;
-import com.omertron.imdbapi.model.ImdbUserComment;
+import com.omertron.imdbapi.model.*;
 import com.omertron.imdbapi.search.SearchObject;
 import com.omertron.imdbapi.tools.ApiBuilder;
-import com.omertron.imdbapi.tools.FilteringLayout;
-import com.omertron.imdbapi.wrapper.ResponseDetail;
-import com.omertron.imdbapi.wrapper.WrapperActorData;
-import com.omertron.imdbapi.wrapper.WrapperBoxOffice;
-import com.omertron.imdbapi.wrapper.WrapperChartMoviemeter;
-import com.omertron.imdbapi.wrapper.WrapperChartStarmeter;
-import com.omertron.imdbapi.wrapper.WrapperMovieDetails;
-import com.omertron.imdbapi.wrapper.WrapperQuotes;
-import com.omertron.imdbapi.wrapper.WrapperSearch;
+import com.omertron.imdbapi.wrapper.*;
 import com.omertron.imdbapi.wrapper.WrapperSynopsis;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.yamj.api.common.http.CommonHttpClient;
+import org.yamj.api.common.http.DefaultPoolingHttpClient;
 
 /**
  * Java API class for the IMDB JSON API
@@ -44,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public final class ImdbApi {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbApi.class);
+    private CommonHttpClient httpClient;
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
 
@@ -55,12 +31,13 @@ public final class ImdbApi {
      * TODO: chart/starmeter
      * TODO: feature/borntoday
      */
-    static {
-        FilteringLayout.addReplacementString("app.imdb.com");
+    public ImdbApi() {
+        this(new DefaultPoolingHttpClient());
     }
 
-    private ImdbApi() {
-        throw new UnsupportedOperationException("Class cannot be initialised");
+    public ImdbApi(CommonHttpClient httpClient) {
+        this.httpClient = httpClient;
+        ApiBuilder.setHttpClient(httpClient);
     }
 
     /**
@@ -68,7 +45,7 @@ public final class ImdbApi {
      *
      * @param locale
      */
-    public static void setLocale(Locale locale) {
+    public void setLocale(Locale locale) {
         ApiBuilder.setLocale(locale);
     }
 
@@ -79,7 +56,7 @@ public final class ImdbApi {
      *
      * @param language
      */
-    public static void setLocale(String language) {
+    public void setLocale(String language) {
         setLocale(new Locale(language));
     }
 
@@ -89,27 +66,8 @@ public final class ImdbApi {
      * @param language
      * @param country
      */
-    public static void setLocale(String language, String country) {
+    public void setLocale(String language, String country) {
         setLocale(new Locale(language, country));
-    }
-
-    /**
-     * Output the API version information to the debug log
-     */
-    public static void showVersion() {
-        String apiTitle = ImdbApi.class.getPackage().getSpecificationTitle();
-
-        if (StringUtils.isNotBlank(apiTitle)) {
-            String apiVersion = ImdbApi.class.getPackage().getSpecificationVersion();
-            String apiRevision = ImdbApi.class.getPackage().getImplementationVersion();
-            StringBuilder sv = new StringBuilder();
-            sv.append(apiTitle);
-            sv.append(" ").append(apiVersion);
-            sv.append(" r").append(apiRevision);
-            LOGGER.debug(sv.toString());
-        } else {
-            LOGGER.debug("API-IMDB version/revision information not available");
-        }
     }
 
     /**
@@ -117,8 +75,9 @@ public final class ImdbApi {
      *
      * @param location
      * @param date
+     * @return
      */
-    public static URL getShowtimes(String location, Date date) {
+    public URL getShowtimes(String location, Date date) {
         Map<String, String> args = new HashMap<String, String>();
         args.put("location", location);
 
@@ -131,8 +90,9 @@ public final class ImdbApi {
      * Get the parental guide information for a title
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbText> getParentalGuide(String imdbId) {
+    public List<ImdbText> getParentalGuide(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
@@ -148,8 +108,9 @@ public final class ImdbApi {
      * Get the user reviews for a title
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbUserComment> getUserReviews(String imdbId) {
+    public List<ImdbUserComment> getUserReviews(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
@@ -165,8 +126,9 @@ public final class ImdbApi {
      * Get the external reviews for a title
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbReview> getExternalReviews(String imdbId) {
+    public List<ImdbReview> getExternalReviews(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
@@ -180,8 +142,10 @@ public final class ImdbApi {
 
     /**
      * Get the list of coming soon titles
+     *
+     * @return
      */
-    public static List<ImdbList> getComingSoon() {
+    public List<ImdbList> getComingSoon() {
         ResponseDetail response = ApiBuilder.getResponse("feature/comingsoon");
         if (response == null) {
             return Collections.EMPTY_LIST;
@@ -192,8 +156,10 @@ public final class ImdbApi {
 
     /**
      * Get the Top250 list
+     *
+     * @return
      */
-    public static List<ImdbList> getTop250() {
+    public List<ImdbList> getTop250() {
         ResponseDetail response = ApiBuilder.getResponse("chart/top");
         if (response == null) {
             return Collections.EMPTY_LIST;
@@ -204,8 +170,10 @@ public final class ImdbApi {
 
     /**
      * Get the Bottom 100 list
+     *
+     * @return
      */
-    public static List<ImdbList> getBottom100() {
+    public List<ImdbList> getBottom100() {
         ResponseDetail response = ApiBuilder.getResponse("chart/bottom");
         if (response == null) {
             return Collections.EMPTY_LIST;
@@ -218,8 +186,9 @@ public final class ImdbApi {
      * Get the quotes for an actor
      *
      * @param actorId
+     * @return
      */
-    public static List<String> getActorQuotes(String actorId) {
+    public List<String> getActorQuotes(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/quotes", args);
@@ -234,8 +203,9 @@ public final class ImdbApi {
      * Get the trivia for an actor
      *
      * @param actorId
+     * @return
      */
-    public static List<ImdbText> getActorTrivia(String actorId) {
+    public List<ImdbText> getActorTrivia(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/trivia", args);
@@ -250,8 +220,9 @@ public final class ImdbApi {
      * Get the actor's filmography
      *
      * @param actorId
+     * @return
      */
-    public static List<ImdbFilmography> getActorFilmography(String actorId) {
+    public List<ImdbFilmography> getActorFilmography(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/filmography", args);
@@ -266,8 +237,9 @@ public final class ImdbApi {
      * Get the main details about the actor
      *
      * @param actorId
+     * @return
      */
-    public static ImdbPerson getActorDetails(String actorId) {
+    public ImdbPerson getActorDetails(String actorId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
 
@@ -283,8 +255,9 @@ public final class ImdbApi {
      * Get the episodes for a show
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbSeason> getTitleEpisodes(String imdbId) {
+    public List<ImdbSeason> getTitleEpisodes(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/episodes", args);
@@ -299,8 +272,9 @@ public final class ImdbApi {
      * Get the goofs for a title
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbSpoiler> getTitleGoofs(String imdbId) {
+    public List<ImdbSpoiler> getTitleGoofs(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/goofs", args);
@@ -327,8 +301,9 @@ public final class ImdbApi {
      * Get the quotes for a title
      *
      * @param imdbId
+     * @return
      */
-    public static ImdbQuotes getTitleQuotes(String imdbId) {
+    public ImdbQuotes getTitleQuotes(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
@@ -344,8 +319,9 @@ public final class ImdbApi {
      * Get the trivia for a title
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbSpoiler> getTitleTrivia(String imdbId) {
+    public List<ImdbSpoiler> getTitleTrivia(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/trivia", args);
@@ -372,8 +348,9 @@ public final class ImdbApi {
      * Get the photos for a title
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbImage> getTitlePhotos(String imdbId) {
+    public List<ImdbImage> getTitlePhotos(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/photos", args);
@@ -388,8 +365,9 @@ public final class ImdbApi {
      * Get the main details for a title
      *
      * @param imdbId
+     * @return
      */
-    public static ImdbMovieDetails getFullDetails(String imdbId) {
+    public ImdbMovieDetails getFullDetails(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
         WrapperMovieDetails wrapper = ApiBuilder.getWrapper(WrapperMovieDetails.class, "title/maindetails", args);
@@ -404,8 +382,9 @@ public final class ImdbApi {
      * Get the cast for a title
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbCredit> getFullCast(String imdbId) {
+    public List<ImdbCredit> getFullCast(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
@@ -422,8 +401,9 @@ public final class ImdbApi {
      * Perform a search on the IMDB
      *
      * @param query
+     * @return
      */
-    public static Map<String, List<SearchObject>> getSearch(String query) {
+    public Map<String, List<SearchObject>> getSearch(String query) {
         Map<String, String> args = new HashMap<String, String>();
 
         String encodedQuery;
@@ -446,8 +426,10 @@ public final class ImdbApi {
 
     /**
      * Get the latest box office information
+     *
+     * @return
      */
-    public static List<ImdbBoxOffice> getBoxOffice() {
+    public List<ImdbBoxOffice> getBoxOffice() {
         WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.EMPTY_MAP);
         // Because WrapperBoxOffice is a "double" wrapper, we need to access the "inner" layer through the "outer" layer
         if (wrapper != null && wrapper.getData().getBoxOfficeList() != null) {
@@ -460,8 +442,9 @@ public final class ImdbApi {
      * Get all the plots for a title.
      *
      * @param imdbId
+     * @return
      */
-    public static List<ImdbPlot> getTitlePlot(String imdbId) {
+    public List<ImdbPlot> getTitlePlot(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
@@ -477,8 +460,9 @@ public final class ImdbApi {
      * Get all the synopsis for a title.
      *
      * @param imdbId
+     * @return
      */
-    public static ImdbSynopsis getTitleSynopsis(String imdbId) {
+    public ImdbSynopsis getTitleSynopsis(String imdbId) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
 
@@ -492,8 +476,10 @@ public final class ImdbApi {
 
     /**
      * Get the Chart Movie Meter
+     *
+     * @return
      */
-    public static List<ImdbChartMoviemeter> getChartMoviemeter() {
+    public List<ImdbChartMoviemeter> getChartMoviemeter() {
         WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.EMPTY_MAP);
         if (wrapper == null) {
             return Collections.EMPTY_LIST;
@@ -504,13 +490,37 @@ public final class ImdbApi {
 
     /**
      * Get the Chart Star Meter
+     *
+     * @return
      */
-    public static List<ImdbChartStarmeter> getChartStarmeter() {
+    public List<ImdbChartStarmeter> getChartStarmeter() {
         WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.EMPTY_MAP);
         if (wrapper == null) {
             return Collections.EMPTY_LIST;
         } else {
             return wrapper.getData().getChartStarmeter();
         }
+    }
+
+    /**
+     * Set the web browser proxy information
+     *
+     * @param host
+     * @param port
+     * @param username
+     * @param password
+     */
+    public void setProxy(String host, String port, String username, String password) {
+        httpClient.setProxy(host, Integer.parseInt(port), username, password);
+    }
+
+    /**
+     * Set the web browser timeout settings
+     *
+     * @param webTimeoutConnect
+     * @param webTimeoutRead
+     */
+    public void setTimeout(int webTimeoutConnect, int webTimeoutRead) {
+        httpClient.setTimeouts(webTimeoutConnect, webTimeoutRead);
     }
 }

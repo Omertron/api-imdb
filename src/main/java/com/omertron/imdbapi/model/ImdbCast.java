@@ -3,7 +3,8 @@ package com.omertron.imdbapi.model;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 @JsonIgnoreProperties("rewrite")
 public class ImdbCast {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbCast.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbCast.class);
     @JsonProperty("name")
     private ImdbPerson person = new ImdbPerson();
     @JsonProperty("attr")
@@ -93,6 +94,6 @@ public class ImdbCast {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

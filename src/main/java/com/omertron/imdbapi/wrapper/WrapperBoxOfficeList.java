@@ -3,10 +3,11 @@ package com.omertron.imdbapi.wrapper;
 import com.omertron.imdbapi.model.ImdbBoxOffice;
 import java.util.Collections;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties({"@meta", "exp", "copyright"})
 public class WrapperBoxOfficeList {
 
-    private static final Logger LOGGER = Logger.getLogger(WrapperBoxOfficeList.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WrapperBoxOfficeList.class);
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("list")
@@ -56,6 +57,6 @@ public class WrapperBoxOfficeList {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.warn(sb.toString());
+        LOG.warn(sb.toString());
     }
 }

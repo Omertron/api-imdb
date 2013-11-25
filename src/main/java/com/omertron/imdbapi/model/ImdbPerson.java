@@ -6,11 +6,12 @@ import com.omertron.imdbapi.search.SearchObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbPerson extends SearchObject {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbPerson.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbPerson.class);
     @JsonProperty("nconst")
     private String actorId = "";
     @JsonProperty("name")
@@ -137,6 +138,6 @@ public class ImdbPerson extends SearchObject {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

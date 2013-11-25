@@ -9,7 +9,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -21,7 +22,7 @@ import org.apache.log4j.Logger;
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type"})
 public class WrapperSearch {
 
-    private static final Logger LOGGER = Logger.getLogger(WrapperSearch.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WrapperSearch.class);
     @JsonProperty("data")
     private WrapperSearch searchData;
     // Self referenced fields from "data"
@@ -78,6 +79,6 @@ public class WrapperSearch {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.warn(sb.toString());
+        LOG.warn(sb.toString());
     }
 }

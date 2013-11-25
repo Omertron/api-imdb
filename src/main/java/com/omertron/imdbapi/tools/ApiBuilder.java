@@ -18,11 +18,14 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.yamj.api.common.http.CommonHttpClient;
 
 public final class ApiBuilder {
 
-    private static final Logger LOGGER = Logger.getLogger(ApiBuilder.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ApiBuilder.class);
+    private static CommonHttpClient httpClient;
     private static final String LOGMESSAGE = "ImdbApi: ";
     private static final String BASE_URL = "http://app.imdb.com/";
     private static final String API_VERSION = "v1";
@@ -50,9 +53,13 @@ public final class ApiBuilder {
         throw new UnsupportedOperationException("Class cannot be initialised");
     }
 
+    public static void setHttpClient(CommonHttpClient httpClient) {
+        ApiBuilder.httpClient = httpClient;
+    }
+
     public static void setLocale(Locale locale) {
         ApiBuilder.imdbLocale = locale;
-        LOGGER.trace(LOGMESSAGE + "Setting locale to " + imdbLocale.toString());
+        LOG.trace(LOGMESSAGE + "Setting locale to " + imdbLocale.toString());
     }
 
     public static URL buildUrl(String function, Map<String, String> arguments) {
@@ -71,26 +78,26 @@ public final class ApiBuilder {
 
         sbURL.append("&sig=").append(SIG);
 
-        LOGGER.trace(LOGMESSAGE + "URL = " + sbURL.toString());
+        LOG.trace(LOGMESSAGE + "URL = " + sbURL.toString());
         try {
             return new URL(sbURL.toString());
         } catch (MalformedURLException ex) {
-            LOGGER.trace(LOGMESSAGE + "Failed to convert string to URL: " + ex.getMessage());
+            LOG.trace(LOGMESSAGE + "Failed to convert string to URL: " + ex.getMessage());
             return null;
         }
     }
 
     public static <T> T getWrapper(Class<T> clazz, String function, Map<String, String> args) {
         try {
-            String webPage = WebBrowser.request(buildUrl(function, args));
+            String webPage = httpClient.requestContent(buildUrl(function, args));
             Object response = mapper.readValue(webPage, clazz);
             return clazz.cast(response);
         } catch (JsonParseException ex) {
-            LOGGER.warn(LOGMESSAGE + "JsonParseException: " + ex.getMessage());
+            LOG.warn(LOGMESSAGE + "JsonParseException: " + ex.getMessage());
         } catch (JsonMappingException ex) {
-            LOGGER.warn(LOGMESSAGE + "JsonMappingException: " + ex.getMessage());
+            LOG.warn(LOGMESSAGE + "JsonMappingException: " + ex.getMessage());
         } catch (IOException ex) {
-            LOGGER.warn(LOGMESSAGE + "IOException: " + ex.getMessage());
+            LOG.warn(LOGMESSAGE + "IOException: " + ex.getMessage());
         }
         return null;
     }
@@ -114,7 +121,7 @@ public final class ApiBuilder {
         if (wrapper == null) {
             return null;
         }
-        
+
         return wrapper.getSearchData();
     }
 }

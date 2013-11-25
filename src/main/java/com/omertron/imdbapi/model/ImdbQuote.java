@@ -2,13 +2,14 @@ package com.omertron.imdbapi.model;
 
 import java.util.Collections;
 import java.util.List;
-import org.apache.log4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbQuote {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbQuote.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbQuote.class);
     @JsonProperty("qconst")
     private String quoteId = "";
     @JsonProperty("lines")
@@ -46,6 +47,6 @@ public class ImdbQuote {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

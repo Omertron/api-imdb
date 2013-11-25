@@ -3,10 +3,11 @@ package com.omertron.imdbapi.wrapper;
 import com.omertron.imdbapi.model.ImdbChartStarmeter;
 import java.util.Collections;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties({"@meta","exp","copyright"})
 public class WrapperChartStarmeter {
 
-    private static final Logger LOGGER = Logger.getLogger(WrapperChartStarmeter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WrapperChartStarmeter.class);
     @JsonProperty("data")
     private WrapperChartStarmeter data;
     @JsonProperty("list")
@@ -51,6 +52,6 @@ public class WrapperChartStarmeter {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.warn(sb.toString());
+        LOG.warn(sb.toString());
     }
 }

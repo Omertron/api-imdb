@@ -2,13 +2,14 @@ package com.omertron.imdbapi.model;
 
 import java.util.Collections;
 import java.util.List;
-import org.apache.log4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImdbCredit {
 
-    private static final Logger LOGGER = Logger.getLogger(ImdbCredit.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbCredit.class);
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("token")
@@ -56,6 +57,6 @@ public class ImdbCredit {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.trace(sb.toString());
+        LOG.trace(sb.toString());
     }
 }

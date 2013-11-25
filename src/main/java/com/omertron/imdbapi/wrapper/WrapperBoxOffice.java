@@ -1,9 +1,10 @@
 package com.omertron.imdbapi.wrapper;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties({"@meta", "exp", "copyright"})
 public class WrapperBoxOffice {
 
-    private static final Logger LOGGER = Logger.getLogger(WrapperBoxOffice.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WrapperBoxOffice.class);
     // Root element
     @JsonProperty("data")
     private WrapperBoxOffice data;
@@ -65,6 +66,6 @@ public class WrapperBoxOffice {
         StringBuilder sb = new StringBuilder();
         sb.append("Unknown property: '").append(key);
         sb.append("' value: '").append(value).append("'");
-        LOGGER.warn(sb.toString());
+        LOG.warn(sb.toString());
     }
 }
