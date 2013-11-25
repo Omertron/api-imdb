@@ -34,7 +34,7 @@ public final class ApiBuilder {
     /*
      * Jackson JSON configuration
      */
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     static {
         SearchDeserializer deserializer = new SearchDeserializer();
@@ -45,7 +45,7 @@ public final class ApiBuilder {
         SimpleModule module = new SimpleModule("PolymorphicSearchDeserializerModule", ver);
         module.addDeserializer(SearchObject.class, deserializer);
 
-        mapper.registerModule(module);
+        MAPPER.registerModule(module);
     }
 
     private ApiBuilder() {
@@ -89,7 +89,7 @@ public final class ApiBuilder {
     public static <T> T getWrapper(Class<T> clazz, String function, Map<String, String> args) {
         try {
             String webPage = httpClient.requestContent(buildUrl(function, args));
-            Object response = mapper.readValue(webPage, clazz);
+            Object response = MAPPER.readValue(webPage, clazz);
             return clazz.cast(response);
         } catch (JsonParseException ex) {
             LOG.warn("JsonParseException: {}", ex.getMessage());

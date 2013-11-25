@@ -10,9 +10,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SearchDeserializer extends StdDeserializer<SearchObject> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(SearchDeserializer.class);
     private final Map<String, Class<? extends SearchObject>> registry = new HashMap<String, Class<? extends SearchObject>>();
 
     public SearchDeserializer() {
@@ -33,23 +36,23 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
         while (elementsIterator.hasNext()) {
             Map.Entry<String, JsonNode> element = elementsIterator.next();
             String name = element.getKey();
-            System.out.println("Name: " + name + " = " + element.getValue().asText());
+            LOG.info("Name: {} = {}", name, element.getValue().asText());
 
             if (registry.containsKey(name)) {
                 searchClass = registry.get(name);
-                System.out.println("Using class: " + searchClass.getSimpleName());
-//                break;
+                LOG.info("Using class: {}", searchClass.getSimpleName());
+                break;
             }
         }
 
         if (searchClass == null) {
-            System.out.println("END: No search class!");
+            LOG.info("END: No search class!");
             return new SearchObject();
         }
 
         SearchObject so = mapper.readValue(jp, searchClass);
-        System.out.println("SO: " + so.toString());
-        System.out.println("END");
+        LOG.info("SO: {}", so.toString());
+        LOG.info("END");
         return so;
     }
 }
