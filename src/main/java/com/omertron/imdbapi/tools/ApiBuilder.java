@@ -26,7 +26,6 @@ public final class ApiBuilder {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiBuilder.class);
     private static CommonHttpClient httpClient;
-    private static final String LOGMESSAGE = "ImdbApi: ";
     private static final String BASE_URL = "http://app.imdb.com/";
     private static final String API_VERSION = "v1";
     private static final String APP_ID = "iphone1";
@@ -59,7 +58,7 @@ public final class ApiBuilder {
 
     public static void setLocale(Locale locale) {
         ApiBuilder.imdbLocale = locale;
-        LOG.trace(LOGMESSAGE + "Setting locale to " + imdbLocale.toString());
+        LOG.trace("Setting locale to {}", imdbLocale.toString());
     }
 
     public static URL buildUrl(String function, Map<String, String> arguments) {
@@ -78,11 +77,11 @@ public final class ApiBuilder {
 
         sbURL.append("&sig=").append(SIG);
 
-        LOG.trace(LOGMESSAGE + "URL = " + sbURL.toString());
+        LOG.trace("URL = {}", sbURL.toString());
         try {
             return new URL(sbURL.toString());
         } catch (MalformedURLException ex) {
-            LOG.trace(LOGMESSAGE + "Failed to convert string to URL: " + ex.getMessage());
+            LOG.trace("Failed to convert string to URL: {}", ex.getMessage());
             return null;
         }
     }
@@ -93,11 +92,11 @@ public final class ApiBuilder {
             Object response = mapper.readValue(webPage, clazz);
             return clazz.cast(response);
         } catch (JsonParseException ex) {
-            LOG.warn(LOGMESSAGE + "JsonParseException: " + ex.getMessage());
+            LOG.warn("JsonParseException: {}", ex.getMessage());
         } catch (JsonMappingException ex) {
-            LOG.warn(LOGMESSAGE + "JsonMappingException: " + ex.getMessage());
+            LOG.warn("JsonMappingException: {}", ex.getMessage());
         } catch (IOException ex) {
-            LOG.warn(LOGMESSAGE + "IOException: " + ex.getMessage());
+            LOG.warn("IOException: {}", ex.getMessage());
         }
         return null;
     }

@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class SearchDeserializer extends StdDeserializer<SearchObject> {
 
-    private Map<String, Class<? extends SearchObject>> registry = new HashMap<String, Class<? extends SearchObject>>();
+    private final Map<String, Class<? extends SearchObject>> registry = new HashMap<String, Class<? extends SearchObject>>();
 
     public SearchDeserializer() {
         super(SearchObject.class);
