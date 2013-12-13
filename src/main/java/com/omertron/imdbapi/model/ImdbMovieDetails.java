@@ -1,18 +1,14 @@
 package com.omertron.imdbapi.model;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.imdbapi.search.SearchObject;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ImdbMovieDetails extends SearchObject {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbMovieDetails.class);
     @JsonProperty("photos")
     private List<ImdbImage> photos = Collections.EMPTY_LIST;
     @JsonProperty("certificate")
@@ -70,6 +66,8 @@ public class ImdbMovieDetails extends SearchObject {
     private List<ImdbCast> creators = Collections.EMPTY_LIST;
     @JsonProperty("production_status")
     private String productionStatus = "";
+    @JsonProperty("year_end")
+    private String yearEnd = "";
 
     public List<ImdbPerson> getPrincipals() {
         return principals;
@@ -308,22 +306,11 @@ public class ImdbMovieDetails extends SearchObject {
         this.runtime = runtime;
     }
 
-    @Override
-    public String toString() {
-        return "ImdbMovieDetails{" + "photos=" + photos + ", certificate=" + certificate + ", has=" + has + ", type=" + type + ", title=" + title + ", year=" + year + ", runtime=" + runtime + ", tagline=" + tagline + ", rating=" + rating + ", imdbId=" + imdbId + ", genres=" + genres + ", numVotes=" + numVotes + ", canRate=" + canRate + ", quote=" + quote + ", releaseDate=" + releaseDate + ", goof=" + goof + ", trivium=" + trivium + ", news=" + news + ", writers=" + writers + ", directors=" + directors + ", plot=" + plot + ", bestPlot=" + bestPlot + ", cast=" + cast + ", userComment=" + userComment + ", trailer=" + trailer + ", principals=" + principals + ", seasons=" + seasons + ", creators=" + creators + ", productionStatus=" + productionStatus + '}';
+    public String getYearEnd() {
+        return yearEnd;
     }
 
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
+    public void setYearEnd(String yearEnd) {
+        this.yearEnd = yearEnd;
     }
 }

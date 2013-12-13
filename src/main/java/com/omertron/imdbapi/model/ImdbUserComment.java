@@ -1,13 +1,9 @@
 package com.omertron.imdbapi.model;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ImdbUserComment {
+public class ImdbUserComment extends AbstractJsonMapping {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbUserComment.class);
     @JsonProperty("user_score")
     private int userScore = -1;
     @JsonProperty("summary")
@@ -99,22 +95,4 @@ public class ImdbUserComment {
         this.userScoreCount = userScoreCount;
     }
 
-    @Override
-    public String toString() {
-        return "UserComment{" + "userScore=" + userScore + ", summary=" + summary + ", userLocation=" + userLocation + ", date=" + date + ", status=" + status + ", userScoreCount=" + userScoreCount + ", userName=" + userName + ", userRating=" + userRating + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
-    }
 }

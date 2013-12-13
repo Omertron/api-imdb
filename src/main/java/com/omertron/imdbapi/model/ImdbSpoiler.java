@@ -1,19 +1,15 @@
 package com.omertron.imdbapi.model;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ImdbSpoiler {
+public class ImdbSpoiler extends AbstractJsonMapping {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbSpoiler.class);
     @JsonProperty("spoiler")
     private String spoiler = "";
     @JsonProperty("text")
-    private String text="";
+    private String text = "";
     @JsonProperty("type")
-    private String type="";
+    private String type = "";
 
     public ImdbSpoiler() {
     }
@@ -48,22 +44,4 @@ public class ImdbSpoiler {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "ImdbSpoiler{" + "spoiler=" + spoiler + ", text=" + text + ", type=" + type + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
-    }
 }

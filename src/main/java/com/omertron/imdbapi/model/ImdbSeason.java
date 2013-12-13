@@ -1,15 +1,11 @@
 package com.omertron.imdbapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ImdbSeason {
+public class ImdbSeason extends AbstractJsonMapping {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbSeason.class);
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("token")
@@ -41,22 +37,4 @@ public class ImdbSeason {
         this.token = token;
     }
 
-    @Override
-    public String toString() {
-        return "ImdbSeason{" + "label=" + label + ", token=" + token + ", episodes=" + episodes + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
-    }
 }

@@ -1,13 +1,9 @@
 package com.omertron.imdbapi.model;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ImdbMovieCharacter {
+public class ImdbMovieCharacter extends AbstractJsonMapping {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbMovieCharacter.class);
     @JsonProperty("char")
     private String character = "";
     @JsonProperty("title")
@@ -47,24 +43,5 @@ public class ImdbMovieCharacter {
 
     public void setAttribute(String attribute) {
         this.attribute = attribute;
-    }
-
-    @Override
-    public String toString() {
-        return "ImdbMovieCharacter{" + "character=" + character + ", title=" + title + ", attribute=" + attribute + ", actorId=" + actorId + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
     }
 }

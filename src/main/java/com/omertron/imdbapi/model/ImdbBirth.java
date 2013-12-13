@@ -1,15 +1,11 @@
 package com.omertron.imdbapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ImdbBirth {
+public class ImdbBirth extends AbstractJsonMapping {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbBirth.class);
     @JsonProperty("date")
     private Map<String, String> date = Collections.EMPTY_MAP;
     @JsonProperty("place")
@@ -31,22 +27,4 @@ public class ImdbBirth {
         this.place = place;
     }
 
-    @Override
-    public String toString() {
-        return "ImdbBirth{" + "date=" + date + ", place=" + place + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
-    }
 }

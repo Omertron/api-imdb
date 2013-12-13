@@ -1,17 +1,13 @@
 package com.omertron.imdbapi.model;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.imdbapi.search.SearchObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ImdbPerson extends SearchObject {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbPerson.class);
     @JsonProperty("nconst")
     private String actorId = "";
     @JsonProperty("name")
@@ -122,22 +118,4 @@ public class ImdbPerson extends SearchObject {
         this.actorId = actorId;
     }
 
-    @Override
-    public String toString() {
-        return "ImdbPerson{" + "actorId=" + actorId + ", name=" + name + ", biography=" + biography + ", aka=" + aka + ", has=" + has + ", birth=" + birth + ", photos=" + photos + ", knownFor=" + knownFor + ", attr=" + attr + ", news=" + news + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
-    }
 }

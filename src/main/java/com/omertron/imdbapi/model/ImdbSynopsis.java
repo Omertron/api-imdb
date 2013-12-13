@@ -1,13 +1,9 @@
 package com.omertron.imdbapi.model;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ImdbSynopsis {
+public class ImdbSynopsis extends AbstractJsonMapping {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbSynopsis.class);
     @JsonProperty("tconst")
     private String imdbId = "";
     @JsonProperty("text")
@@ -59,22 +55,4 @@ public class ImdbSynopsis {
         this.year = year;
     }
 
-    @Override
-    public String toString() {
-        return "ImdbSynopsis{" + "imdbId=" + imdbId + ", text=" + text + ", type=" + type + ", title=" + title + ", year=" + year + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
-    }
 }

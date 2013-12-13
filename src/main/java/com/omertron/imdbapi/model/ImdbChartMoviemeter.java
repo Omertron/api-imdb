@@ -1,13 +1,9 @@
 package com.omertron.imdbapi.model;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ImdbChartMoviemeter {
+public class ImdbChartMoviemeter extends AbstractJsonMapping {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ImdbChartMoviemeter.class);
     @JsonProperty("rank")
     private int rank = -1;
     @JsonProperty("prev")
@@ -37,24 +33,5 @@ public class ImdbChartMoviemeter {
 
     public void setMovie(ImdbMovie movie) {
         this.movie = movie;
-    }
-
-    @Override
-    public String toString() {
-        return "ImdbChartMoviemeter{" + "rank=" + rank + ", prev=" + prev + ", movie=" + movie + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.trace(sb.toString());
     }
 }
