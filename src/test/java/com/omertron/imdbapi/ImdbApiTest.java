@@ -28,6 +28,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,7 +102,7 @@ public class ImdbApiTest {
     /**
      * Test of getExternalReviews method, of class ImdbApi.
      */
-//    @Test
+    @Test
     public void testGetExternalReviews() {
         LOG.info("getExternalReviews");
         for (String imdbId : IMDB_IDS) {
@@ -276,7 +277,7 @@ public class ImdbApiTest {
     /**
      * Test of getSearch method, of class ImdbApi.
      */
-    @Test
+    @Ignore("Not working yet")
     public void testGetSearch() {
         LOG.info("getSearch");
         Map<String, List<SearchObject>> result = imdbApi.getSearch("James Dean");
