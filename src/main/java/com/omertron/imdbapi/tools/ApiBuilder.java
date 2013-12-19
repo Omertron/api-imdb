@@ -15,6 +15,7 @@ import com.omertron.imdbapi.wrapper.WrapperSearch;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
@@ -25,6 +26,7 @@ import org.yamj.api.common.http.CommonHttpClient;
 public final class ApiBuilder {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiBuilder.class);
+    private static final String DEFAULT_CHARSET = "UTF-8";
     private static CommonHttpClient httpClient;
     private static final String BASE_URL = "http://app.imdb.com/";
     private static final String API_VERSION = "v1";
@@ -88,7 +90,7 @@ public final class ApiBuilder {
 
     public static <T> T getWrapper(Class<T> clazz, String function, Map<String, String> args) {
         try {
-            String webPage = httpClient.requestContent(buildUrl(function, args));
+            String webPage = httpClient.requestContent(buildUrl(function, args), Charset.forName(DEFAULT_CHARSET));
             Object response = MAPPER.readValue(webPage, clazz);
             return clazz.cast(response);
         } catch (JsonParseException ex) {
