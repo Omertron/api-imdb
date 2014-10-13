@@ -11,7 +11,7 @@ public class ImdbCredit extends AbstractJsonMapping{
     @JsonProperty("token")
     private String token = "";
     @JsonProperty("list")
-    private List<ImdbCast> credits = Collections.EMPTY_LIST;
+    private List<ImdbCast> credits = Collections.emptyList();
 
     public List<ImdbCast> getCredits() {
         return credits;

@@ -14,7 +14,7 @@ public class WrapperList {
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("list")
-    private List<ImdbList> imdbList = Collections.EMPTY_LIST;
+    private List<ImdbList> imdbList = Collections.emptyList();
 
     public List<ImdbList> getImdbList() {
         return imdbList;

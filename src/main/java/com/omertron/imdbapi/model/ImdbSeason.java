@@ -11,7 +11,7 @@ public class ImdbSeason extends AbstractJsonMapping {
     @JsonProperty("token")
     private String token = "";
     @JsonProperty("list")
-    private List<ImdbMovie> episodes = Collections.EMPTY_LIST;
+    private List<ImdbMovie> episodes = Collections.emptyList();
 
     public List<ImdbMovie> getEpisodes() {
         return episodes;

@@ -11,7 +11,7 @@ public class ImdbText extends AbstractJsonMapping {
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("date")
-    private Map<String, String> date = Collections.EMPTY_MAP;
+    private Map<String, String> date = Collections.emptyMap();
 
     public String getLabel() {
         return label;

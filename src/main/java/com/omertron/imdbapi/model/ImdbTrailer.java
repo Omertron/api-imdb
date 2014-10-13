@@ -24,9 +24,9 @@ public class ImdbTrailer extends AbstractJsonMapping {
     @JsonProperty("relatedName")
     private ImdbPerson relatedName = new ImdbPerson();
     @JsonProperty("slates")
-    private List<ImdbImageDetails> slates = Collections.EMPTY_LIST;
+    private List<ImdbImageDetails> slates = Collections.emptyList();
     @JsonProperty("encodings")
-    private Map<String, ImdbEncodingFormat> encodings = Collections.EMPTY_MAP;
+    private Map<String, ImdbEncodingFormat> encodings = Collections.emptyMap();
 
     public Map<String, ImdbEncodingFormat> getEncodings() {
         return encodings;

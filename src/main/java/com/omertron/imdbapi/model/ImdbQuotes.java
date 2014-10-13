@@ -15,7 +15,7 @@ public class ImdbQuotes extends AbstractJsonMapping {
     @JsonProperty("year")
     private int year = -1;
     @JsonProperty("quotes")
-    private List<ImdbQuote> lines = Collections.EMPTY_LIST;
+    private List<ImdbQuote> lines = Collections.emptyList();
 
     public List<ImdbQuote> getLines() {
         return lines;

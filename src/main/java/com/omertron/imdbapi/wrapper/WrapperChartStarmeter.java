@@ -23,7 +23,7 @@ public class WrapperChartStarmeter {
     @JsonProperty("data")
     private WrapperChartStarmeter data;
     @JsonProperty("list")
-    private List<ImdbChartStarmeter> chartStarmeter = Collections.EMPTY_LIST;
+    private List<ImdbChartStarmeter> chartStarmeter = Collections.emptyList();
 
     public WrapperChartStarmeter getData() {
         return data;

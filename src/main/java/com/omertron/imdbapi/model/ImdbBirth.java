@@ -7,7 +7,7 @@ import java.util.Map;
 public class ImdbBirth extends AbstractJsonMapping {
 
     @JsonProperty("date")
-    private Map<String, String> date = Collections.EMPTY_MAP;
+    private Map<String, String> date = Collections.emptyMap();
     @JsonProperty("place")
     private String place = "";
 

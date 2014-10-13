@@ -15,7 +15,7 @@ public class ImdbMovie extends AbstractJsonMapping {
     @JsonProperty("title")
     private String title = "";
     @JsonProperty("principals")
-    private List<ImdbPerson> principles = Collections.EMPTY_LIST;
+    private List<ImdbPerson> principles = Collections.emptyList();
     @JsonProperty("image")
     private ImdbImageDetails image = new ImdbImageDetails();
     private int year = -1;

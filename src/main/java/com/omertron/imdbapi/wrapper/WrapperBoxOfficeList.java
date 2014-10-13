@@ -23,7 +23,7 @@ public class WrapperBoxOfficeList {
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("list")
-    private List<ImdbBoxOffice> boxOffice = Collections.EMPTY_LIST;
+    private List<ImdbBoxOffice> boxOffice = Collections.emptyList();
 
     public String getLabel() {
         return label;

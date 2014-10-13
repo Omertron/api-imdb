@@ -1,15 +1,44 @@
 package com.omertron.imdbapi;
 
-import com.omertron.imdbapi.model.*;
+import com.omertron.imdbapi.model.ImdbBoxOffice;
+import com.omertron.imdbapi.model.ImdbChartMoviemeter;
+import com.omertron.imdbapi.model.ImdbChartStarmeter;
+import com.omertron.imdbapi.model.ImdbCredit;
+import com.omertron.imdbapi.model.ImdbFilmography;
+import com.omertron.imdbapi.model.ImdbImage;
+import com.omertron.imdbapi.model.ImdbList;
+import com.omertron.imdbapi.model.ImdbMovieDetails;
+import com.omertron.imdbapi.model.ImdbPerson;
+import com.omertron.imdbapi.model.ImdbPlot;
+import com.omertron.imdbapi.model.ImdbQuotes;
+import com.omertron.imdbapi.model.ImdbReview;
+import com.omertron.imdbapi.model.ImdbSeason;
+import com.omertron.imdbapi.model.ImdbSpoiler;
+import com.omertron.imdbapi.model.ImdbSynopsis;
+import com.omertron.imdbapi.model.ImdbText;
+import com.omertron.imdbapi.model.ImdbUserComment;
 import com.omertron.imdbapi.search.SearchObject;
 import com.omertron.imdbapi.tools.ApiBuilder;
-import com.omertron.imdbapi.wrapper.*;
+import com.omertron.imdbapi.wrapper.ResponseDetail;
+import com.omertron.imdbapi.wrapper.WrapperActorData;
+import com.omertron.imdbapi.wrapper.WrapperBoxOffice;
+import com.omertron.imdbapi.wrapper.WrapperChartMoviemeter;
+import com.omertron.imdbapi.wrapper.WrapperChartStarmeter;
+import com.omertron.imdbapi.wrapper.WrapperMovieDetails;
+import com.omertron.imdbapi.wrapper.WrapperQuotes;
+import com.omertron.imdbapi.wrapper.WrapperSearch;
 import com.omertron.imdbapi.wrapper.WrapperSynopsis;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import org.yamj.api.common.http.CommonHttpClient;
 import org.yamj.api.common.http.DefaultPoolingHttpClient;
 
@@ -98,7 +127,7 @@ public final class ImdbApi {
 
         ResponseDetail response = ApiBuilder.getResponse("title/parentalguide", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getParentalGuide();
         }
@@ -116,7 +145,7 @@ public final class ImdbApi {
 
         ResponseDetail response = ApiBuilder.getResponse("title/usercomments", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getUserComments();
         }
@@ -134,7 +163,7 @@ public final class ImdbApi {
 
         ResponseDetail response = ApiBuilder.getResponse("title/external_reviews", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getExternalReviews();
         }
@@ -148,7 +177,7 @@ public final class ImdbApi {
     public List<ImdbList> getComingSoon() {
         ResponseDetail response = ApiBuilder.getResponse("feature/comingsoon");
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getList().getImdbList();
         }
@@ -162,7 +191,7 @@ public final class ImdbApi {
     public List<ImdbList> getTop250() {
         ResponseDetail response = ApiBuilder.getResponse("chart/top");
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getList().getImdbList();
         }
@@ -176,7 +205,7 @@ public final class ImdbApi {
     public List<ImdbList> getBottom100() {
         ResponseDetail response = ApiBuilder.getResponse("chart/bottom");
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getList().getImdbList();
         }
@@ -193,7 +222,7 @@ public final class ImdbApi {
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/quotes", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getQuotes();
         }
@@ -210,7 +239,7 @@ public final class ImdbApi {
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/trivia", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getTrivia();
         }
@@ -227,7 +256,7 @@ public final class ImdbApi {
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/filmography", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getFilmography();
         }
@@ -262,7 +291,7 @@ public final class ImdbApi {
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/episodes", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getSeasons();
         }
@@ -279,7 +308,7 @@ public final class ImdbApi {
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/goofs", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             List<ImdbSpoiler> spoilers = new ArrayList<ImdbSpoiler>();
 
@@ -326,7 +355,7 @@ public final class ImdbApi {
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/trivia", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             List<ImdbSpoiler> spoilers = new ArrayList<ImdbSpoiler>();
 
@@ -355,7 +384,7 @@ public final class ImdbApi {
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/photos", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getPhotos();
         }
@@ -390,7 +419,7 @@ public final class ImdbApi {
 
         ResponseDetail response = ApiBuilder.getResponse("title/fullcredits", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getCredits();
         }
@@ -418,7 +447,7 @@ public final class ImdbApi {
 
         WrapperSearch wrapper = ApiBuilder.getSearchWrapper("find", args);
         if (wrapper == null) {
-            return Collections.EMPTY_MAP;
+            return Collections.emptyMap();
         } else {
             return wrapper.getSearchResults();
         }
@@ -435,7 +464,7 @@ public final class ImdbApi {
         if (wrapper != null && wrapper.getData().getBoxOfficeList() != null) {
             return wrapper.getData().getBoxOfficeList().getBoxOffice();
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**
@@ -450,7 +479,7 @@ public final class ImdbApi {
 
         ResponseDetail response = ApiBuilder.getResponse("title/plot", args);
         if (response == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return response.getPlots();
         }
@@ -482,7 +511,7 @@ public final class ImdbApi {
     public List<ImdbChartMoviemeter> getChartMoviemeter() {
         WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.EMPTY_MAP);
         if (wrapper == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return wrapper.getData().getChartMoviemeter();
         }
@@ -496,7 +525,7 @@ public final class ImdbApi {
     public List<ImdbChartStarmeter> getChartStarmeter() {
         WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.EMPTY_MAP);
         if (wrapper == null) {
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         } else {
             return wrapper.getData().getChartStarmeter();
         }

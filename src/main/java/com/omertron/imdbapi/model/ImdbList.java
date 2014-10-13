@@ -11,7 +11,7 @@ public class ImdbList extends AbstractJsonMapping {
     @JsonProperty("token")
     private String token = "";
     @JsonProperty("list")
-    private List<ImdbMovie> movie = Collections.EMPTY_LIST;
+    private List<ImdbMovie> movie = Collections.emptyList();
     @JsonProperty("num_votes")
     private int numVotes = -1;
     @JsonProperty("tconst")

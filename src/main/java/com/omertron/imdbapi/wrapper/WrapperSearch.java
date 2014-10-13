@@ -29,7 +29,7 @@ public class WrapperSearch {
     @JsonProperty("q")
     private String query;
     @JsonProperty("fields")
-    private List<String> fields = Collections.EMPTY_LIST;
+    private List<String> fields = Collections.emptyList();
     private Map<String, List<SearchObject>> searchResults;
 
     public List<String> getFields() {

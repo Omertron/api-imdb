@@ -11,7 +11,7 @@ public class ImdbFilmography extends AbstractJsonMapping {
     @JsonProperty("token")
     private String token = "";
     @JsonProperty("list")
-    private List<ImdbMovieCharacter> list = Collections.EMPTY_LIST;
+    private List<ImdbMovieCharacter> list = Collections.emptyList();
 
     public String getLabel() {
         return label;

@@ -41,37 +41,37 @@ public class ResponseDetail {
     @JsonProperty("country")
     private String country = "";
     @JsonProperty("parental_guide")
-    private List<ImdbText> parentalGuide = Collections.EMPTY_LIST;
+    private List<ImdbText> parentalGuide = Collections.emptyList();
     @JsonProperty("user_comments")
-    private List<ImdbUserComment> userComments = Collections.EMPTY_LIST;
+    private List<ImdbUserComment> userComments = Collections.emptyList();
     @JsonProperty("reviews")
-    private List<ImdbReview> externalReviews = Collections.EMPTY_LIST;
+    private List<ImdbReview> externalReviews = Collections.emptyList();
     @JsonProperty("list")
     private WrapperList list;
     @JsonProperty("quotes")
-    private List<String> quotes = Collections.EMPTY_LIST;
+    private List<String> quotes = Collections.emptyList();
     @JsonProperty("nconst")
     private String actorId = "";
     @JsonProperty("name")
     private String name = "";
     @JsonProperty("trivia")
-    private List<ImdbText> trivia = Collections.EMPTY_LIST;
+    private List<ImdbText> trivia = Collections.emptyList();
     @JsonProperty("filmography")
-    private List<ImdbFilmography> filmography = Collections.EMPTY_LIST;
+    private List<ImdbFilmography> filmography = Collections.emptyList();
     @JsonProperty("seasons")
-    private List<ImdbSeason> seasons = Collections.EMPTY_LIST;
+    private List<ImdbSeason> seasons = Collections.emptyList();
     @JsonProperty("spoilt")
-    private List<ImdbSpoiler> spoilt = Collections.EMPTY_LIST;
+    private List<ImdbSpoiler> spoilt = Collections.emptyList();
     @JsonProperty("unspoilt")
-    private List<ImdbSpoiler> unspoilt = Collections.EMPTY_LIST;
+    private List<ImdbSpoiler> unspoilt = Collections.emptyList();
     @JsonProperty("photos")
-    private List<ImdbImage> photos = Collections.EMPTY_LIST;
+    private List<ImdbImage> photos = Collections.emptyList();
     @JsonProperty("credits")
-    private List<ImdbCredit> credits = Collections.EMPTY_LIST;
+    private List<ImdbCredit> credits = Collections.emptyList();
     @JsonProperty("date")
     private String date = "";
     @JsonProperty("plots")
-    private List<ImdbPlot> plots = Collections.EMPTY_LIST;
+    private List<ImdbPlot> plots = Collections.emptyList();
 
     public List<ImdbCredit> getCredits() {
         return credits;

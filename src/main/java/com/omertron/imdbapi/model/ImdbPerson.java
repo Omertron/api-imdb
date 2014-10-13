@@ -15,14 +15,14 @@ public class ImdbPerson extends SearchObject {
     @JsonProperty("bio")
     private String biography = "";
     @JsonProperty("aka")
-    private List<String> aka = Collections.EMPTY_LIST;
+    private List<String> aka = Collections.emptyList();
     @JsonProperty("has")
-    private List<String> has = Collections.EMPTY_LIST;
+    private List<String> has = Collections.emptyList();
     @JsonProperty("birth")
     private ImdbBirth birth = new ImdbBirth();
     @JsonProperty("photos")
-    private List<ImdbImage> photos = Collections.EMPTY_LIST;
-    private List<ImdbKnownFor> knownFor = Collections.EMPTY_LIST;
+    private List<ImdbImage> photos = Collections.emptyList();
+    private List<ImdbKnownFor> knownFor = Collections.emptyList();
     @JsonProperty("attr")
     private String attr = "";
     @JsonProperty("news")

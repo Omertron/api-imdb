@@ -10,7 +10,7 @@ public class ImdbSearchResult extends AbstractJsonMapping {
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("list")
-    private List<SearchObject> searchObject = Collections.EMPTY_LIST;
+    private List<SearchObject> searchObject = Collections.emptyList();
 
     public String getLabel() {
         return label;

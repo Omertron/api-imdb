@@ -9,7 +9,7 @@ public class ImdbQuote extends AbstractJsonMapping {
     @JsonProperty("qconst")
     private String quoteId = "";
     @JsonProperty("lines")
-    private List<ImdbQuoteLine> lines = Collections.EMPTY_LIST;
+    private List<ImdbQuoteLine> lines = Collections.emptyList();
 
     public List<ImdbQuoteLine> getLines() {
         return lines;

@@ -10,11 +10,11 @@ import org.apache.commons.lang3.StringUtils;
 public class ImdbMovieDetails extends SearchObject {
 
     @JsonProperty("photos")
-    private List<ImdbImage> photos = Collections.EMPTY_LIST;
+    private List<ImdbImage> photos = Collections.emptyList();
     @JsonProperty("certificate")
-    private Map<String, String> certificate = Collections.EMPTY_MAP;
+    private Map<String, String> certificate = Collections.emptyMap();
     @JsonProperty("has")
-    private List<String> has = Collections.EMPTY_LIST;
+    private List<String> has = Collections.emptyList();
     @JsonProperty("type")
     private String type = "";
     @JsonProperty("title")
@@ -29,7 +29,7 @@ public class ImdbMovieDetails extends SearchObject {
     @JsonProperty("tconst")
     private String imdbId = "";
     @JsonProperty("genres")
-    private List<String> genres = Collections.EMPTY_LIST;
+    private List<String> genres = Collections.emptyList();
     @JsonProperty("num_votes")
     private double numVotes = -1;
     @JsonProperty("can_rate")
@@ -37,7 +37,7 @@ public class ImdbMovieDetails extends SearchObject {
     @JsonProperty("quote")
     private ImdbQuote quote = new ImdbQuote();
     @JsonProperty("release_date")
-    private Map<String, String> releaseDate = Collections.EMPTY_MAP;
+    private Map<String, String> releaseDate = Collections.emptyMap();
     @JsonProperty("goof")
     private String goof = "";
     @JsonProperty("trivium")
@@ -45,25 +45,25 @@ public class ImdbMovieDetails extends SearchObject {
     @JsonProperty("news")
     private ImdbNews news = new ImdbNews();
     @JsonProperty("writers_summary")
-    private List<ImdbCast> writers = Collections.EMPTY_LIST;
+    private List<ImdbCast> writers = Collections.emptyList();
     @JsonProperty("directors_summary")
-    private List<ImdbCast> directors = Collections.EMPTY_LIST;
+    private List<ImdbCast> directors = Collections.emptyList();
     @JsonProperty("plot")
     private ImdbPlot plot = new ImdbPlot();
     @JsonProperty("best_plot")
     private ImdbPlot bestPlot = new ImdbPlot();
     @JsonProperty("cast_summary")
-    private List<ImdbCast> cast = Collections.EMPTY_LIST;
+    private List<ImdbCast> cast = Collections.emptyList();
     @JsonProperty("user_comment")
     private ImdbUserComment userComment = new ImdbUserComment();
     @JsonProperty("trailer")
     private ImdbTrailer trailer = new ImdbTrailer();
     @JsonProperty("principals")
-    private List<ImdbPerson> principals = Collections.EMPTY_LIST;
+    private List<ImdbPerson> principals = Collections.emptyList();
     @JsonProperty("seasons")
-    private List<Integer> seasons = Collections.EMPTY_LIST;
+    private List<Integer> seasons = Collections.emptyList();
     @JsonProperty("creators")
-    private List<ImdbCast> creators = Collections.EMPTY_LIST;
+    private List<ImdbCast> creators = Collections.emptyList();
     @JsonProperty("production_status")
     private String productionStatus = "";
     @JsonProperty("year_end")

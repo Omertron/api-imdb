@@ -11,7 +11,7 @@ public class ImdbQuoteLine extends AbstractJsonMapping {
     @JsonProperty("quote")
     private String quote = "";
     @JsonProperty("chars")
-    private List<ImdbMovieCharacter> chars = Collections.EMPTY_LIST;
+    private List<ImdbMovieCharacter> chars = Collections.emptyList();
 
     public List<ImdbMovieCharacter> getChars() {
         return chars;

@@ -23,7 +23,7 @@ public class WrapperChartMoviemeter {
     @JsonProperty("data")
     private WrapperChartMoviemeter data;
     @JsonProperty("list")
-    private List<ImdbChartMoviemeter> chartMoviemeter = Collections.EMPTY_LIST;
+    private List<ImdbChartMoviemeter> chartMoviemeter = Collections.emptyList();
 
     public WrapperChartMoviemeter getData() {
         return data;

@@ -12,7 +12,7 @@ public class ImdbNews extends AbstractJsonMapping {
     @JsonProperty("total")
     private int total = -1;
     @JsonProperty("sources")
-    private Map<String, ImdbSource> source = Collections.EMPTY_MAP;
+    private Map<String, ImdbSource> source = Collections.emptyMap();
     @JsonProperty("markup")
     private String markup = "";
     @JsonProperty("label")
@@ -20,7 +20,7 @@ public class ImdbNews extends AbstractJsonMapping {
     @JsonProperty("limit")
     private int limit = -1;
     @JsonProperty("items")
-    private List<ImdbItems> items = Collections.EMPTY_LIST;
+    private List<ImdbItems> items = Collections.emptyList();
     @JsonProperty("@type")
     private String type = "";
     @JsonProperty("start")
