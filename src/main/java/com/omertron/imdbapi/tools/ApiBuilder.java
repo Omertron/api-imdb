@@ -26,6 +26,7 @@ import org.yamj.api.common.http.CommonHttpClient;
 public final class ApiBuilder {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiBuilder.class);
+    private static final int MILLIS_PER_SECOND = 1000;
     private static final String DEFAULT_CHARSET = "UTF-8";
     private static CommonHttpClient httpClient;
     private static final String BASE_URL = "http://app.imdb.com/";
@@ -70,7 +71,7 @@ public final class ApiBuilder {
         sbURL.append("?api=").append(API_VERSION);
         sbURL.append("&appid=").append(APP_ID);
         sbURL.append("&locale=").append(imdbLocale);
-        sbURL.append("&timestamp=").append(System.currentTimeMillis() / 1000);
+        sbURL.append("&timestamp=").append(System.currentTimeMillis() / MILLIS_PER_SECOND);
 
         for (Map.Entry<String, String> argEntry : arguments.entrySet()) {
             sbURL.append("&").append(argEntry.getKey());
@@ -94,11 +95,11 @@ public final class ApiBuilder {
             Object response = MAPPER.readValue(webPage, clazz);
             return clazz.cast(response);
         } catch (JsonParseException ex) {
-            LOG.warn("JsonParseException: {}", ex.getMessage());
+            LOG.warn("JsonParseException: {}", ex.getMessage(), ex);
         } catch (JsonMappingException ex) {
-            LOG.warn("JsonMappingException: {}", ex.getMessage());
+            LOG.warn("JsonMappingException: {}", ex.getMessage(), ex);
         } catch (IOException ex) {
-            LOG.warn("IOException: {}", ex.getMessage());
+            LOG.warn("IOException: {}", ex.getMessage(), ex);
         }
         return null;
     }
@@ -113,7 +114,7 @@ public final class ApiBuilder {
     }
 
     public static ResponseDetail getResponse(String function) {
-        return getResponse(function, Collections.EMPTY_MAP);
+        return getResponse(function, Collections.<String,String>emptyMap());
     }
 
     public static WrapperSearch getSearchWrapper(String function, Map<String, String> args) {

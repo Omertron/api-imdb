@@ -39,6 +39,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yamj.api.common.http.CommonHttpClient;
 import org.yamj.api.common.http.DefaultPoolingHttpClient;
 
@@ -49,6 +51,7 @@ import org.yamj.api.common.http.DefaultPoolingHttpClient;
  */
 public final class ImdbApi {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ImdbApi.class);
     private CommonHttpClient httpClient;
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
@@ -439,6 +442,7 @@ public final class ImdbApi {
         try {
             encodedQuery = URLEncoder.encode(query, "UTF-8");
         } catch (UnsupportedEncodingException ex) {
+            LOG.trace("Failed to encode '{}'", query);
             encodedQuery = query;
         }
         args.put("q", encodedQuery);
@@ -459,7 +463,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbBoxOffice> getBoxOffice() {
-        WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.EMPTY_MAP);
+        WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.<String,String>emptyMap());
         // Because WrapperBoxOffice is a "double" wrapper, we need to access the "inner" layer through the "outer" layer
         if (wrapper != null && wrapper.getData().getBoxOfficeList() != null) {
             return wrapper.getData().getBoxOfficeList().getBoxOffice();
@@ -509,7 +513,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbChartMoviemeter> getChartMoviemeter() {
-        WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.EMPTY_MAP);
+        WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.<String,String>emptyMap());
         if (wrapper == null) {
             return Collections.emptyList();
         } else {
@@ -523,7 +527,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbChartStarmeter> getChartStarmeter() {
-        WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.EMPTY_MAP);
+        WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.<String,String>emptyMap());
         if (wrapper == null) {
             return Collections.emptyList();
         } else {
