@@ -301,35 +301,6 @@ public final class ImdbApi {
     }
 
     /**
-     * Get the goofs for a title
-     *
-     * @param imdbId
-     * @return
-     */
-    public List<ImdbSpoiler> getTitleGoofs(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
-        args.put(TCONST, imdbId);
-        ResponseDetail response = ApiBuilder.getResponse("title/goofs", args);
-        if (response == null) {
-            return Collections.emptyList();
-        } else {
-            List<ImdbSpoiler> spoilers = new ArrayList<ImdbSpoiler>();
-
-            for (ImdbSpoiler spoiler : response.getSpoilt()) {
-                spoiler.setSpoiler("spoilt");
-                spoilers.add(spoiler);
-            }
-
-            for (ImdbSpoiler spoiler : response.getUnspoilt()) {
-                spoiler.setSpoiler("unspoilt");
-                spoilers.add(spoiler);
-            }
-
-            return spoilers;
-        }
-    }
-
-    /**
      * Get the quotes for a title
      *
      * @param imdbId
@@ -348,15 +319,36 @@ public final class ImdbApi {
     }
 
     /**
+     * Get the goofs for a title
+     *
+     * @param imdbId
+     * @return
+     */
+    public List<ImdbSpoiler> getTitleGoofs(String imdbId) {
+        return getTitleSpoilers(imdbId, "title/goofs");
+    }
+
+    /**
      * Get the trivia for a title
      *
      * @param imdbId
      * @return
      */
     public List<ImdbSpoiler> getTitleTrivia(String imdbId) {
+        return getTitleSpoilers(imdbId, "title/trivia");
+    }
+
+    /**
+     * Get a list of "spoilers" for a title
+     *
+     * @param imdbId
+     * @param requestType
+     * @return
+     */
+    private List<ImdbSpoiler> getTitleSpoilers(String imdbId, String requestType) {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
-        ResponseDetail response = ApiBuilder.getResponse("title/trivia", args);
+        ResponseDetail response = ApiBuilder.getResponse(requestType, args);
         if (response == null) {
             return Collections.emptyList();
         } else {
@@ -374,6 +366,7 @@ public final class ImdbApi {
 
             return spoilers;
         }
+
     }
 
     /**
@@ -442,7 +435,7 @@ public final class ImdbApi {
         try {
             encodedQuery = URLEncoder.encode(query, "UTF-8");
         } catch (UnsupportedEncodingException ex) {
-            LOG.trace("Failed to encode '{}'", query);
+            LOG.trace("Failed to encode '{}': {}", query, ex.getMessage(), ex);
             encodedQuery = query;
         }
         args.put("q", encodedQuery);
@@ -463,7 +456,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbBoxOffice> getBoxOffice() {
-        WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.<String,String>emptyMap());
+        WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.<String, String>emptyMap());
         // Because WrapperBoxOffice is a "double" wrapper, we need to access the "inner" layer through the "outer" layer
         if (wrapper != null && wrapper.getData().getBoxOfficeList() != null) {
             return wrapper.getData().getBoxOfficeList().getBoxOffice();
@@ -513,7 +506,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbChartMoviemeter> getChartMoviemeter() {
-        WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.<String,String>emptyMap());
+        WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.<String, String>emptyMap());
         if (wrapper == null) {
             return Collections.emptyList();
         } else {
@@ -527,7 +520,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbChartStarmeter> getChartStarmeter() {
-        WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.<String,String>emptyMap());
+        WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.<String, String>emptyMap());
         if (wrapper == null) {
             return Collections.emptyList();
         } else {
