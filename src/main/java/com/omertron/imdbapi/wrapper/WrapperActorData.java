@@ -14,10 +14,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta","exp","copyright"})
-public class WrapperActorData {
+@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
+public class WrapperActorData extends AbstractWrapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WrapperActorData.class);
     @JsonProperty("data")
     private ImdbPerson actorData;
 
@@ -27,19 +26,5 @@ public class WrapperActorData {
 
     public void setActorData(ImdbPerson actorData) {
         this.actorData = actorData;
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.warn(sb.toString());
     }
 }

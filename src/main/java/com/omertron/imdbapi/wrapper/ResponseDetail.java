@@ -11,11 +11,8 @@ import com.omertron.imdbapi.model.ImdbText;
 import com.omertron.imdbapi.model.ImdbUserComment;
 import java.util.Collections;
 import java.util.List;
-import org.slf4j.Logger;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class holds the various responses from the API
@@ -23,9 +20,8 @@ import org.slf4j.LoggerFactory;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"copyright"})
-public class ResponseDetail {
+public class ResponseDetail extends AbstractWrapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ResponseDetail.class);
     @JsonProperty("tconst")
     private String imdbId = "";
     @JsonProperty("limit")
@@ -255,24 +251,5 @@ public class ResponseDetail {
 
     public void setPlots(List<ImdbPlot> plots) {
         this.plots = plots;
-    }
-
-    @Override
-    public String toString() {
-        return "ResponseDetail{" + "imdbId=" + imdbId + ", limit=" + limit + ", type=" + type + ", title=" + title + ", total=" + total + ", year=" + year + ", country=" + country + ", parentalGuide=" + parentalGuide + ", userComments=" + userComments + ", externalReviews=" + externalReviews + ", list=" + list + ", quotes=" + quotes + ", actorId=" + actorId + ", name=" + name + ", trivia=" + trivia + ", filmography=" + filmography + ", seasons=" + seasons + ", spoilt=" + spoilt + ", unspoilt=" + unspoilt + ", photos=" + photos + ", credits=" + credits + ", date=" + date + ", plots=" + plots + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.warn(sb.toString());
     }
 }

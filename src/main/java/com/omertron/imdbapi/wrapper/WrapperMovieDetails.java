@@ -1,11 +1,8 @@
 package com.omertron.imdbapi.wrapper;
 
 import com.omertron.imdbapi.model.ImdbMovieDetails;
-import org.slf4j.Logger;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -14,10 +11,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta","exp","copyright"})
-public class WrapperMovieDetails {
+@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
+public class WrapperMovieDetails extends AbstractWrapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WrapperMovieDetails.class);
     @JsonProperty("data")
     private ImdbMovieDetails movie;
 
@@ -27,19 +23,5 @@ public class WrapperMovieDetails {
 
     public void setMovie(ImdbMovieDetails movie) {
         this.movie = movie;
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.warn(sb.toString());
     }
 }

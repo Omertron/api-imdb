@@ -353,7 +353,7 @@ public class ImdbApiTest {
      */
     @Test
     public void testGetTitleSynopsis() {
-        LOG.info("getTitlePlot");
+        LOG.info("getTitleSynopsis");
         for (String imdbId : IMDB_IDS) {
             ImdbSynopsis result = imdbApi.getTitleSynopsis(imdbId);
             assertNotNull("Title synopsis is empty for " + imdbId, result);

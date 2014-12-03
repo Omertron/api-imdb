@@ -1,10 +1,7 @@
 package com.omertron.imdbapi.wrapper;
 
-import org.slf4j.Logger;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -13,10 +10,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta", "exp", "copyright"})
-public class WrapperBoxOffice {
+@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
+public class WrapperBoxOffice extends AbstractWrapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WrapperBoxOffice.class);
     // Root element
     @JsonProperty("data")
     private WrapperBoxOffice data;
@@ -53,19 +49,5 @@ public class WrapperBoxOffice {
     @Override
     public String toString() {
         return "WrapperBoxOffice{" + "data=" + data + ", date=" + date + ", boxOfficeList=" + boxOfficeList + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.warn(sb.toString());
     }
 }

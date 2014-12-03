@@ -1,23 +1,29 @@
-package com.omertron.imdbapi.model;
+package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
+import com.omertron.imdbapi.model.ImdbError;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Abstract class to handle any unknown properties by outputting a log message
- *
- * @author stuart.boston
- */
-public abstract class AbstractJsonMapping implements Serializable {
+public abstract class AbstractWrapper {
 
-    private static final transient Logger LOG = LoggerFactory.getLogger(AbstractJsonMapping.class);
+    private static final transient Logger LOG = LoggerFactory.getLogger(AbstractWrapper.class);
+
+    @JsonProperty("error")
+    private ImdbError error;
+
+    public ImdbError getError() {
+        return error;
+    }
+
+    public void setError(ImdbError error) {
+        this.error = error;
+    }
 
     /**
      * Handle unknown properties and print a message
@@ -28,7 +34,7 @@ public abstract class AbstractJsonMapping implements Serializable {
     @JsonAnySetter
     protected void handleUnknown(String key, Object value) {
         StringBuilder unknown = new StringBuilder(this.getClass().getSimpleName());
-        unknown.append(": Unknown property='").append(key);
+        unknown.append(": Unknown wrapper property='").append(key);
         unknown.append("' value='").append(value).append("'");
 
         LOG.trace(unknown.toString());

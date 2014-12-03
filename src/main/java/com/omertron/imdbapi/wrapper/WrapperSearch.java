@@ -1,6 +1,5 @@
 package com.omertron.imdbapi.wrapper;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.imdbapi.model.ImdbSearchResult;
@@ -9,8 +8,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -19,10 +16,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type"})
-public class WrapperSearch {
+@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
+public class WrapperSearch extends AbstractWrapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WrapperSearch.class);
     @JsonProperty("data")
     private WrapperSearch searchData;
     // Self referenced fields from "data"
@@ -66,19 +62,5 @@ public class WrapperSearch {
         for (ImdbSearchResult result : searchResults) {
             this.searchResults.put(result.getLabel(), result.getSearchObject());
         }
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.warn(sb.toString());
     }
 }

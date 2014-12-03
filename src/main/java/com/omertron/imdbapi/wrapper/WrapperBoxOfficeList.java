@@ -16,10 +16,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta", "exp", "copyright"})
-public class WrapperBoxOfficeList {
+@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
+public class WrapperBoxOfficeList extends AbstractWrapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WrapperBoxOfficeList.class);
     @JsonProperty("label")
     private String label = "";
     @JsonProperty("list")
@@ -44,19 +43,5 @@ public class WrapperBoxOfficeList {
     @Override
     public String toString() {
         return "WrapperBoxOfficeList{" + "label=" + label + ", boxOffice=" + boxOffice + '}';
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.warn(sb.toString());
     }
 }

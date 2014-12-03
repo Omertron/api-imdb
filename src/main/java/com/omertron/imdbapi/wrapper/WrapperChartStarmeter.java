@@ -3,11 +3,8 @@ package com.omertron.imdbapi.wrapper;
 import com.omertron.imdbapi.model.ImdbChartStarmeter;
 import java.util.Collections;
 import java.util.List;
-import org.slf4j.Logger;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -16,10 +13,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author stuart.boston
  */
-@JsonIgnoreProperties({"@meta","exp","copyright"})
-public class WrapperChartStarmeter {
+@JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
+public class WrapperChartStarmeter extends AbstractWrapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WrapperChartStarmeter.class);
     @JsonProperty("data")
     private WrapperChartStarmeter data;
     @JsonProperty("list")
@@ -39,19 +35,5 @@ public class WrapperChartStarmeter {
 
     public void setChartStarmeter(List<ImdbChartStarmeter> chartStarmeter) {
         this.chartStarmeter = chartStarmeter;
-    }
-
-    /**
-     * Handle unknown properties and print a message
-     *
-     * @param key
-     * @param value
-     */
-    @JsonAnySetter
-    public void handleUnknown(String key, Object value) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unknown property: '").append(key);
-        sb.append("' value: '").append(value).append("'");
-        LOG.warn(sb.toString());
     }
 }
