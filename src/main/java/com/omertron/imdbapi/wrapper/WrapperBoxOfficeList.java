@@ -1,13 +1,10 @@
 package com.omertron.imdbapi.wrapper;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.imdbapi.model.ImdbBoxOffice;
 import java.util.Collections;
 import java.util.List;
-import org.slf4j.Logger;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.slf4j.LoggerFactory;
 
 /**
  * JSON Wrapper class for the response from the API
