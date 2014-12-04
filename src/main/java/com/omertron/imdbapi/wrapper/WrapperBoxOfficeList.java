@@ -2,6 +2,7 @@ package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
 import com.omertron.imdbapi.model.ImdbBoxOffice;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
-public class WrapperBoxOfficeList extends AbstractWrapper {
+public class WrapperBoxOfficeList extends AbstractJsonMapping {
 
     @JsonProperty("label")
     private String label = "";

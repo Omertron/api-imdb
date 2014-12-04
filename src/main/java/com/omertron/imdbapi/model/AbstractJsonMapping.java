@@ -1,6 +1,7 @@
 package com.omertron.imdbapi.model;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -15,6 +16,24 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractJsonMapping implements Serializable {
 
     private static final transient Logger LOG = LoggerFactory.getLogger(AbstractJsonMapping.class);
+
+    @JsonProperty("error")
+    private ImdbStatusMessage statusMessage = null;
+    private boolean error = Boolean.FALSE;
+
+    public ImdbStatusMessage getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(ImdbStatusMessage statusMessage) {
+        this.statusMessage = statusMessage;
+        // Set the error flag
+        this.error = Boolean.TRUE;
+    }
+
+    public boolean isError() {
+        return error;
+    }
 
     /**
      * Handle unknown properties and print a message

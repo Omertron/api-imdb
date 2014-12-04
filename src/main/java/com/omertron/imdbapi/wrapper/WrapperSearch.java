@@ -2,6 +2,7 @@ package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
 import com.omertron.imdbapi.model.ImdbSearchResult;
 import com.omertron.imdbapi.search.SearchObject;
 import java.util.Collections;
@@ -17,7 +18,7 @@ import java.util.Map;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
-public class WrapperSearch extends AbstractWrapper {
+public class WrapperSearch extends AbstractJsonMapping {
 
     @JsonProperty("data")
     private WrapperSearch searchData;

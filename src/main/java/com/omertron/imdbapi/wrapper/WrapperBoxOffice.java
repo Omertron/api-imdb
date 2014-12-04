@@ -2,6 +2,7 @@ package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -11,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
-public class WrapperBoxOffice extends AbstractWrapper {
+public class WrapperBoxOffice extends AbstractJsonMapping {
 
     // Root element
     @JsonProperty("data")

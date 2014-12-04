@@ -11,6 +11,27 @@ public class ImdbStatusMessage {
     @JsonProperty("message")
     private String message = "";
 
+    public ImdbStatusMessage() {
+    }
+
+    public ImdbStatusMessage(String status, String code, String message) {
+        this.status = status;
+        this.code = code;
+        this.message = message;
+    }
+
+    public ImdbStatusMessage(boolean defaultMessage) {
+        if (defaultMessage) {
+            this.status = "000";
+            this.code = "error";
+            this.message = "Unknown error message";
+        } else {
+            this.status = "";
+            this.code = "";
+            this.message = "";
+        }
+    }
+
     public String getStatus() {
         return status;
     }

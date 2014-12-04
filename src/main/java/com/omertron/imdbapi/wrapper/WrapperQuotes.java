@@ -1,8 +1,9 @@
 package com.omertron.imdbapi.wrapper;
 
-import com.omertron.imdbapi.model.ImdbQuotes;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
+import com.omertron.imdbapi.model.ImdbQuotes;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
-public class WrapperQuotes extends AbstractWrapper {
+public class WrapperQuotes extends AbstractJsonMapping {
 
     @JsonProperty("data")
     private ImdbQuotes quotes;

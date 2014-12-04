@@ -2,6 +2,7 @@ package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
 import com.omertron.imdbapi.model.ImdbPerson;
 
 /**
@@ -12,7 +13,7 @@ import com.omertron.imdbapi.model.ImdbPerson;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
-public class WrapperActorData extends AbstractWrapper {
+public class WrapperActorData extends AbstractJsonMapping {
 
     @JsonProperty("data")
     private ImdbPerson actorData;

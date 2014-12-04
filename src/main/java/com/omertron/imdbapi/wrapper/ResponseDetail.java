@@ -1,5 +1,8 @@
 package com.omertron.imdbapi.wrapper;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
 import com.omertron.imdbapi.model.ImdbCredit;
 import com.omertron.imdbapi.model.ImdbFilmography;
 import com.omertron.imdbapi.model.ImdbImage;
@@ -11,8 +14,6 @@ import com.omertron.imdbapi.model.ImdbText;
 import com.omertron.imdbapi.model.ImdbUserComment;
 import java.util.Collections;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This class holds the various responses from the API
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"copyright"})
-public class ResponseDetail extends AbstractWrapper {
+public class ResponseDetail extends AbstractJsonMapping {
 
     @JsonProperty("tconst")
     private String imdbId = "";
