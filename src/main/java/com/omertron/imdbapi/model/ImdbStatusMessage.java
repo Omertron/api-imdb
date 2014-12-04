@@ -2,7 +2,7 @@ package com.omertron.imdbapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ImdbError {
+public class ImdbStatusMessage {
 
     @JsonProperty("status")
     private String status = "";

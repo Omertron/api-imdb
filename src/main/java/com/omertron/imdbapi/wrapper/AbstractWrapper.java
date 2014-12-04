@@ -2,7 +2,7 @@ package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.omertron.imdbapi.model.ImdbError;
+import com.omertron.imdbapi.model.ImdbStatusMessage;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -13,13 +13,13 @@ public abstract class AbstractWrapper {
     private static final transient Logger LOG = LoggerFactory.getLogger(AbstractWrapper.class);
 
     @JsonProperty("error")
-    private ImdbError error;
+    private ImdbStatusMessage error;
 
-    public ImdbError getError() {
+    public ImdbStatusMessage getError() {
         return error;
     }
 
-    public void setError(ImdbError error) {
+    public void setError(ImdbStatusMessage error) {
         this.error = error;
     }
 
