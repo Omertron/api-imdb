@@ -356,7 +356,6 @@ public class ImdbApiTest {
         LOG.info("getTitleSynopsis");
         for (String imdbId : IMDB_IDS) {
             ImdbSynopsis result = imdbApi.getTitleSynopsis(imdbId);
-            LOG.info(result.toString());
 
             // There could be a valid "No synopsis" error thrown
             if (result.isError() && result.getStatusMessage().getMessage().startsWith("No synopsis currently available")) {
