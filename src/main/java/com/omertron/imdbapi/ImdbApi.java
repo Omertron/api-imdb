@@ -275,12 +275,8 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<String, String>();
         args.put(NCONST, actorId);
 
-        WrapperActorData wad = ApiBuilder.getWrapper(WrapperActorData.class, "name/maindetails", args);
-        if (wad == null) {
-            return null;
-        } else {
-            return wad.getActorData();
-        }
+        WrapperActorData wrapper = ApiBuilder.getWrapper(WrapperActorData.class, "name/maindetails", args);
+        return wrapper.getResult();
     }
 
     /**
@@ -311,11 +307,7 @@ public final class ImdbApi {
         args.put(TCONST, imdbId);
 
         WrapperQuotes wrapper = ApiBuilder.getWrapper(WrapperQuotes.class, "title/quotes", args);
-        if (wrapper == null) {
-            return null;
-        } else {
-            return wrapper.getQuotes();
-        }
+        return wrapper.getResult();
     }
 
     /**
@@ -396,11 +388,7 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<String, String>();
         args.put(TCONST, imdbId);
         WrapperMovieDetails wrapper = ApiBuilder.getWrapper(WrapperMovieDetails.class, "title/maindetails", args);
-        if (wrapper == null) {
-            return null;
-        } else {
-            return wrapper.getMovie();
-        }
+        return wrapper.getResult();
     }
 
     /**
@@ -493,11 +481,7 @@ public final class ImdbApi {
         args.put(TCONST, imdbId);
 
         WrapperSynopsis wrapper = ApiBuilder.getWrapper(WrapperSynopsis.class, "title/synopsis", args);
-        if (wrapper == null) {
-            return null;
-        } else {
-            return wrapper.getSynopsis();
-        }
+        return wrapper.getResult();
     }
 
     /**

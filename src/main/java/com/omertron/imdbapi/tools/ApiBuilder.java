@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.omertron.imdbapi.model.AbstractJsonMapping;
 import com.omertron.imdbapi.model.ImdbMovieDetails;
 import com.omertron.imdbapi.model.ImdbPerson;
 import com.omertron.imdbapi.search.SearchDeserializer;
@@ -52,7 +53,7 @@ public final class ApiBuilder {
     }
 
     private ApiBuilder() {
-        throw new UnsupportedOperationException("Class cannot be initialised");
+        throw new UnsupportedOperationException("Class cannot be instantiate");
     }
 
     public static void setHttpClient(CommonHttpClient httpClient) {
@@ -89,32 +90,45 @@ public final class ApiBuilder {
         }
     }
 
-    public static <T> T getWrapper(Class<T> clazz, String function, Map<String, String> args) {
+    public static <T extends AbstractJsonMapping> T getWrapper(Class<T> clazz, String function, Map<String, String> args) {
+        T result;
+
+        // Make sure we have a "blank" object to return
+        try {
+            result = clazz.newInstance();
+        } catch (InstantiationException ex) {
+            LOG.debug("Failed to instantiate class {}", clazz.getSimpleName(), ex);
+            return null;
+        } catch (IllegalAccessException ex) {
+            LOG.debug("Failed to instantiate class {}", clazz.getSimpleName(), ex);
+            return null;
+        }
+
         try {
             String webPage = httpClient.requestContent(buildUrl(function, args), Charset.forName(DEFAULT_CHARSET));
             Object response = MAPPER.readValue(webPage, clazz);
-            return clazz.cast(response);
+            result = clazz.cast(response);
         } catch (JsonParseException ex) {
             LOG.warn("JsonParseException: {}", ex.getMessage(), ex);
+            result.setStatusMessage("JsonParseException: " + ex.getMessage(), ex);
         } catch (JsonMappingException ex) {
             LOG.warn("JsonMappingException: {}", ex.getMessage(), ex);
+            result.setStatusMessage("JsonMappingException: " + ex.getMessage(), ex);
         } catch (IOException ex) {
             LOG.warn("IOException: {}", ex.getMessage(), ex);
+            result.setStatusMessage("IOException: " + ex.getMessage(), ex);
         }
-        return null;
+
+        return result;
     }
 
     public static ResponseDetail getResponse(String function, Map<String, String> args) {
         WrapperResponse wr = getWrapper(WrapperResponse.class, function, args);
-        if (wr == null) {
-            return null;
-        } else {
-            return wr.getResponse();
-        }
+        return wr.getResult();
     }
 
     public static ResponseDetail getResponse(String function) {
-        return getResponse(function, Collections.<String,String>emptyMap());
+        return getResponse(function, Collections.<String, String>emptyMap());
     }
 
     public static WrapperSearch getSearchWrapper(String function, Map<String, String> args) {

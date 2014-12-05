@@ -1,8 +1,7 @@
 package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.omertron.imdbapi.model.AbstractJsonMapping;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
  * JSON Wrapper class for the response from the API
@@ -12,16 +11,16 @@ import com.omertron.imdbapi.model.AbstractJsonMapping;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
-public class WrapperResponse extends AbstractJsonMapping {
+public class WrapperResponse  extends AbstractWrapper<ResponseDetail> {
 
-    @JsonProperty("data")
-    private ResponseDetail response;
-
-    public ResponseDetail getResponse() {
-        return response;
+    @JsonSetter("data")
+    @Override
+    public void setResult(ResponseDetail result) {
+        this.result = result;
     }
 
-    public void setResponse(ResponseDetail response) {
-        this.response = response;
+    @Override
+    public ResponseDetail getResult() {
+        return getResult(ResponseDetail.class);
     }
 }

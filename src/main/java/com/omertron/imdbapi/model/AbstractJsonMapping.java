@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author stuart.boston
  */
-public abstract class AbstractJsonMapping implements Serializable {
+public abstract class AbstractJsonMapping implements Serializable, IStatusMessage {
 
     private static final transient Logger LOG = LoggerFactory.getLogger(AbstractJsonMapping.class);
 
@@ -21,16 +21,57 @@ public abstract class AbstractJsonMapping implements Serializable {
     private ImdbStatusMessage statusMessage = null;
     private boolean error = Boolean.FALSE;
 
+    /**
+     * Get the status message
+     *
+     * @return
+     */
+    @Override
     public ImdbStatusMessage getStatusMessage() {
         return statusMessage;
     }
 
+    /**
+     * Set the detailed status message for the error
+     *
+     * @param statusMessage
+     */
+    @Override
     public void setStatusMessage(ImdbStatusMessage statusMessage) {
         this.statusMessage = statusMessage;
         // Set the error flag
         this.error = Boolean.TRUE;
     }
 
+    /**
+     * Set the status message for the error
+     *
+     * @param message
+     */
+    @Override
+    public void setStatusMessageMsg(String message) {
+        setStatusMessage(new ImdbStatusMessage(message));
+    }
+
+    /**
+     * Set the status message and exception for the error
+     *
+     * @param message
+     * @param error
+     */
+    @Override
+    public void setStatusMessage(String message, Throwable error) {
+        ImdbStatusMessage sm = new ImdbStatusMessage(message);
+        sm.setThrownError(error);
+        setStatusMessage(sm);
+    }
+
+    /**
+     * Does the result have an error?
+     *
+     * @return
+     */
+    @Override
     public boolean isError() {
         return error;
     }

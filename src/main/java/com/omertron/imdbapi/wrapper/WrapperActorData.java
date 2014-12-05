@@ -1,8 +1,7 @@
 package com.omertron.imdbapi.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.omertron.imdbapi.model.AbstractJsonMapping;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.omertron.imdbapi.model.ImdbPerson;
 
 /**
@@ -13,16 +12,16 @@ import com.omertron.imdbapi.model.ImdbPerson;
  * @author stuart.boston
  */
 @JsonIgnoreProperties({"@meta", "exp", "copyright", "@type", "db"})
-public class WrapperActorData extends AbstractJsonMapping {
+public class WrapperActorData extends AbstractWrapper<ImdbPerson> {
 
-    @JsonProperty("data")
-    private ImdbPerson actorData;
-
-    public ImdbPerson getActorData() {
-        return actorData;
+    @JsonSetter("data")
+    @Override
+    public void setResult(ImdbPerson result) {
+        this.result = result;
     }
 
-    public void setActorData(ImdbPerson actorData) {
-        this.actorData = actorData;
+    @Override
+    public ImdbPerson getResult() {
+        return getResult(ImdbPerson.class);
     }
 }

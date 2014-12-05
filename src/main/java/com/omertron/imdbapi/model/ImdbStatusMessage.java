@@ -1,6 +1,8 @@
 package com.omertron.imdbapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ImdbStatusMessage {
 
@@ -10,6 +12,7 @@ public class ImdbStatusMessage {
     private String code = "";
     @JsonProperty("message")
     private String message = "";
+    private Throwable thrownError = null;
 
     public ImdbStatusMessage() {
     }
@@ -20,16 +23,10 @@ public class ImdbStatusMessage {
         this.message = message;
     }
 
-    public ImdbStatusMessage(boolean defaultMessage) {
-        if (defaultMessage) {
-            this.status = "000";
-            this.code = "error";
-            this.message = "Unknown error message";
-        } else {
-            this.status = "";
-            this.code = "";
-            this.message = "";
-        }
+    public ImdbStatusMessage(String message) {
+        this.status = "000";
+        this.code = "ERROR";
+        this.message = message;
     }
 
     public String getStatus() {
@@ -56,4 +53,16 @@ public class ImdbStatusMessage {
         this.message = message;
     }
 
+    public Throwable getThrownError() {
+        return thrownError;
+    }
+
+    public void setThrownError(Throwable thrownError) {
+        this.thrownError = thrownError;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE, Boolean.FALSE);
+    }
 }
