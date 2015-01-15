@@ -19,7 +19,7 @@ public class ImdbPerson extends SearchObject {
     @JsonProperty("has")
     private List<String> has = Collections.emptyList();
     @JsonProperty("birth")
-    private ImdbBirth birth = new ImdbBirth();
+    private ImdbError birth = new ImdbError();
     @JsonProperty("photos")
     private List<ImdbImage> photos = Collections.emptyList();
     private List<ImdbKnownFor> knownFor = Collections.emptyList();
@@ -70,11 +70,11 @@ public class ImdbPerson extends SearchObject {
         this.photos = photos;
     }
 
-    public ImdbBirth getBirth() {
+    public ImdbError getBirth() {
         return birth;
     }
 
-    public void setBirth(ImdbBirth birth) {
+    public void setBirth(ImdbError birth) {
         this.birth = birth;
     }
 
