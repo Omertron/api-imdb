@@ -1,87 +1,44 @@
 package com.omertron.imdbapi;
 
 import java.net.URL;
+import org.yamj.api.common.exception.ApiException;
+import org.yamj.api.common.exception.ApiExceptionType;
 
-public class ImdbException extends Exception {
+public class ImdbException extends ApiException {
 
-    private static final long serialVersionUID = 1L;
-
-    public enum ImdbExceptionType {
-        /*
-         * Unknown error occured
-         */
-        UNKNOWN_CAUSE,
-        /*
-         * URL is invalid
-         */
-        INVALID_URL,
-        /*
-         * The ID was not found
-         */
-        ID_NOT_FOUND,
-        /*
-         * Mapping failed from target to internal onbjects
-         */
-        MAPPING_FAILED,
-        /*
-         * Error connecting to the service
-         */
-        CONNECTION_ERROR,
-        /*
-         * Autorisation rejected
-         */
-        AUTHORISATION_FAILURE,
-        /*
-         * Page not found
-         */
-        HTTP_404_ERROR,
-        /*
-         * Service Unavailable, usually temporary
-         */
-        HTTP_503_ERROR;
+    public ImdbException(ApiExceptionType exceptionType, String response) {
+        super(exceptionType, response);
     }
 
-    private final ImdbExceptionType exceptionType;
-    private final String response;
-    private final String url;
-
-    public ImdbException(final ImdbExceptionType exceptionType, final String response, final String url) {
-        super();
-        this.exceptionType = exceptionType;
-        this.response = response;
-        this.url = url;
+    public ImdbException(ApiExceptionType exceptionType, String response, URL url) {
+        super(exceptionType, response, url);
     }
 
-    public ImdbException(final ImdbExceptionType exceptionType, final String response, final URL url) {
-      super();
-      this.exceptionType = exceptionType;
-      this.response = response;
-      this.url = url.toExternalForm();
-  }
-
-    public ImdbException(final ImdbExceptionType exceptionType, final String response, final String url, final Throwable cause) {
-        super(cause);
-        this.exceptionType = exceptionType;
-        this.response = response;
-        this.url = url;
+    public ImdbException(ApiExceptionType exceptionType, String response, int responseCode, URL url) {
+        super(exceptionType, response, responseCode, url);
     }
 
-    public ImdbException(final ImdbExceptionType exceptionType, final String response, final URL url, final Throwable cause) {
-      super(cause);
-      this.exceptionType = exceptionType;
-      this.response = response;
-      this.url = url.toExternalForm();
-  }
-
-    public ImdbExceptionType getExceptionType() {
-        return exceptionType;
+    public ImdbException(ApiExceptionType exceptionType, String response, String url) {
+        super(exceptionType, response, url);
     }
 
-    public String getResponse() {
-        return response;
+    public ImdbException(ApiExceptionType exceptionType, String response, int responseCode, String url) {
+        super(exceptionType, response, responseCode, url);
     }
 
-    public String getUrl(){
-      return url;
+    public ImdbException(ApiExceptionType exceptionType, String response, URL url, Throwable cause) {
+        super(exceptionType, response, url, cause);
+    }
+
+    public ImdbException(ApiExceptionType exceptionType, String response, int responseCode, URL url, Throwable cause) {
+        super(exceptionType, response, responseCode, url, cause);
+    }
+
+    public ImdbException(ApiExceptionType exceptionType, String response, String url, Throwable cause) {
+        super(exceptionType, response, url, cause);
+    }
+
+    public ImdbException(ApiExceptionType exceptionType, String response, int responseCode, String url, Throwable cause) {
+        super(exceptionType, response, responseCode, url, cause);
     }
 }

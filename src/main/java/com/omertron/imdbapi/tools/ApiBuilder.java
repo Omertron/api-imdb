@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.omertron.imdbapi.ImdbException;
-import com.omertron.imdbapi.ImdbException.ImdbExceptionType;
 import com.omertron.imdbapi.model.AbstractJsonMapping;
 import com.omertron.imdbapi.model.ImdbError;
 import com.omertron.imdbapi.model.ImdbMovieDetails;
@@ -28,6 +27,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.protocol.HTTP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yamj.api.common.exception.ApiExceptionType;
 import org.yamj.api.common.http.CommonHttpClient;
 import org.yamj.api.common.http.DigestedResponse;
 import org.yamj.api.common.http.UserAgentSelector;
@@ -169,17 +169,17 @@ public final class ApiBuilder {
 
             if (response.getStatusCode() >= 500) {
                 ImdbError error = MAPPER.readValue(response.getContent(), ImdbError.class);
-                throw new ImdbException(ImdbExceptionType.HTTP_503_ERROR, error.getStatusMessage().getMessage(), url);
+                throw new ImdbException(ApiExceptionType.HTTP_503_ERROR, error.getStatusMessage().getMessage(), url);
             } else if (response.getStatusCode() >= 300) {
                 ImdbError error = MAPPER.readValue(response.getContent(), ImdbError.class);
-                throw new ImdbException(ImdbExceptionType.HTTP_404_ERROR, error.getStatusMessage().getMessage(), url);
+                throw new ImdbException(ApiExceptionType.HTTP_404_ERROR, error.getStatusMessage().getMessage(), url);
             }
 
             return response.getContent();
         } catch (URISyntaxException ex) {
-            throw new ImdbException(ImdbExceptionType.INVALID_URL, "Invalid URL", url, ex);
+            throw new ImdbException(ApiExceptionType.INVALID_URL, "Invalid URL", url, ex);
         } catch (IOException ex) {
-            throw new ImdbException(ImdbExceptionType.CONNECTION_ERROR, "Error retrieving URL", url, ex);
+            throw new ImdbException(ApiExceptionType.CONNECTION_ERROR, "Error retrieving URL", url, ex);
         }
     }
 }
