@@ -258,7 +258,7 @@ public class ImdbApiTest {
         for (String imdbId : IMDB_IDS) {
             ImdbMovieDetails result = imdbApi.getFullDetails(imdbId);
             assertNotNull("Full Details is empty for " + imdbId, result);
-            LOG.info("Genres: " + result.getGenres());
+            LOG.info("Genres: {}", result.getGenres());
         }
     }
 
