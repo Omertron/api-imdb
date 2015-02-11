@@ -39,10 +39,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yamj.api.common.http.CommonHttpClient;
-import org.yamj.api.common.http.DefaultPoolingHttpClient;
+import org.yamj.api.common.http.SimpleHttpClientBuilder;
 
 /**
  * Java API class for the IMDB JSON API
@@ -52,7 +52,7 @@ import org.yamj.api.common.http.DefaultPoolingHttpClient;
 public final class ImdbApi {
 
     private static final Logger LOG = LoggerFactory.getLogger(ImdbApi.class);
-    private CommonHttpClient httpClient;
+    private CloseableHttpClient httpClient;
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
 
@@ -64,10 +64,10 @@ public final class ImdbApi {
      * TODO: feature/borntoday
      */
     public ImdbApi() {
-        this(new DefaultPoolingHttpClient());
+        this(new SimpleHttpClientBuilder().build());
     }
 
-    public ImdbApi(CommonHttpClient httpClient) {
+    public ImdbApi(CloseableHttpClient httpClient) {
         this.httpClient = httpClient;
         ApiBuilder.setHttpClient(httpClient);
     }
@@ -510,27 +510,5 @@ public final class ImdbApi {
         } else {
             return wrapper.getData().getChartStarmeter();
         }
-    }
-
-    /**
-     * Set the web browser proxy information
-     *
-     * @param host
-     * @param port
-     * @param username
-     * @param password
-     */
-    public void setProxy(String host, int port, String username, String password) {
-        httpClient.setProxy(host, port, username, password);
-    }
-
-    /**
-     * Set the web browser timeout settings
-     *
-     * @param webTimeoutConnect
-     * @param webTimeoutRead
-     */
-    public void setTimeout(int webTimeoutConnect, int webTimeoutRead) {
-        httpClient.setTimeouts(webTimeoutConnect, webTimeoutRead);
     }
 }
