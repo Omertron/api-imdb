@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yamj.api.common.http.SimpleHttpClientBuilder;
@@ -52,7 +52,6 @@ import org.yamj.api.common.http.SimpleHttpClientBuilder;
 public final class ImdbApi {
 
     private static final Logger LOG = LoggerFactory.getLogger(ImdbApi.class);
-    private CloseableHttpClient httpClient;
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
 
@@ -67,8 +66,7 @@ public final class ImdbApi {
         this(new SimpleHttpClientBuilder().build());
     }
 
-    public ImdbApi(CloseableHttpClient httpClient) {
-        this.httpClient = httpClient;
+    public ImdbApi(HttpClient httpClient) {
         ApiBuilder.setHttpClient(httpClient);
     }
 

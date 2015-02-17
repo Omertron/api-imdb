@@ -23,8 +23,8 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +39,7 @@ public final class ApiBuilder {
     private static final int MILLIS_PER_SECOND = 1000;
     private static final String DEFAULT_CHARSET = "UTF-8";
     private static final Charset CHARSET = Charset.forName(DEFAULT_CHARSET);
-    private static CloseableHttpClient httpClient;
+    private static HttpClient httpClient;
     private static final String BASE_URL = "http://app.imdb.com/";
     private static final String API_VERSION = "v1";
     private static final String APP_ID = "iphone1";
@@ -66,7 +66,7 @@ public final class ApiBuilder {
         throw new UnsupportedOperationException("Class cannot be instantiate");
     }
 
-    public static void setHttpClient(CloseableHttpClient httpClient) {
+    public static void setHttpClient(HttpClient httpClient) {
         ApiBuilder.httpClient = httpClient;
     }
 
