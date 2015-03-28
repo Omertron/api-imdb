@@ -17,10 +17,7 @@ public abstract class AbstractWrapper<E extends AbstractJsonMapping> extends Abs
                 // If the wrapper is in error, there is no result class, so we need to create one
                 result = resultClass.newInstance();
                 result.setStatusMessage(getStatusMessage());
-            } catch (InstantiationException ex) {
-                LOG.warn("Failed to instantiate {}", resultClass.getSimpleName(), ex);
-                result = null;
-            } catch (IllegalAccessException ex) {
+            } catch (InstantiationException | IllegalAccessException ex) {
                 LOG.warn("Failed to instantiate {}", resultClass.getSimpleName(), ex);
                 result = null;
             }

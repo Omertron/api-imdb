@@ -51,7 +51,7 @@ public class ImdbPerson extends SearchObject {
     @JsonProperty("known_for")
     public void setKnownFor(Object passedObject) {
         if (passedObject.getClass() == String.class) {
-            this.knownFor = new ArrayList<ImdbKnownFor>();
+            this.knownFor = new ArrayList<>();
             ImdbKnownFor kf = new ImdbKnownFor();
             ImdbMovie m = new ImdbMovie();
             m.setTitle((String) passedObject);

@@ -108,7 +108,7 @@ public final class ImdbApi {
      * @return
      */
     public URL getShowtimes(String location, Date date) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put("location", location);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -123,7 +123,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbText> getParentalGuide(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
         ResponseDetail response = ApiBuilder.getResponse("title/parentalguide", args);
@@ -141,7 +141,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbUserComment> getUserReviews(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
         ResponseDetail response = ApiBuilder.getResponse("title/usercomments", args);
@@ -159,7 +159,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbReview> getExternalReviews(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
         ResponseDetail response = ApiBuilder.getResponse("title/external_reviews", args);
@@ -219,7 +219,7 @@ public final class ImdbApi {
      * @return
      */
     public List<String> getActorQuotes(String actorId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/quotes", args);
         if (response == null) {
@@ -236,7 +236,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbText> getActorTrivia(String actorId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/trivia", args);
         if (response == null) {
@@ -253,7 +253,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbFilmography> getActorFilmography(String actorId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/filmography", args);
         if (response == null) {
@@ -270,7 +270,7 @@ public final class ImdbApi {
      * @return
      */
     public ImdbPerson getActorDetails(String actorId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
 
         WrapperActorData wrapper = ApiBuilder.getWrapper(WrapperActorData.class, "name/maindetails", args);
@@ -284,7 +284,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbSeason> getTitleEpisodes(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/episodes", args);
         if (response == null) {
@@ -301,7 +301,7 @@ public final class ImdbApi {
      * @return
      */
     public ImdbQuotes getTitleQuotes(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
         WrapperQuotes wrapper = ApiBuilder.getWrapper(WrapperQuotes.class, "title/quotes", args);
@@ -336,13 +336,13 @@ public final class ImdbApi {
      * @return
      */
     private List<ImdbSpoiler> getTitleSpoilers(String imdbId, String requestType) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse(requestType, args);
         if (response == null) {
             return Collections.emptyList();
         } else {
-            List<ImdbSpoiler> spoilers = new ArrayList<ImdbSpoiler>();
+            List<ImdbSpoiler> spoilers = new ArrayList<>();
 
             for (ImdbSpoiler spoiler : response.getSpoilt()) {
                 spoiler.setSpoiler("spoilt");
@@ -366,7 +366,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbImage> getTitlePhotos(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/photos", args);
         if (response == null) {
@@ -383,7 +383,7 @@ public final class ImdbApi {
      * @return
      */
     public ImdbMovieDetails getFullDetails(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         WrapperMovieDetails wrapper = ApiBuilder.getWrapper(WrapperMovieDetails.class, "title/maindetails", args);
         return wrapper.getResult();
@@ -396,7 +396,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbCredit> getFullCast(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
         ResponseDetail response = ApiBuilder.getResponse("title/fullcredits", args);
@@ -415,7 +415,7 @@ public final class ImdbApi {
      * @return
      */
     public Map<String, List<SearchObject>> getSearch(String query) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
 
         String encodedQuery;
         try {
@@ -457,7 +457,7 @@ public final class ImdbApi {
      * @return
      */
     public List<ImdbPlot> getTitlePlot(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
         ResponseDetail response = ApiBuilder.getResponse("title/plot", args);
@@ -475,7 +475,7 @@ public final class ImdbApi {
      * @return
      */
     public ImdbSynopsis getTitleSynopsis(String imdbId) {
-        Map<String, String> args = new HashMap<String, String>();
+        Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
         WrapperSynopsis wrapper = ApiBuilder.getWrapper(WrapperSynopsis.class, "title/synopsis", args);

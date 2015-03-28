@@ -59,7 +59,7 @@ public class WrapperSearch extends AbstractJsonMapping {
 
     @JsonProperty("results")
     public void setSearchResults(List<ImdbSearchResult> searchResults) {
-        this.searchResults = new HashMap<String, List<SearchObject>>();
+        this.searchResults = new HashMap<>();
         for (ImdbSearchResult result : searchResults) {
             this.searchResults.put(result.getLabel(), result.getSearchObject());
         }

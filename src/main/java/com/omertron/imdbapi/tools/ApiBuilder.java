@@ -106,10 +106,7 @@ public final class ApiBuilder {
         // Make sure we have a "blank" object to return
         try {
             result = clazz.newInstance();
-        } catch (InstantiationException ex) {
-            LOG.debug("Failed to instantiate class {}", clazz.getSimpleName(), ex);
-            return null;
-        } catch (IllegalAccessException ex) {
+        } catch (InstantiationException | IllegalAccessException ex) {
             LOG.debug("Failed to instantiate class {}", clazz.getSimpleName(), ex);
             return null;
         }

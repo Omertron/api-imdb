@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 public class SearchDeserializer extends StdDeserializer<SearchObject> {
 
     private static final Logger LOG = LoggerFactory.getLogger(SearchDeserializer.class);
-    private final Map<String, Class<? extends SearchObject>> registry = new HashMap<String, Class<? extends SearchObject>>();
+    private final Map<String, Class<? extends SearchObject>> registry = new HashMap<>();
 
     public SearchDeserializer() {
         super(SearchObject.class);
