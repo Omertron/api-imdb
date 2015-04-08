@@ -42,24 +42,19 @@ public class ImdbApiTest {
 
     public ImdbApiTest() {
         imdbApi = new ImdbApi();
-
-        if (IMDB_IDS.isEmpty()) {
-            // Pulp Fiction
-            IMDB_IDS.add("tt0110912");
-            // Avengers
-            IMDB_IDS.add("tt0848228");
-            // The Big Bang Theory)
-            IMDB_IDS.add("tt0898266");
-        }
-
-        if (ACTOR_IDS.isEmpty()) {
-            ACTOR_IDS.add("nm0000148");  // Harrison Ford
-        }
     }
 
     @BeforeClass
     public static void setUpClass() {
         TestLogger.Configure();
+        // Pulp Fiction
+        IMDB_IDS.add("tt0110912");
+        // Avengers
+        IMDB_IDS.add("tt0848228");
+        // The Big Bang Theory)
+        IMDB_IDS.add("tt0898266");
+
+        ACTOR_IDS.add("nm0000148");  // Harrison Ford
     }
 
     @AfterClass
