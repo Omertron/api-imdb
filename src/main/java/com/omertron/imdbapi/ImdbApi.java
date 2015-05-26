@@ -509,4 +509,33 @@ public final class ImdbApi {
             return wrapper.getData().getChartStarmeter();
         }
     }
+
+    /**
+     * Get the TV Tonight
+     *
+     * @param date
+     * @return
+     */
+    public URL getTvTonight(Date date) {
+        Map<String, String> args = new HashMap<>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        args.put("date", sdf.format(date));
+        return ApiBuilder.buildUrl("tv/tonight", args);
+    }
+
+    /**
+     * Get the TV Tonight
+     *
+     * @param date
+     * @return
+     */
+    public URL getTvRecap(Date date) {
+        Map<String, String> args = new HashMap<>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        args.put("date", sdf.format(date));
+        return ApiBuilder.buildUrl("tv/recap", args);
+    }
+
 }
