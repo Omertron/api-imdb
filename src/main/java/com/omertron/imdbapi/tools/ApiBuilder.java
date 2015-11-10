@@ -162,11 +162,12 @@ public final class ApiBuilder {
         try {
             HttpGet httpGet = new HttpGet(url.toURI());
             httpGet.addHeader("accept", "application/json");
-            httpGet.addHeader(HTTP.USER_AGENT, UserAgentSelector.randomUserAgent());
 
             final DigestedResponse response = DigestedResponseReader.requestContent(httpClient, httpGet, CHARSET);
 
-            if (response.getStatusCode() >= 500) {
+            if (response.getStatusCode() == 0) {
+                throw new ImdbException(ApiExceptionType.CONNECTION_ERROR, "Error retrieving URL", url);
+            } else if (response.getStatusCode() >= 500) {
                 ImdbError error = MAPPER.readValue(response.getContent(), ImdbError.class);
                 throw new ImdbException(ApiExceptionType.HTTP_503_ERROR, error.getStatusMessage().getMessage(), url);
             } else if (response.getStatusCode() >= 300) {
