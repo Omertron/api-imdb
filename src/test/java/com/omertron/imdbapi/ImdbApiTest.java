@@ -55,6 +55,7 @@ public class ImdbApiTest {
         IMDB_IDS.add("tt0898266");
 
         ACTOR_IDS.add("nm0000148");  // Harrison Ford
+        ACTOR_IDS.add("nm0000122");  // Charles Chaplin
     }
 
     @AfterClass
@@ -379,5 +380,21 @@ public class ImdbApiTest {
         LOG.info("getChartStarmeter");
         List<ImdbChartStarmeter> result = imdbApi.getChartStarmeter();
         assertFalse("Chart Starmeter is empty", result.isEmpty());
+    }
+
+    /**
+     * Test of getTvTonight method, of class ImdbApi.
+     */
+    @Ignore("Not complete")
+    public void testGetTvTonight() {
+        LOG.info("getTvTonight");
+    }
+
+    /**
+     * Test of getTvRecap method, of class ImdbApi.
+     */
+    @Ignore("Not complete")
+    public void testGetTvRecap() {
+        LOG.info("getTvRecap");
     }
 }

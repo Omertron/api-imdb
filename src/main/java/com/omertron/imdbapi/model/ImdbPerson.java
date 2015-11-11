@@ -19,7 +19,9 @@ public class ImdbPerson extends SearchObject {
     @JsonProperty("has")
     private List<String> has = Collections.emptyList();
     @JsonProperty("birth")
-    private ImdbError birth = new ImdbError();
+    private ImdbBirth birth = new ImdbBirth();
+    @JsonProperty("death")
+    private ImdbBirth death = new ImdbBirth();
     @JsonProperty("photos")
     private List<ImdbImage> photos = Collections.emptyList();
     private List<ImdbKnownFor> knownFor = Collections.emptyList();
@@ -27,6 +29,8 @@ public class ImdbPerson extends SearchObject {
     private String attr = "";
     @JsonProperty("news")
     private ImdbNews news = new ImdbNews();
+    @JsonProperty("real_name")
+    private String realName;
 
     public ImdbNews getNews() {
         return news;
@@ -70,11 +74,11 @@ public class ImdbPerson extends SearchObject {
         this.photos = photos;
     }
 
-    public ImdbError getBirth() {
+    public ImdbBirth getBirth() {
         return birth;
     }
 
-    public void setBirth(ImdbError birth) {
+    public void setBirth(ImdbBirth birth) {
         this.birth = birth;
     }
 
@@ -116,6 +120,22 @@ public class ImdbPerson extends SearchObject {
 
     public void setActorId(String actorId) {
         this.actorId = actorId;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public ImdbBirth getDeath() {
+        return death;
+    }
+
+    public void setDeath(ImdbBirth death) {
+        this.death = death;
     }
 
 }
