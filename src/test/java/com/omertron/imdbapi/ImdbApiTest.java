@@ -46,7 +46,7 @@ public class ImdbApiTest {
 
     @BeforeClass
     public static void setUpClass() {
-        TestLogger.Configure();
+        TestLogger.configure();
         // Pulp Fiction
         IMDB_IDS.add("tt0110912");
         // Avengers
