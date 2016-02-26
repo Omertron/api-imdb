@@ -98,48 +98,42 @@ public final class ApiBuilder {
         }
     }
 
-    public static <T extends AbstractJsonMapping> T getWrapper(Class<T> clazz, String function, Map<String, String> args) {
+    public static <T extends AbstractJsonMapping> T getWrapper(Class<T> clazz, String function, Map<String, String> args) throws ImdbException {
         T result;
+        URL url = buildUrl(function, args);
 
         // Make sure we have a "blank" object to return
         try {
             result = clazz.newInstance();
         } catch (InstantiationException | IllegalAccessException ex) {
-            LOG.debug("Failed to instantiate class {}", clazz.getSimpleName(), ex);
-            return null;
+            throw new ImdbException(ApiExceptionType.CONNECTION_ERROR, "Failed to instantiate class " + clazz.getSimpleName(), url, ex);
         }
 
         try {
-            String webPage = requestWebPage(buildUrl(function, args));
+            String webPage = requestWebPage(url);
             Object response = MAPPER.readValue(webPage, clazz);
             result = clazz.cast(response);
         } catch (JsonParseException ex) {
-            LOG.warn("JsonParseException: {}", ex.getMessage(), ex);
-            result.setStatusMessage("JsonParseException: " + ex.getMessage(), ex);
+            throw new ImdbException(ApiExceptionType.MAPPING_FAILED, "JsonParseException", url, ex);
         } catch (JsonMappingException ex) {
-            LOG.warn("JsonMappingException: {}", ex.getMessage(), ex);
-            result.setStatusMessage("JsonMappingException: " + ex.getMessage(), ex);
+            throw new ImdbException(ApiExceptionType.MAPPING_FAILED, "JsonMappingException", url, ex);
         } catch (IOException ex) {
-            LOG.warn("IOException: {}", ex.getMessage(), ex);
-            result.setStatusMessage("IOException: " + ex.getMessage(), ex);
-        } catch (ImdbException ex) {
-            LOG.warn("ImbdException: {}", ex.getMessage(), ex);
-            result.setStatusMessage("ImdbExceptio2n: " + ex.getResponse(), ex);
+            throw new ImdbException(ApiExceptionType.CONNECTION_ERROR, "IOException", url, ex);
         }
 
         return result;
     }
 
-    public static ResponseDetail getResponse(String function, Map<String, String> args) {
+    public static ResponseDetail getResponse(String function, Map<String, String> args) throws ImdbException {
         WrapperResponse wr = getWrapper(WrapperResponse.class, function, args);
         return wr.getResult();
     }
 
-    public static ResponseDetail getResponse(String function) {
+    public static ResponseDetail getResponse(String function) throws ImdbException {
         return getResponse(function, Collections.<String, String>emptyMap());
     }
 
-    public static WrapperSearch getSearchWrapper(String function, Map<String, String> args) {
+    public static WrapperSearch getSearchWrapper(String function, Map<String, String> args) throws ImdbException {
         WrapperSearch wrapper = getWrapper(WrapperSearch.class, function, args);
 
         if (wrapper == null) {

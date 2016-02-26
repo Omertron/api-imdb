@@ -122,8 +122,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbText> getParentalGuide(String imdbId) {
+    public List<ImdbText> getParentalGuide(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
@@ -140,8 +141,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbUserComment> getUserReviews(String imdbId) {
+    public List<ImdbUserComment> getUserReviews(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
@@ -158,8 +160,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbReview> getExternalReviews(String imdbId) {
+    public List<ImdbReview> getExternalReviews(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
@@ -175,8 +178,9 @@ public final class ImdbApi {
      * Get the list of coming soon titles
      *
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbList> getComingSoon() {
+    public List<ImdbList> getComingSoon() throws ImdbException {
         ResponseDetail response = ApiBuilder.getResponse("feature/comingsoon");
         if (response == null) {
             return Collections.emptyList();
@@ -189,8 +193,9 @@ public final class ImdbApi {
      * Get the Top250 list
      *
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbList> getTop250() {
+    public List<ImdbList> getTop250() throws ImdbException {
         ResponseDetail response = ApiBuilder.getResponse("chart/top");
         if (response == null) {
             return Collections.emptyList();
@@ -203,8 +208,9 @@ public final class ImdbApi {
      * Get the Bottom 100 list
      *
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbList> getBottom100() {
+    public List<ImdbList> getBottom100() throws ImdbException {
         ResponseDetail response = ApiBuilder.getResponse("chart/bottom");
         if (response == null) {
             return Collections.emptyList();
@@ -218,8 +224,9 @@ public final class ImdbApi {
      *
      * @param actorId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<String> getActorQuotes(String actorId) {
+    public List<String> getActorQuotes(String actorId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/quotes", args);
@@ -235,8 +242,9 @@ public final class ImdbApi {
      *
      * @param actorId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbText> getActorTrivia(String actorId) {
+    public List<ImdbText> getActorTrivia(String actorId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/trivia", args);
@@ -252,8 +260,9 @@ public final class ImdbApi {
      *
      * @param actorId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbFilmography> getActorFilmography(String actorId) {
+    public List<ImdbFilmography> getActorFilmography(String actorId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
         ResponseDetail response = ApiBuilder.getResponse("name/filmography", args);
@@ -269,8 +278,9 @@ public final class ImdbApi {
      *
      * @param actorId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public ImdbPerson getActorDetails(String actorId) {
+    public ImdbPerson getActorDetails(String actorId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(NCONST, actorId);
 
@@ -283,8 +293,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbSeason> getTitleEpisodes(String imdbId) {
+    public List<ImdbSeason> getTitleEpisodes(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/episodes", args);
@@ -300,8 +311,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public ImdbQuotes getTitleQuotes(String imdbId) {
+    public ImdbQuotes getTitleQuotes(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
@@ -314,8 +326,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbSpoiler> getTitleGoofs(String imdbId) {
+    public List<ImdbSpoiler> getTitleGoofs(String imdbId) throws ImdbException {
         return getTitleSpoilers(imdbId, "title/goofs");
     }
 
@@ -324,8 +337,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbSpoiler> getTitleTrivia(String imdbId) {
+    public List<ImdbSpoiler> getTitleTrivia(String imdbId) throws ImdbException {
         return getTitleSpoilers(imdbId, "title/trivia");
     }
 
@@ -336,7 +350,7 @@ public final class ImdbApi {
      * @param requestType
      * @return
      */
-    private List<ImdbSpoiler> getTitleSpoilers(String imdbId, String requestType) {
+    private List<ImdbSpoiler> getTitleSpoilers(String imdbId, String requestType) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse(requestType, args);
@@ -365,8 +379,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbImage> getTitlePhotos(String imdbId) {
+    public List<ImdbImage> getTitlePhotos(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         ResponseDetail response = ApiBuilder.getResponse("title/photos", args);
@@ -382,8 +397,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public ImdbMovieDetails getFullDetails(String imdbId) {
+    public ImdbMovieDetails getFullDetails(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
         WrapperMovieDetails wrapper = ApiBuilder.getWrapper(WrapperMovieDetails.class, "title/maindetails", args);
@@ -395,8 +411,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbCredit> getFullCast(String imdbId) {
+    public List<ImdbCredit> getFullCast(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
@@ -414,8 +431,9 @@ public final class ImdbApi {
      *
      * @param query
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public Map<String, List<SearchObject>> getSearch(String query) {
+    public Map<String, List<SearchObject>> getSearch(String query) throws ImdbException {
         Map<String, String> args = new HashMap<>();
 
         String encodedQuery;
@@ -441,8 +459,9 @@ public final class ImdbApi {
      * Get the latest box office information
      *
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbBoxOffice> getBoxOffice() {
+    public List<ImdbBoxOffice> getBoxOffice() throws ImdbException {
         WrapperBoxOffice wrapper = ApiBuilder.getWrapper(WrapperBoxOffice.class, "boxoffice", Collections.<String, String>emptyMap());
         // Because WrapperBoxOffice is a "double" wrapper, we need to access the "inner" layer through the "outer" layer
         if (wrapper != null && wrapper.getData().getBoxOfficeList() != null) {
@@ -456,8 +475,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbPlot> getTitlePlot(String imdbId) {
+    public List<ImdbPlot> getTitlePlot(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
@@ -474,8 +494,9 @@ public final class ImdbApi {
      *
      * @param imdbId
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public ImdbSynopsis getTitleSynopsis(String imdbId) {
+    public ImdbSynopsis getTitleSynopsis(String imdbId) throws ImdbException {
         Map<String, String> args = new HashMap<>();
         args.put(TCONST, imdbId);
 
@@ -487,8 +508,9 @@ public final class ImdbApi {
      * Get the Chart Movie Meter
      *
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbChartMoviemeter> getChartMoviemeter() {
+    public List<ImdbChartMoviemeter> getChartMoviemeter() throws ImdbException {
         WrapperChartMoviemeter wrapper = ApiBuilder.getWrapper(WrapperChartMoviemeter.class, "chart/moviemeter", Collections.<String, String>emptyMap());
         if (wrapper == null) {
             return Collections.emptyList();
@@ -501,8 +523,9 @@ public final class ImdbApi {
      * Get the Chart Star Meter
      *
      * @return
+     * @throws com.omertron.imdbapi.ImdbException
      */
-    public List<ImdbChartStarmeter> getChartStarmeter() {
+    public List<ImdbChartStarmeter> getChartStarmeter() throws ImdbException {
         WrapperChartStarmeter wrapper = ApiBuilder.getWrapper(WrapperChartStarmeter.class, "chart/starmeter", Collections.<String, String>emptyMap());
         if (wrapper == null) {
             return Collections.emptyList();
