@@ -57,9 +57,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getParentalGuide method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetParentalGuide() {
+    public void testGetParentalGuide() throws ImdbException {
         LOG.info("getParentalGuide");
         for (String imdbId : IMDB_IDS) {
             List<ImdbText> result = imdbApi.getParentalGuide(imdbId);
@@ -69,9 +71,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getUserReviews method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetUserReviews() {
+    public void testGetUserReviews() throws ImdbException {
         LOG.info("getUserReviews");
         for (String imdbId : IMDB_IDS) {
 
@@ -82,9 +86,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getExternalReviews method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetExternalReviews() {
+    public void testGetExternalReviews() throws ImdbException {
         LOG.info("getExternalReviews");
         for (String imdbId : IMDB_IDS) {
             List<ImdbReview> result = imdbApi.getExternalReviews(imdbId);
@@ -94,9 +100,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getComingSoon method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetComingSoon() {
+    public void testGetComingSoon() throws ImdbException {
         LOG.info("getComingSoon");
         List<ImdbList> result = imdbApi.getComingSoon();
         assertFalse("Coming soon is empty", result.isEmpty());
@@ -104,9 +112,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTop250 method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTop250() {
+    public void testGetTop250() throws ImdbException {
         LOG.info("getTop250");
         List<ImdbList> result = imdbApi.getTop250();
         assertFalse("Top250 is empty", result.isEmpty());
@@ -114,9 +124,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getBottom100 method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetBottom100() {
+    public void testGetBottom100() throws ImdbException {
         LOG.info("getBottom100");
         List<ImdbList> result = imdbApi.getBottom100();
         assertFalse("Bottom100 is empty", result.isEmpty());
@@ -124,9 +136,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getActorQuotes method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetActorQuotes() {
+    public void testGetActorQuotes() throws ImdbException {
         LOG.info("getActorQuotes");
         for (String actorId : ACTOR_IDS) {
             List<String> result = imdbApi.getActorQuotes(actorId);
@@ -136,9 +150,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getActorTrivia method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetActorTrivia() {
+    public void testGetActorTrivia() throws ImdbException {
         LOG.info("getActorTrivia");
         for (String actorId : ACTOR_IDS) {
             List<ImdbText> result = imdbApi.getActorTrivia(actorId);
@@ -148,9 +164,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getActorFilmography method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetActorFilmography() {
+    public void testGetActorFilmography() throws ImdbException {
         LOG.info("getActorFilmography");
         for (String actorId : ACTOR_IDS) {
             List<ImdbFilmography> result = imdbApi.getActorFilmography(actorId);
@@ -160,9 +178,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getActorDetails method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetActorDetails() {
+    public void testGetActorDetails() throws ImdbException {
         LOG.info("getActorDetails");
         for (String actorId : ACTOR_IDS) {
             ImdbPerson result = imdbApi.getActorDetails(actorId);
@@ -172,9 +192,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTitleEpisodes method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTitleEpisodes() {
+    public void testGetTitleEpisodes() throws ImdbException {
         LOG.info("getTitleEpisodes");
         for (String imdbId : IMDB_IDS) {
             List<ImdbSeason> result = imdbApi.getTitleEpisodes(imdbId);
@@ -184,9 +206,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTitleGoofs method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTitleGoofs() {
+    public void testGetTitleGoofs() throws ImdbException {
         LOG.info("getTitleGoofs");
         for (String imdbId : IMDB_IDS) {
             List<ImdbSpoiler> result = imdbApi.getTitleGoofs(imdbId);
@@ -196,9 +220,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTitleQuotes method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTitleQuotes() {
+    public void testGetTitleQuotes() throws ImdbException {
         LOG.info("getTitleQuotes");
         for (String imdbId : IMDB_IDS) {
             ImdbQuotes result = imdbApi.getTitleQuotes(imdbId);
@@ -208,9 +234,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTitleTrivia method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTitleTrivia() {
+    public void testGetTitleTrivia() throws ImdbException {
         LOG.info("getTitleTrivia");
         for (String imdbId : IMDB_IDS) {
             List<ImdbSpoiler> result = imdbApi.getTitleTrivia(imdbId);
@@ -220,9 +248,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTitlePhotos method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTitlePhotos() {
+    public void testGetTitlePhotos() throws ImdbException {
         LOG.info("getTitlePhotos");
         for (String imdbId : IMDB_IDS) {
             List<ImdbImage> result = imdbApi.getTitlePhotos(imdbId);
@@ -232,9 +262,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getFullDetails method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetFullDetails() {
+    public void testGetFullDetails() throws ImdbException {
         LOG.info("getFullDetails");
         for (String imdbId : IMDB_IDS) {
             ImdbMovieDetails result = imdbApi.getFullDetails(imdbId);
@@ -245,9 +277,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getFullCast method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetFullCast() {
+    public void testGetFullCast() throws ImdbException {
         LOG.info("getFullCast");
         for (String imdbId : IMDB_IDS) {
             List<ImdbCredit> result = imdbApi.getFullCast(imdbId);
@@ -257,9 +291,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getSearch method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Ignore("Not working yet")
-    public void testGetSearch() {
+    public void testGetSearch() throws ImdbException {
         LOG.info("getSearch");
         Map<String, List<SearchObject>> result = imdbApi.getSearch("James Dean");
 
@@ -309,9 +345,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getBoxOffice method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetBoxOffice() {
+    public void testGetBoxOffice() throws ImdbException {
         LOG.info("getBoxOffice");
         List<ImdbBoxOffice> result = imdbApi.getBoxOffice();
         assertFalse("BoxOffice is empty", result.isEmpty());
@@ -319,9 +357,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTitlePlot method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTitlePlot() {
+    public void testGetTitlePlot() throws ImdbException {
         LOG.info("getTitlePlot");
         for (String imdbId : IMDB_IDS) {
             List<ImdbPlot> result = imdbApi.getTitlePlot(imdbId);
@@ -331,9 +371,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getTitleSynopsis method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetTitleSynopsis() {
+    public void testGetTitleSynopsis() throws ImdbException {
         LOG.info("getTitleSynopsis");
         for (String imdbId : IMDB_IDS) {
             ImdbSynopsis result = imdbApi.getTitleSynopsis(imdbId);
@@ -349,9 +391,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getChartMoviemeter method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetChartMoviemeter() {
+    public void testGetChartMoviemeter() throws ImdbException {
         LOG.info("getChartMoviemeter");
         List<ImdbChartMoviemeter> result = imdbApi.getChartMoviemeter();
         assertFalse("Chart Moviemeter is empty", result.isEmpty());
@@ -359,9 +403,11 @@ public class ImdbApiTest {
 
     /**
      * Test of getChartStarmeter method, of class ImdbApi.
+     *
+     * @throws com.omertron.imdbapi.ImdbException
      */
     @Test
-    public void testGetChartStarmeter() {
+    public void testGetChartStarmeter() throws ImdbException {
         LOG.info("getChartStarmeter");
         List<ImdbChartStarmeter> result = imdbApi.getChartStarmeter();
         assertFalse("Chart Starmeter is empty", result.isEmpty());

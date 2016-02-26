@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.omertron.imdbapi.ImdbException;
 import com.omertron.imdbapi.model.AbstractJsonMapping;
-import com.omertron.imdbapi.model.ImdbError;
 import com.omertron.imdbapi.model.ImdbMovieDetails;
 import com.omertron.imdbapi.model.ImdbPerson;
 import com.omertron.imdbapi.search.SearchDeserializer;
@@ -17,19 +16,15 @@ import com.omertron.imdbapi.wrapper.WrapperResponse;
 import com.omertron.imdbapi.wrapper.WrapperSearch;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yamj.api.common.exception.ApiExceptionType;
-import org.yamj.api.common.http.DigestedResponse;
-import org.yamj.api.common.http.DigestedResponseReader;
 
 public final class ApiBuilder {
 
@@ -37,7 +32,7 @@ public final class ApiBuilder {
     private static final int MILLIS_PER_SECOND = 1000;
     private static final String DEFAULT_CHARSET = "UTF-8";
     private static final Charset CHARSET = Charset.forName(DEFAULT_CHARSET);
-    private static HttpClient httpClient;
+    private static HttpTools httpTools;
     private static final String BASE_URL = "http://app.imdb.com/";
     private static final String API_VERSION = "v1";
     private static final String APP_ID = "iphone1";
@@ -65,7 +60,7 @@ public final class ApiBuilder {
     }
 
     public static void setHttpClient(HttpClient httpClient) {
-        ApiBuilder.httpClient = httpClient;
+        ApiBuilder.httpTools = new HttpTools(httpClient);
     }
 
     public static void setLocale(Locale locale) {
@@ -110,7 +105,7 @@ public final class ApiBuilder {
         }
 
         try {
-            String webPage = requestWebPage(url);
+            String webPage = httpTools.getRequest(url);
             Object response = MAPPER.readValue(webPage, clazz);
             result = clazz.cast(response);
         } catch (JsonParseException ex) {
@@ -143,35 +138,4 @@ public final class ApiBuilder {
         return wrapper.getSearchData();
     }
 
-    /**
-     * Download the URL into a String
-     *
-     * @param url
-     * @return
-     * @throws AllocineException
-     */
-    private static String requestWebPage(URL url) throws ImdbException {
-        try {
-            HttpGet httpGet = new HttpGet(url.toURI());
-            httpGet.addHeader("accept", "application/json");
-
-            final DigestedResponse response = DigestedResponseReader.requestContent(httpClient, httpGet, CHARSET);
-
-            if (response.getStatusCode() == 0) {
-                throw new ImdbException(ApiExceptionType.CONNECTION_ERROR, "Error retrieving URL", url);
-            } else if (response.getStatusCode() >= 500) {
-                ImdbError error = MAPPER.readValue(response.getContent(), ImdbError.class);
-                throw new ImdbException(ApiExceptionType.HTTP_503_ERROR, error.getStatusMessage().getMessage(), url);
-            } else if (response.getStatusCode() >= 300) {
-                ImdbError error = MAPPER.readValue(response.getContent(), ImdbError.class);
-                throw new ImdbException(ApiExceptionType.HTTP_404_ERROR, error.getStatusMessage().getMessage(), url);
-            }
-
-            return response.getContent();
-        } catch (URISyntaxException ex) {
-            throw new ImdbException(ApiExceptionType.INVALID_URL, "Invalid URL", url, ex);
-        } catch (IOException ex) {
-            throw new ImdbException(ApiExceptionType.CONNECTION_ERROR, "Error retrieving URL", url, ex);
-        }
-    }
 }
