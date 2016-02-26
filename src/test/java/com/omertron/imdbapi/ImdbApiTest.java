@@ -21,12 +21,9 @@ import com.omertron.imdbapi.search.SearchObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -56,18 +53,6 @@ public class ImdbApiTest {
 
         ACTOR_IDS.add("nm0000148");  // Harrison Ford
         ACTOR_IDS.add("nm0000122");  // Charles Chaplin
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -286,7 +271,7 @@ public class ImdbApiTest {
      * Test of setLocale method, of class ImdbApi.
      */
     @Test
-    public void testSetLocale_Locale() {
+    public void testSetLocaleLocale() {
         // Not required
     }
 
@@ -294,7 +279,7 @@ public class ImdbApiTest {
      * Test of setLocale method, of class ImdbApi.
      */
     @Test
-    public void testSetLocale_String() {
+    public void testSetLocaleString() {
         // Not required
     }
 
@@ -302,7 +287,7 @@ public class ImdbApiTest {
      * Test of setLocale method, of class ImdbApi.
      */
     @Test
-    public void testSetLocale_String_String() {
+    public void testSetLocaleStringString() {
         // Not required
     }
 

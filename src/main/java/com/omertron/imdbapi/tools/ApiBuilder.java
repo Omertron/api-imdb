@@ -25,13 +25,11 @@ import java.util.Locale;
 import java.util.Map;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.protocol.HTTP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yamj.api.common.exception.ApiExceptionType;
 import org.yamj.api.common.http.DigestedResponse;
 import org.yamj.api.common.http.DigestedResponseReader;
-import org.yamj.api.common.http.UserAgentSelector;
 
 public final class ApiBuilder {
 

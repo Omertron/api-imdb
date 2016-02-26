@@ -54,6 +54,7 @@ public final class ImdbApi {
     private static final Logger LOG = LoggerFactory.getLogger(ImdbApi.class);
     private static final String TCONST = "tconst";
     private static final String NCONST = "nconst";
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     /*
      * Outstanding methods to implement
@@ -111,7 +112,7 @@ public final class ImdbApi {
         Map<String, String> args = new HashMap<>();
         args.put("location", location);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         args.put("date", sdf.format(date));
         return ApiBuilder.buildUrl("showtimes/location", args);
     }
@@ -519,7 +520,7 @@ public final class ImdbApi {
     public URL getTvTonight(Date date) {
         Map<String, String> args = new HashMap<>();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         args.put("date", sdf.format(date));
         return ApiBuilder.buildUrl("tv/tonight", args);
     }
@@ -533,7 +534,7 @@ public final class ImdbApi {
     public URL getTvRecap(Date date) {
         Map<String, String> args = new HashMap<>();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         args.put("date", sdf.format(date));
         return ApiBuilder.buildUrl("tv/recap", args);
     }

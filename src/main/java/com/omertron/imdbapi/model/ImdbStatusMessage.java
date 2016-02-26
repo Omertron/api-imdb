@@ -7,14 +7,15 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class ImdbStatusMessage {
 
     @JsonProperty("status")
-    private String status = "";
+    private String status;
     @JsonProperty("code")
-    private String code = "";
+    private String code;
     @JsonProperty("message")
-    private String message = "";
+    private String message;
     private Throwable thrownError = null;
 
     public ImdbStatusMessage() {
+        this("", "", "");
     }
 
     public ImdbStatusMessage(String status, String code, String message) {

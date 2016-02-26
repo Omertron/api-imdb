@@ -5,13 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ImdbSpoiler extends AbstractJsonMapping {
 
     @JsonProperty("spoiler")
-    private String spoiler = "";
+    private String spoiler;
     @JsonProperty("text")
-    private String text = "";
+    private String text;
     @JsonProperty("type")
-    private String type = "";
+    private String type;
 
     public ImdbSpoiler() {
+        this("", "", "");
     }
 
     public ImdbSpoiler(String spoiler, String text, String type) {
