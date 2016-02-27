@@ -528,7 +528,7 @@ public final class ImdbApi {
      * @throws com.omertron.imdbapi.ImdbException
      */
     public List<ImdbSpoiler> getTitleGoofs(String imdbId, Locale locale) throws ImdbException {
-        return getTitleSpoilers(imdbId, "title/goofs");
+        return getTitleSpoilers(imdbId, "title/goofs", locale);
     }
 
     /**
@@ -551,7 +551,7 @@ public final class ImdbApi {
      * @throws com.omertron.imdbapi.ImdbException
      */
     public List<ImdbSpoiler> getTitleTrivia(String imdbId, Locale locale) throws ImdbException {
-        return getTitleSpoilers(imdbId, "title/trivia");
+        return getTitleSpoilers(imdbId, "title/trivia", locale);
     }
 
     /**
