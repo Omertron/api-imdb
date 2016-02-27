@@ -17,7 +17,6 @@ import com.omertron.imdbapi.wrapper.WrapperSearch;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
@@ -30,14 +29,11 @@ public final class ApiBuilder {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiBuilder.class);
     private static final int MILLIS_PER_SECOND = 1000;
-    private static final String DEFAULT_CHARSET = "UTF-8";
-    private static final Charset CHARSET = Charset.forName(DEFAULT_CHARSET);
-    private static HttpTools httpTools;
     private static final String BASE_URL = "http://app.imdb.com/";
     private static final String API_VERSION = "v1";
     private static final String APP_ID = "iphone1";
     private static final String SIG = "app1";
-    private static Locale imdbLocale = Locale.getDefault();
+    private final HttpTools httpTools;
     /*
      * Jackson JSON configuration
      */
@@ -55,26 +51,17 @@ public final class ApiBuilder {
         MAPPER.registerModule(module);
     }
 
-    private ApiBuilder() {
-        throw new UnsupportedOperationException("Class cannot be instantiate");
+    public ApiBuilder(HttpClient httpClient) {
+        this.httpTools = new HttpTools(httpClient);
     }
 
-    public static void setHttpClient(HttpClient httpClient) {
-        ApiBuilder.httpTools = new HttpTools(httpClient);
-    }
-
-    public static void setLocale(Locale locale) {
-        ApiBuilder.imdbLocale = locale;
-        LOG.trace("Setting locale to {}", imdbLocale.toString());
-    }
-
-    public static URL buildUrl(String function, Map<String, String> arguments) {
+    public URL buildUrl(String function, Map<String, String> arguments, Locale locale) throws ImdbException {
         StringBuilder sbURL = new StringBuilder(BASE_URL);
 
         sbURL.append(function);
         sbURL.append("?api=").append(API_VERSION);
         sbURL.append("&appid=").append(APP_ID);
-        sbURL.append("&locale=").append(imdbLocale);
+        sbURL.append("&locale=").append(locale);
         sbURL.append("&timestamp=").append(System.currentTimeMillis() / MILLIS_PER_SECOND);
 
         for (Map.Entry<String, String> argEntry : arguments.entrySet()) {
@@ -88,14 +75,13 @@ public final class ApiBuilder {
         try {
             return new URL(sbURL.toString());
         } catch (MalformedURLException ex) {
-            LOG.trace("Failed to convert string to URL: {}", ex.getMessage());
-            return null;
+            throw new ImdbException(ApiExceptionType.INVALID_URL, "Failed to convert string to URL", sbURL.toString());
         }
     }
 
-    public static <T extends AbstractJsonMapping> T getWrapper(Class<T> clazz, String function, Map<String, String> args) throws ImdbException {
+    public <T extends AbstractJsonMapping> T getWrapper(Class<T> clazz, String function, Map<String, String> args, Locale locale) throws ImdbException {
         T result;
-        URL url = buildUrl(function, args);
+        URL url = buildUrl(function, args, locale);
 
         // Make sure we have a "blank" object to return
         try {
@@ -119,20 +105,20 @@ public final class ApiBuilder {
         return result;
     }
 
-    public static ResponseDetail getResponse(String function, Map<String, String> args) throws ImdbException {
-        WrapperResponse wr = getWrapper(WrapperResponse.class, function, args);
+    public ResponseDetail getResponse(String function, Map<String, String> args, Locale locale) throws ImdbException {
+        WrapperResponse wr = getWrapper(WrapperResponse.class, function, args, locale);
         return wr.getResult();
     }
 
-    public static ResponseDetail getResponse(String function) throws ImdbException {
-        return getResponse(function, Collections.<String, String>emptyMap());
+    public ResponseDetail getResponse(String function, Locale locale) throws ImdbException {
+        return getResponse(function, Collections.<String, String>emptyMap(), locale);
     }
 
-    public static WrapperSearch getSearchWrapper(String function, Map<String, String> args) throws ImdbException {
-        WrapperSearch wrapper = getWrapper(WrapperSearch.class, function, args);
+    public WrapperSearch getSearchWrapper(String function, Map<String, String> args, Locale locale) throws ImdbException {
+        WrapperSearch wrapper = getWrapper(WrapperSearch.class, function, args, locale);
 
         if (wrapper == null) {
-            return null;
+            throw new ImdbException(ApiExceptionType.UNKNOWN_CAUSE, function + " error");
         }
 
         return wrapper.getSearchData();
