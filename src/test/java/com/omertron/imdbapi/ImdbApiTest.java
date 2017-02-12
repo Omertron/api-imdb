@@ -21,6 +21,7 @@ import com.omertron.imdbapi.search.SearchObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -53,6 +54,30 @@ public class ImdbApiTest {
 
         ACTOR_IDS.add("nm0000148");  // Harrison Ford
         ACTOR_IDS.add("nm0000122");  // Charles Chaplin
+    }
+
+    @Test
+    public void testEmptySearch() throws ImdbException {
+        LOG.info("test Empty Search");
+
+        Map<String, List<SearchObject>> searchResultMap = imdbApi.getSearch("Deadpool");
+        List<SearchObject> result = searchResultMap.get("Search results");
+
+        int count = 0;
+        for (SearchObject so : result) {
+            if (so instanceof ImdbMovieDetails) {
+                LOG.info("MOVIE: {}", so.toString());
+                assertNotNull("Unkown Movie", ((ImdbMovieDetails) so).getImdbId());
+                count++;
+            } else if (so instanceof ImdbPerson) {
+                LOG.info("PERSON: {}", so.toString());
+                assertNotNull("Unknown person", ((ImdbPerson) so).getActorId());
+                count++;
+            }
+        }
+
+        assertEquals("Unchecked items", result.size(), count);
+
     }
 
     /**

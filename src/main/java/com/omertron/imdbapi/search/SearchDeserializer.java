@@ -28,31 +28,34 @@ public class SearchDeserializer extends StdDeserializer<SearchObject> {
 
     @Override
     public SearchObject deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+        LOG.debug("START");
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         ObjectNode root = (ObjectNode) mapper.readTree(jp);
         Class<? extends SearchObject> searchClass = null;
         Iterator<Map.Entry<String, JsonNode>> elementsIterator = root.fields();
 
+        LOG.debug("{}", root);
+
         while (elementsIterator.hasNext()) {
             Map.Entry<String, JsonNode> element = elementsIterator.next();
             String name = element.getKey();
-            LOG.info("Name: {} = {}", name, element.getValue().asText());
+            LOG.debug("Name: {} = {}", name, element.getValue().asText());
 
             if (registry.containsKey(name)) {
                 searchClass = registry.get(name);
-                LOG.info("Using class: {}", searchClass.getSimpleName());
+                LOG.debug("\tUsing class: {}", searchClass.getSimpleName());
                 break;
             }
         }
 
         if (searchClass == null) {
-            LOG.info("END: No search class!");
+            LOG.debug("END: No search class!");
             return new SearchObject();
+        } else {
+            SearchObject so = mapper.readValue(root.toString(), searchClass);
+            LOG.debug("SO: {}", so.toString());
+            LOG.debug("END");
+            return so;
         }
-
-        SearchObject so = mapper.readValue(jp, searchClass);
-        LOG.info("SO: {}", so.toString());
-        LOG.info("END");
-        return so;
     }
 }
