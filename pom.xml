@@ -13,7 +13,7 @@
 
     <groupId>com.moviejukebox</groupId>
     <artifactId>api-imdb</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
 
     <name>API-IMDB</name>
